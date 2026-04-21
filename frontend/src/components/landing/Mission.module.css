@@ -1,0 +1,12 @@
+.mission { padding: 60px 40px; background: linear-gradient(135deg,var(--green-deep),var(--green-mid)); text-align: center; position: relative; overflow: hidden; border-top: 3px solid var(--green-soft); border-bottom: 3px solid var(--green-soft); }
+.leaf { position: absolute; pointer-events: none; z-index: 0; opacity: 0; animation: leafFloat 8s ease-in-out infinite; }
+.leafLT { width: 120px; top: 10%; left: 2%; animation-delay: 0s; animation-duration: 9s; }
+.leafRT { width: 80px; top: 20%; right: 3%; animation-delay: 2s; animation-duration: 7s; transform: scaleX(-1); }
+.leafLB { width: 60px; bottom: 10%; left: 8%; animation-delay: 4s; animation-duration: 11s; }
+.inner { max-width: 520px; margin: 0 auto; position: relative; z-index: 1; }
+.iconWrap { margin-bottom: 20px; }
+.iconWrap img { width: 80px; height: 80px; object-fit: contain; filter: drop-shadow(0 4px 16px rgba(0,0,0,0.35)); margin: 0 auto; }
+.title { font-family: var(--font-serif); font-size: clamp(22px,3vw,36px); font-weight: 700; background: linear-gradient(135deg,var(--green-light),var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px; }
+.text { font-size: 17px; line-height: 1.85; color: rgba(255,255,255,0.85); max-width: 640px; margin: 0 auto; }
+.highlight { color: var(--green-light); }
+@media (max-width: 768px) { .mission { padding: 48px 22px; } }

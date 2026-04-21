@@ -1,0 +1,71 @@
+/* Hero.module.css */
+.hero { min-height: 100vh; padding: 0; position: relative; overflow: hidden; display: flex; align-items: stretch; }
+
+.heroBg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.heroSlide {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center 20%;
+  transition: opacity 2.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.heroSlide::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(105deg, rgba(15,40,20,.82) 0%, rgba(20,55,30,.70) 38%, rgba(27,67,50,.30) 65%, transparent 100%);
+}
+.heroSlide1 { background-image: url('/images/landing/hero_slide_1.jpg'); }
+.heroSlide2 { background-image: url('/images/landing/hero_slide_2.jpg'); }
+
+.heroDots { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10; }
+.heroDot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.4); cursor: pointer; transition: all .4s; border: 2px solid rgba(255,255,255,.6); }
+.heroDotActive { background: var(--gold); border-color: var(--gold); width: 24px; border-radius: 4px; }
+
+.heroGrid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+  align-items: center; position: relative; z-index: 2;
+  width: 100%; padding: 100px 40px 60px;
+  animation: slideIn 1s ease forwards;
+}
+.heroContent { position: relative; z-index: 2; max-width: 580px; }
+.heroTitle {
+  font-family: var(--font-serif); font-size: clamp(42px,5vw,68px);
+  font-weight: 800; line-height: 1.05;
+  background: linear-gradient(135deg, var(--green-light), var(--gold));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; margin-bottom: 24px;
+}
+.heroTitle span { background: linear-gradient(135deg, var(--green-light), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.heroP1 { font-size: 15.5px; line-height: 1.85; color: var(--gold); margin-bottom: 12px; max-width: 540px; }
+.heroP2 { font-size: 14px; line-height: 1.8; color: var(--gold); margin-bottom: 28px; max-width: 520px; opacity: .9; }
+.btnGroup { display: flex; gap: 16px; flex-wrap: wrap; }
+.btnPrimary {
+  background: linear-gradient(135deg, var(--green-light), var(--gold)); color: var(--green-deep); border: none;
+  font-family: var(--font-sans); font-weight: 700; padding: 12px 26px; border-radius: 50px;
+  letter-spacing: 1px; text-transform: uppercase; font-size: 12px; cursor: pointer;
+  transition: var(--transition); box-shadow: 0 6px 20px rgba(27,67,50,0.3);
+}
+.btnPrimary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(27,67,50,0.4); }
+.btnLearnMore {
+  background: transparent; color: var(--gold); border: 2px solid var(--gold);
+  padding: 14px 32px; border-radius: 50px; font-size: 14px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase; cursor: pointer;
+  font-family: var(--font-sans); transition: var(--transition);
+}
+.btnLearnMore:hover { background: var(--gold); color: white; box-shadow: 0 8px 24px rgba(201,168,76,0.35); transform: translateY(-2px); }
+.miniStats { display: flex; gap: 32px; margin-top: 48px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,.2); }
+.miniStatVal { font-family: var(--font-serif); font-size: 28px; font-weight: 700; color: var(--green-light); }
+.miniStatLbl { font-size: 12px; color: var(--green-light); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+
+@media (max-width: 1024px) {
+  .heroGrid { grid-template-columns: 1fr; padding: 100px 40px 70px; max-width: 680px; }
+  .heroGrid > div:last-child { display: none; }
+}
+@media (max-width: 768px) {
+  .hero { min-height: 100svh; }
+  .heroGrid { padding: 80px 22px 56px; gap: 28px; max-width: 100%; }
+  .heroTitle { font-size: clamp(34px, 8.5vw, 50px); }
+  .btnGroup { flex-direction: column; gap: 12px; align-items: stretch; }
+  .btnPrimary, .btnLearnMore { width: 100%; text-align: center; display: block; padding: 14px 20px; }
+  .miniStats { gap: 0; justify-content: space-between; }
+  .miniStatVal { font-size: 22px; }
+  .heroDots { bottom: 20px; }
+}

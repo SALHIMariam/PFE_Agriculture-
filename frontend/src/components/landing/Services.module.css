@@ -1,0 +1,25 @@
+.services { padding: 70px 40px; background: #f8f5f0; position: relative; overflow: hidden; }
+.blob { position: absolute; pointer-events: none; z-index: 0; }
+.blob1 { bottom: -50px; left: -50px; width: 260px; height: 240px; }
+.blob2 { top: -50px; right: -50px; width: 260px; height: 240px; }
+.decoPlant { position: absolute; bottom: -20px; right: -10px; width: 260px; opacity: 0.18; transform-origin: bottom right; animation: plantSway 9s ease-in-out infinite; animation-delay: 1s; pointer-events: none; }
+.inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+.header { text-align: center; margin-bottom: 56px; }
+.subtitle { font-size: 16px; color: var(--text-soft); max-width: 540px; margin: 0 auto; }
+.grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 40px; }
+.card { background: #e8f5e9; border-radius: 16px; padding: 30px 26px; transition: all .3s; border: 1px solid #c8e6c9; position: relative; overflow: hidden; }
+.card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg,var(--green-deep),var(--green-light)); transform: scaleX(0); transition: transform .3s; }
+.card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(27,67,50,0.12); }
+.card:hover::before { transform: scaleX(1); }
+.cardImg { width: 90px; height: 90px; object-fit: contain; margin: 0 auto 14px; }
+.cardTitle { font-family: var(--font-serif); font-size: 19px; font-weight: 600; color: #8DBF3C; margin-bottom: 10px; text-align: center; }
+.cardDesc { font-size: 14px; line-height: 1.7; color: var(--text-soft); }
+.tiles { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.tile { border-radius: 18px; overflow: hidden; height: 210px; position: relative; box-shadow: var(--shadow-md); transition: transform .4s ease; }
+.tile img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.tile:hover img { transform: scale(1.05); }
+.tileOverlay { position: absolute; inset: 0; background: linear-gradient(to top,rgba(27,67,50,0.65),transparent); }
+.tileLabel { position: absolute; bottom: 14px; left: 18px; color: white; font-family: var(--font-serif); font-size: 17px; font-weight: 600; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+@media (max-width: 1024px) { .grid, .tiles { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 768px)  { .services { padding: 56px 22px; } .grid, .tiles { grid-template-columns: 1fr; } .tile { height: 180px; } }
+@media (max-width: 480px)  { .services { padding: 44px 18px; } }

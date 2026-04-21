@@ -1,0 +1,34 @@
+/* Intro banner */
+.introBanner { background: linear-gradient(135deg,var(--green-deep),var(--green-mid)); padding: 40px 40px; text-align: center; position: relative; overflow: hidden; border-top: 3px solid var(--green-soft); border-bottom: 3px solid var(--green-soft); }
+.leaf { position: absolute; pointer-events: none; z-index: 0; opacity: 0; animation: leafFloat 8s ease-in-out infinite; }
+.leafHowRight { width: 90px; top: 6%; right: 4%; opacity: 0.35; animation-delay: 1s; }
+.leafHowLeft { width: 65px; bottom: 6%; left: 4%; opacity: 0.3; animation-delay: 3s; transform: scaleX(-1); }
+.introInner { max-width: 680px; margin: 0 auto; }
+.introTitle { font-family: var(--font-serif); font-size: clamp(20px,2.8vw,32px); font-weight: 700; background: linear-gradient(135deg,var(--green-light),var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.3; margin-bottom: 18px; }
+.introText { font-size: 17px; line-height: 1.85; color: rgba(255,255,255,0.85); max-width: 640px; margin: 0 auto; }
+.introHighlight { color: var(--green-light); }
+
+/* Steps */
+.steps { padding: 70px 40px; background: #fdfcf8; position: relative; overflow: hidden; }
+.stepsBlob1, .stepsBlob2 { position: absolute; pointer-events: none; z-index: 0; }
+.stepsBlob1 { top: -50px; left: -50px; width: 240px; height: 220px; }
+.stepsBlob2 { bottom: -50px; right: -50px; width: 240px; height: 220px; }
+.stepsInner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+.stepsHeader { text-align: center; margin-bottom: 56px; }
+.stepsSubtitle { font-size: 16px; color: var(--text-soft); max-width: 500px; margin: 0 auto; }
+.stepsGrid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; }
+.card { background: white; border-radius: 20px; overflow: hidden; transition: all .3s cubic-bezier(.4,0,.2,1); box-shadow: var(--shadow-sm); border: 2px solid transparent; }
+.card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(27,67,50,0.18); border-color: var(--green-light); }
+.cardImgWrap { height: 260px; background: linear-gradient(135deg,#e8f5e9,#d0f0e0); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.cardImg { width: 72%; height: 72%; object-fit: contain; position: relative; z-index: 1; transition: transform 0.45s ease; filter: drop-shadow(0 10px 24px rgba(27,67,50,0.18)); }
+.card:hover .cardImg { transform: scale(1.1) translateY(-6px); }
+.numBadge { position: absolute; top: 12px; left: 12px; width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg,var(--green-light),var(--gold)); color: var(--green-deep); font-family: var(--font-serif); font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; z-index: 3; box-shadow: 0 4px 14px rgba(0,0,0,0.15); }
+.cardBody { padding: 20px 22px 26px; }
+.cardRole { font-family: var(--font-serif); font-size: 18px; font-weight: 700; color: #8DBF3C; margin-bottom: 2px; }
+.cardName { font-size: 13px; font-weight: 700; color: var(--green-soft); letter-spacing: 0.5px; margin-bottom: 6px; text-transform: uppercase; }
+.cardDesc { font-size: 13px; color: var(--text-soft); line-height: 1.6; }
+.tags { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 14px; }
+.tags span { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #2d6a4f; background: #e8f5e9; border: 1px solid #b7dfc5; border-radius: 20px; padding: 3px 11px; }
+@media (max-width: 1024px) { .stepsGrid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 768px)  { .steps { padding: 56px 22px; } .stepsGrid { grid-template-columns: repeat(2,1fr); gap: 14px; } .cardImgWrap { height: 220px; } }
+@media (max-width: 480px)  { .steps { padding: 44px 18px; } .stepsGrid { grid-template-columns: 1fr; } .cardImgWrap { height: 260px; } }
