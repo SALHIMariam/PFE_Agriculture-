@@ -76,9 +76,6 @@ export default function AgriNovaSignUpPage() {
   const { user, register, loading } = useAuth();
   const navigate = useNavigate();
 
-  if (!loading && user) {
-    return <Navigate to="/dashboard" replace />;
-  }
 
   /* Step state */
   const [currentStep, setCurrentStep] = useState(1);
@@ -176,6 +173,7 @@ export default function AgriNovaSignUpPage() {
   };
 
   const handleSubmit = async () => {
+    if (buttonState === "loading" || buttonState === "success") return;
     setError("");
     if (!selectedFarm) {
       setError("Please select your farm type.");
@@ -192,7 +190,7 @@ export default function AgriNovaSignUpPage() {
     try {
       await register(fullName, email, password, password2);
       setButtonState("success");
-      setTimeout(() => navigate("/dashboard"), 700);
+      navigate("/dashboard", { replace: true });
     } catch (err: unknown) {
       const message =
         (err as { response?: { data?: { message?: string } } })?.response?.data
@@ -251,6 +249,10 @@ export default function AgriNovaSignUpPage() {
   );
 
   /* ── Render ── */
+  if (!loading && user) {
+    return <Navigate to="/dashboard" replace />;
+  }
+
   return (
     <div className={styles.page}>
       {/* ═══ LEFT PANEL ═══ */}

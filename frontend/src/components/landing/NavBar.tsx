@@ -1,13 +1,23 @@
+import React from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 
 export default function Navbar() {
   const navigate = useNavigate();
   const { user, loading, logout } = useAuth();
+  const logoutClickedRef = React.useRef(false);
 
-  const handleLogout = async () => {
-    await logout();
-    navigate("/");
+  const handleLogout = async (event?: React.MouseEvent) => {
+    event?.stopPropagation();
+    if (logoutClickedRef.current) return;
+    logoutClickedRef.current = true;
+    try {
+      console.log("NAVBAR_LOGOUT_BUTTON_CLICKED");
+      await logout();
+      navigate("/", { replace: true });
+    } finally {
+      logoutClickedRef.current = false;
+    }
   };
 
   return (

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { Dropdown } from "../ui/dropdown/Dropdown";
 import { useNavigate } from "react-router";
@@ -9,10 +9,20 @@ export default function UserDropdown() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
-  async function handleLogout() {
-    await logout();
-    navigate("/agrinova-login");
-  }
+  const logoutClickedRef = React.useRef(false);
+
+  const handleLogout = async (event?: React.MouseEvent) => {
+    event?.stopPropagation();
+    if (logoutClickedRef.current) return;
+    logoutClickedRef.current = true;
+    try {
+      console.log("DROPDOWN_LOGOUT_BUTTON_CLICKED");
+      await logout();
+      navigate("/agrinova-login", { replace: true });
+    } finally {
+      logoutClickedRef.current = false;
+    }
+  };
 
   function toggleDropdown() {
     setIsOpen(!isOpen);

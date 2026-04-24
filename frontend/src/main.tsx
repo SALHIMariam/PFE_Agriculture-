@@ -9,13 +9,11 @@ import { ThemeProvider } from "./context/ThemeContext.tsx";
 import { AuthProvider } from "./context/AuthContext.tsx";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <ThemeProvider>
-      <AuthProvider>
-        <AppWrapper>
-          <App />
-        </AppWrapper>
-      </AuthProvider>
-    </ThemeProvider>
-  </StrictMode>,
+  <ThemeProvider>
+    <AuthProvider>
+      <AppWrapper>
+        <App />
+      </AppWrapper>
+    </AuthProvider>
+  </ThemeProvider>
 );

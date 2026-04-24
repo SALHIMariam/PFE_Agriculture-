@@ -54,10 +54,6 @@ export default function AgriNovaLoginPage({ onSuccess }: LoginPageProps) {
   const { user, login, loading } = useAuth();
   const navigate = useNavigate();
 
-  if (!loading && user) {
-    return <Navigate to="/dashboard" replace />;
-  }
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -67,6 +63,7 @@ export default function AgriNovaLoginPage({ onSuccess }: LoginPageProps) {
 
   const particlesRef = useRef<HTMLDivElement>(null);
   const loginButtonRef = useRef<HTMLButtonElement>(null);
+  const submitRef = useRef(false);
   useParticles(particlesRef);
 
   const shakeElement = (element: HTMLElement | null) => {
@@ -97,22 +94,27 @@ export default function AgriNovaLoginPage({ onSuccess }: LoginPageProps) {
 
   const handleLogin = async (event?: FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
     event?.preventDefault();
-    setError("");
-
-    if (!validate()) return;
-
-    setButtonState("loading");
+    
+    if (submitRef.current) return;
+    submitRef.current = true;
 
     try {
+      if (buttonState === "loading" || buttonState === "success") return;
+
+      setError("");
+
+      if (!validate()) return;
+
+      setButtonState("loading");
+
       await login(email, password);
       setButtonState("success");
-      setTimeout(() => {
-        if (onSuccess) {
-          onSuccess();
-        } else {
-          navigate("/dashboard");
-        }
-      }, 700);
+      
+      if (onSuccess) {
+        onSuccess();
+      } else {
+        navigate("/dashboard", { replace: true });
+      }
     } catch (err: unknown) {
       const message =
         (err as { response?: { data?: { message?: string } } })?.response?.data
@@ -120,19 +122,12 @@ export default function AgriNovaLoginPage({ onSuccess }: LoginPageProps) {
       setError(message);
       setButtonState("idle");
       shakeElement(loginButtonRef.current);
+    } finally {
+      submitRef.current = false;
     }
   };
 
-  useEffect(() => {
-    const keyHandler = (event: KeyboardEvent) => {
-      if (event.key === "Enter") {
-        void handleLogin();
-      }
-    };
 
-    window.addEventListener("keydown", keyHandler);
-    return () => window.removeEventListener("keydown", keyHandler);
-  }, [email, password]);
 
   const buttonLabel =
     buttonState === "loading"
@@ -140,6 +135,10 @@ export default function AgriNovaLoginPage({ onSuccess }: LoginPageProps) {
       : buttonState === "success"
         ? "✓  Welcome back!"
         : "Sign In  →";
+
+  if (!loading && user) {
+    return <Navigate to="/dashboard" replace />;
+  }
 
   return (
     <div className={styles.page}>
