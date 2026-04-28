@@ -12,7 +12,6 @@ export default function Navbar() {
     if (logoutClickedRef.current) return;
     logoutClickedRef.current = true;
     try {
-      console.log("NAVBAR_LOGOUT_BUTTON_CLICKED");
       await logout();
       navigate("/", { replace: true });
     } finally {

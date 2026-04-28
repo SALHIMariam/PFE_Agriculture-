@@ -18,6 +18,8 @@ class UserResource extends JsonResource
             'farm_profile' => $this->farm_profile,
             'is_active'    => $this->is_active,
             'roles'        => $this->getRoleNames(),
+            'created_at'   => $this->created_at?->toISOString(),
+            'updated_at'   => $this->updated_at?->toISOString(),
         ];
     }
 }

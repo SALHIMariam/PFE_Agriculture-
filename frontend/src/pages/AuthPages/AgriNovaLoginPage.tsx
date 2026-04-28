@@ -1,11 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { Link, Navigate, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import styles from "./AgriNovaLoginPage.module.css";
 import { useAuth } from "../../context/AuthContext";
-
-type LoginPageProps = {
-  onSuccess?: () => void;
-};
 
 function useParticles(containerRef: React.RefObject<HTMLDivElement | null>) {
   useEffect(() => {
@@ -50,8 +46,8 @@ function useParticles(containerRef: React.RefObject<HTMLDivElement | null>) {
   }, [containerRef]);
 }
 
-export default function AgriNovaLoginPage({ onSuccess }: LoginPageProps) {
-  const { user, login, loading } = useAuth();
+export default function AgriNovaLoginPage() {
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -107,14 +103,10 @@ export default function AgriNovaLoginPage({ onSuccess }: LoginPageProps) {
 
       setButtonState("loading");
 
-      await login(email, password);
+      const loggedUser = await login(email, password);
       setButtonState("success");
-      
-      if (onSuccess) {
-        onSuccess();
-      } else {
-        navigate("/dashboard", { replace: true });
-      }
+      const roles = Array.isArray(loggedUser?.roles) ? loggedUser.roles : [];
+      navigate(roles.includes("admin") ? "/dashboard" : "/landing", { replace: true });
     } catch (err: unknown) {
       const message =
         (err as { response?: { data?: { message?: string } } })?.response?.data
@@ -135,10 +127,6 @@ export default function AgriNovaLoginPage({ onSuccess }: LoginPageProps) {
       : buttonState === "success"
         ? "✓  Welcome back!"
         : "Sign In  →";
-
-  if (!loading && user) {
-    return <Navigate to="/dashboard" replace />;
-  }
 
   return (
     <div className={styles.page}>

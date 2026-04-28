@@ -36,7 +36,8 @@ class UserController extends Controller
             });
         }
 
-        $users = $query->latest()->paginate($request->get('per_page', 15));
+        $perPage = min(max(1, (int) $request->get('per_page', 15)), 50);
+        $users = $query->latest()->paginate($perPage);
 
         return response()->json([
             'users' => UserResource::collection($users),
@@ -102,6 +103,18 @@ class UserController extends Controller
      */
     public function destroy(User $user): JsonResponse
     {
+        if ($user->id === auth()->id()) {
+            return response()->json([
+                'message' => 'Vous ne pouvez pas supprimer votre propre compte.',
+            ], 422);
+        }
+
+        if ($user->hasRole('admin') && User::role('admin')->count() === 1) {
+            return response()->json([
+                'message' => 'Impossible de supprimer le dernier administrateur.',
+            ], 422);
+        }
+
         $user->delete();
 
         return response()->json([
@@ -114,6 +127,12 @@ class UserController extends Controller
      */
     public function toggleStatus(User $user): JsonResponse
     {
+        if ($user->id === auth()->id()) {
+            return response()->json([
+                'message' => 'Vous ne pouvez pas modifier votre propre statut.',
+            ], 422);
+        }
+
         $user->update(['is_active' => ! $user->is_active]);
 
         return response()->json([

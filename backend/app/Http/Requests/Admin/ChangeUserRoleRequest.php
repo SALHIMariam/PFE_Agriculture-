@@ -14,7 +14,7 @@ class ChangeUserRoleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'role' => ['required', 'string', 'exists:roles,name'],
+            'role' => ['required', 'string', 'in:admin,farmer'],
         ];
     }
 }

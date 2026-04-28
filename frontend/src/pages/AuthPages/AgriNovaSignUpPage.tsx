@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import styles from "./AgriNovaSignUpPage.module.css";
 import { useAuth } from "../../context/AuthContext";
 
@@ -73,7 +73,7 @@ function useParticles(containerRef: React.RefObject<HTMLDivElement | null>) {
 /* ── Component ────────────────────────────────────────── */
 
 export default function AgriNovaSignUpPage() {
-  const { user, register, loading } = useAuth();
+  const { register } = useAuth();
   const navigate = useNavigate();
 
 
@@ -102,6 +102,7 @@ export default function AgriNovaSignUpPage() {
   const particlesRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
   const activeBtnRef = useRef<HTMLButtonElement>(null);
+  const submitRef = useRef(false);
   useParticles(particlesRef);
 
   /* ── Helpers ── */
@@ -173,24 +174,28 @@ export default function AgriNovaSignUpPage() {
   };
 
   const handleSubmit = async () => {
-    if (buttonState === "loading" || buttonState === "success") return;
-    setError("");
-    if (!selectedFarm) {
-      setError("Please select your farm type.");
-      shake();
-      return;
-    }
-    if (!termsChecked) {
-      setError("Please agree to the Terms & Privacy Policy.");
-      return;
-    }
-
-    setButtonState("loading");
+    if (submitRef.current) return;
+    submitRef.current = true;
 
     try {
-      await register(fullName, email, password, password2);
+      if (buttonState === "loading" || buttonState === "success") return;
+      setError("");
+      if (!selectedFarm) {
+        setError("Please select your farm type.");
+        shake();
+        return;
+      }
+      if (!termsChecked) {
+        setError("Please agree to the Terms & Privacy Policy.");
+        return;
+      }
+
+      setButtonState("loading");
+
+      const newUser = await register(fullName, email, password, password2, farm, [...selectedCrops], selectedFarm ?? undefined);
       setButtonState("success");
-      navigate("/dashboard", { replace: true });
+      const roles = Array.isArray(newUser?.roles) ? newUser.roles : [];
+      navigate(roles.includes("admin") ? "/dashboard" : "/landing", { replace: true });
     } catch (err: unknown) {
       const message =
         (err as { response?: { data?: { message?: string } } })?.response?.data
@@ -198,6 +203,8 @@ export default function AgriNovaSignUpPage() {
       setError(message);
       setButtonState("idle");
       shake();
+    } finally {
+      submitRef.current = false;
     }
   };
 
@@ -249,10 +256,6 @@ export default function AgriNovaSignUpPage() {
   );
 
   /* ── Render ── */
-  if (!loading && user) {
-    return <Navigate to="/dashboard" replace />;
-  }
-
   return (
     <div className={styles.page}>
       {/* ═══ LEFT PANEL ═══ */}

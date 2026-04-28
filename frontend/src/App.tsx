@@ -1,7 +1,4 @@
-import { BrowserRouter as Router, Navigate, Route, Routes, useLocation, useNavigate } from "react-router";
-import SignIn from "./pages/AuthPages/SignIn";
-import SignUp from "./pages/AuthPages/SignUp";
-
+import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from "react-router";
 import NotFound from "./pages/OtherPage/NotFound";
 import UserProfiles from "./pages/UserProfiles";
 import Videos from "./pages/UiElements/Videos";
@@ -22,7 +19,11 @@ import Home from "./pages/Dashboard/Home";
 import LandingPage from "./pages/LandingPage";
 import AgriNovaLoginPage from "./pages/AuthPages/AgriNovaLoginPage";
 import AgriNovaSignUpPage from "./pages/AuthPages/AgriNovaSignUpPage";
+import SignIn from "./pages/AuthPages/SignIn";
+import SignUp from "./pages/AuthPages/SignUp";
 import ProtectedRoute from "./components/common/ProtectedRoute";
+import AdminRoute from "./components/common/AdminRoute";
+import AdminUsers from "./pages/Admin/Users";
 
 function LegacyDashboardRedirect() {
   const location = useLocation();
@@ -32,9 +33,7 @@ function LegacyDashboardRedirect() {
 }
 
 function AgriNovaSignInRoute() {
-  const navigate = useNavigate();
-
-  return <AgriNovaLoginPage onSuccess={() => navigate("/dashboard")} />;
+  return <AgriNovaLoginPage />;
 }
 
 export default function App() {
@@ -45,8 +44,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
 
-          {/* Dashboard Layout — protégé par session */}
-          <Route path="/dashboard" element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
+          {/* Dashboard Layout — protégé par session + rôle admin */}
+          <Route path="/dashboard" element={<ProtectedRoute><AdminRoute><AppLayout /></AdminRoute></ProtectedRoute>}>
             <Route index element={<Home />} />
 
             {/* Others Page */}
@@ -71,6 +70,9 @@ export default function App() {
             {/* Charts */}
             <Route path="line-chart" element={<LineChart />} />
             <Route path="bar-chart" element={<BarChart />} />
+
+            {/* Admin */}
+            <Route path="users" element={<AdminRoute><AdminUsers /></AdminRoute>} />
           </Route>
 
           <Route path="/dashbord/*" element={<LegacyDashboardRedirect />} />
@@ -79,9 +81,9 @@ export default function App() {
 
           {/* Auth Layout */}
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/agrinova-login" element={<AgriNovaSignInRoute />} />
           <Route path="/agrinova-signup" element={<AgriNovaSignUpPage />} />
-          <Route path="/signup" element={<SignUp />} />
 
 
           {/* Fallback Route */}

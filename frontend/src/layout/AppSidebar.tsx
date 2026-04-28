@@ -7,6 +7,7 @@ import {
   CalenderIcon,
   ChevronDownIcon,
   GridIcon,
+  GroupIcon,
   HorizontaLDots,
   ListIcon,
   PageIcon,
@@ -16,6 +17,7 @@ import {
   UserCircleIcon,
 } from "../icons";
 import { useSidebar } from "../context/SidebarContext";
+import { useAuth } from "../context/AuthContext";
 import SidebarWidget from "./SidebarWidget";
 
 type NavItem = {
@@ -23,40 +25,47 @@ type NavItem = {
   icon: React.ReactNode;
   path?: string;
   subItems?: { name: string; path: string; pro?: boolean; new?: boolean }[];
+  adminOnly?: boolean;
 };
 
 const navItems: NavItem[] = [
   {
     icon: <GridIcon />,
     name: "Dashboard",
-    subItems: [{ name: "Ecommerce", path: "/dashbord", pro: false }],
+    subItems: [{ name: "Ecommerce", path: "/dashboard", pro: false }],
   },
   {
     icon: <CalenderIcon />,
     name: "Calendar",
-    path: "/dashbord/calendar",
+    path: "/dashboard/calendar",
+  },
+  {
+    icon: <GroupIcon />,
+    name: "Users",
+    path: "/dashboard/users",
+    adminOnly: true,
   },
   {
     icon: <UserCircleIcon />,
     name: "User Profile",
-    path: "/dashbord/profile",
+    path: "/dashboard/profile",
   },
   {
     name: "Forms",
     icon: <ListIcon />,
-    subItems: [{ name: "Form Elements", path: "/dashbord/form-elements", pro: false }],
+    subItems: [{ name: "Form Elements", path: "/dashboard/form-elements", pro: false }],
   },
   {
     name: "Tables",
     icon: <TableIcon />,
-    subItems: [{ name: "Basic Tables", path: "/dashbord/basic-tables", pro: false }],
+    subItems: [{ name: "Basic Tables", path: "/dashboard/basic-tables", pro: false }],
   },
   {
     name: "Pages",
     icon: <PageIcon />,
     subItems: [
       { name: "Landing Page", path: "/", pro: false },
-      { name: "Blank Page", path: "/dashbord/blank", pro: false },
+      { name: "Blank Page", path: "/dashboard/blank", pro: false },
       { name: "404 Error", path: "/error-404", pro: false },
     ],
   },
@@ -67,20 +76,20 @@ const othersItems: NavItem[] = [
     icon: <PieChartIcon />,
     name: "Charts",
     subItems: [
-      { name: "Line Chart", path: "/dashbord/line-chart", pro: false },
-      { name: "Bar Chart", path: "/dashbord/bar-chart", pro: false },
+      { name: "Line Chart", path: "/dashboard/line-chart", pro: false },
+      { name: "Bar Chart", path: "/dashboard/bar-chart", pro: false },
     ],
   },
   {
     icon: <BoxCubeIcon />,
     name: "UI Elements",
     subItems: [
-      { name: "Alerts", path: "/dashbord/alerts", pro: false },
-      { name: "Avatar", path: "/dashbord/avatars", pro: false },
-      { name: "Badge", path: "/dashbord/badge", pro: false },
-      { name: "Buttons", path: "/dashbord/buttons", pro: false },
-      { name: "Images", path: "/dashbord/images", pro: false },
-      { name: "Videos", path: "/dashbord/videos", pro: false },
+      { name: "Alerts", path: "/dashboard/alerts", pro: false },
+      { name: "Avatar", path: "/dashboard/avatars", pro: false },
+      { name: "Badge", path: "/dashboard/badge", pro: false },
+      { name: "Buttons", path: "/dashboard/buttons", pro: false },
+      { name: "Images", path: "/dashboard/images", pro: false },
+      { name: "Videos", path: "/dashboard/videos", pro: false },
     ],
   },
   {
@@ -95,7 +104,9 @@ const othersItems: NavItem[] = [
 
 const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
+  const { user } = useAuth();
   const location = useLocation();
+  const isAdmin = user?.roles.includes("admin") ?? false;
 
   const [openSubmenu, setOpenSubmenu] = useState<{
     type: "main" | "others";
@@ -163,7 +174,7 @@ const AppSidebar: React.FC = () => {
 
   const renderMenuItems = (items: NavItem[], menuType: "main" | "others") => (
     <ul className="flex flex-col gap-4">
-      {items.map((nav, index) => (
+      {items.filter((nav) => !nav.adminOnly || isAdmin).map((nav, index) => (
         <li key={nav.name}>
           {nav.subItems ? (
             <button
@@ -304,7 +315,7 @@ const AppSidebar: React.FC = () => {
           !isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
         }`}
       >
-        <Link to="/dashbord">
+        <Link to="/dashboard">
           {isExpanded || isHovered || isMobileOpen ? (
             <>
               <img

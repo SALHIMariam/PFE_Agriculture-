@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -36,18 +35,6 @@ class User extends Authenticatable
             'crops' => 'array',
             'is_active' => 'boolean',
         ];
-    }
-
-    // ──── Relations ────
-
-    public function region(): BelongsTo
-    {
-        return $this->belongsTo(Region::class);
-    }
-
-    public function cooperative(): BelongsTo
-    {
-        return $this->belongsTo(Cooperative::class);
     }
 
     public function loginHistories(): HasMany

@@ -47,11 +47,11 @@ class RolesAndPermissionsSeeder extends Seeder
         // ──── Rôles ────
 
         // Admin — accès total (dashboard + landing page)
-        $admin = Role::firstOrCreate(['name' => 'admin']);
+        $admin = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'web']);
         $admin->syncPermissions(Permission::all());
 
         // Farmer — front-office uniquement
-        $farmer = Role::firstOrCreate(['name' => 'farmer']);
+        $farmer = Role::firstOrCreate(['name' => 'farmer', 'guard_name' => 'web']);
         $farmer->syncPermissions([
             'view_fields',
             'create_fields',

@@ -16,7 +16,6 @@ export default function UserDropdown() {
     if (logoutClickedRef.current) return;
     logoutClickedRef.current = true;
     try {
-      console.log("DROPDOWN_LOGOUT_BUTTON_CLICKED");
       await logout();
       navigate("/agrinova-login", { replace: true });
     } finally {
