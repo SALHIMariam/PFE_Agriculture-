@@ -1,0 +1,13 @@
+*.pt
+*.keras
+*.h5
+*.zip
+dataset_final/
+dataset_temp/
+test_dataset/
+rejected/
+quarantine/
+low_quality_archive/
+archived_excess/
+__pycache__/
+reports/plots/
