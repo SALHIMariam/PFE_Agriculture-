@@ -13,21 +13,21 @@ export default function Hero() {
 
       <div className="hero-grid">
         <div className="hero-content">
-          <h1 className="hero-title">Welcome to<br /><span>AgriNova</span></h1>
+          <h1 className="hero-title">Bienvenue sur<br /><span>Elastic Solutions</span></h1>
           <p className="hero-p1">
-            An intelligent agricultural platform designed to help farmers and agricultural experts monitor crop health using advanced artificial intelligence technologies.
+            Une plateforme agricole intelligente qui aide les agriculteurs et les experts à suivre la santé des cultures grâce aux technologies avancées d’intelligence artificielle.
           </p>
           <p className="hero-p2">
-            Analyzing RGB images from smartphones, cameras, or drones to automatically detect crop anomalies — diseases, water stress, and nutrient deficiencies.
+            Elle analyse les images RVB prises au smartphone, à l’appareil photo ou par drone pour détecter automatiquement les anomalies des cultures&nbsp;: maladies, stress hydrique et carences nutritives.
           </p>
           <div className="btn-group">
-            <button className="btn-primary" data-scroll-to="services">Explore Features</button>
-            <button className="btn-learn-more" data-scroll-to="about">Learn More</button>
+            <button className="btn-primary" data-scroll-to="services">Découvrir les fonctionnalités</button>
+            <button className="btn-learn-more" data-scroll-to="about">En savoir plus</button>
           </div>
           <div className="mini-stats">
-            <div><div className="mini-stat-val">90%+</div><div className="mini-stat-lbl">Accuracy</div></div>
-            <div><div className="mini-stat-val">10+</div><div className="mini-stat-lbl">Crop Types</div></div>
-            <div><div className="mini-stat-val">24/7</div><div className="mini-stat-lbl">Monitoring</div></div>
+            <div><div className="mini-stat-val">90&nbsp;%+</div><div className="mini-stat-lbl">Précision</div></div>
+            <div><div className="mini-stat-val">10+</div><div className="mini-stat-lbl">Types de cultures</div></div>
+            <div><div className="mini-stat-val">24/7</div><div className="mini-stat-lbl">Surveillance</div></div>
           </div>
         </div>
         <div />

@@ -215,7 +215,7 @@
 }
 .how-card:hover .how-step-img { transform: scale(1.1) translateY(-6px); }
 .how-num-badge {
-  position: absolute; top: 12px; left: 12px;
+  position: absolute; top: 20px; left: 20px;
   width: 38px; height: 38px; border-radius: 50%;
   background: linear-gradient(135deg, var(--green-light), var(--gold));
   color: var(--green-deep); font-family: var(--font-serif);
@@ -230,6 +230,21 @@
   color: #2d6a4f; background: #e8f5e9; border: 1px solid #b7dfc5;
   border-radius: 20px; padding: 3px 11px;
 }
+
+/* Espacements intérieurs des cartes How It Works (contenu décollé des bords).
+   Doublé par un style inline dans HowItWorks.tsx — ne pas passer en !important
+   ici, sinon la règle écraserait le style inline. */
+.how-card .how-img-wrap { padding: 24px 24px 16px 24px; }
+.how-card .team-body {
+  padding: 20px 24px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+}
+.how-card .team-body > * { margin: 0; }
+.how-card .team-role { margin-top: 12px; margin-bottom: 4px; }
+.how-card .how-tags { margin-top: 12px; gap: 6px; flex-wrap: wrap; }
 
 /* ---- TEAM ---- */
 #team { padding: 70px 40px; background: #fdfcf8; position: relative; overflow: hidden; }

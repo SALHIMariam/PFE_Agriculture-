@@ -7,16 +7,28 @@
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 1000;
+  z-index: 9999;
   padding: 0 40px;
   height: 72px;
   display: flex;
   align-items: center;
   gap: 32px;
-  background: rgba(248,245,240,0.96);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 2px 30px rgba(27,67,50,0.1);
-  transition: var(--transition);
+  /* État "haut de page" : transparente au-dessus du hero */
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: none;
+  box-shadow: none;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease,
+              box-shadow 0.3s ease, border-color 0.3s ease;
+}
+/* État "scrollée" : effet verre dépoli */
+nav.nav-scrolled {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(27, 67, 50, 0.10);
+  box-shadow: 0 2px 20px rgba(27, 67, 50, 0.08);
 }
 nav.transparent {
   background: transparent;
@@ -24,6 +36,25 @@ nav.transparent {
   backdrop-filter: none;
 }
 nav .nav-hamburger { display: none; }
+
+/* Contraste des liens / du hamburger selon l'état de la navbar */
+nav .nav-link { color: #ffffff; }
+nav .nav-hamburger span { background: #ffffff; }
+nav.nav-scrolled .nav-link { color: #1b4332; }
+nav.nav-scrolled .nav-hamburger span { background: var(--green-deep); }
+nav .nav-link:hover { color: var(--gold); }
+
+/* Lien de la section courante (scroll spy) — toujours doré, quel que soit
+   l'état de la navbar (transparente sur le hero ou floutée après scroll). */
+nav .nav-link.active,
+nav.nav-scrolled .nav-link.active {
+  color: #c9a84c;
+  border-bottom-color: #c9a84c;
+  font-weight: 700;
+}
+
+/* Compense la navbar fixe : le titre de section ne passe pas dessous */
+section[id] { scroll-margin-top: 72px; }
 
 .nav-logo-center {
   display: flex;

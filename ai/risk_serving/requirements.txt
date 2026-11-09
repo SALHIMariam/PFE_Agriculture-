@@ -1,0 +1,13 @@
+# Service de prédiction de risque (spread-risk) — indépendant du service
+# de détection EfficientNet. Lancement sur le port 8006 :
+#   pip install -r ai/risk_serving/requirements.txt
+#   cd ai && python -m uvicorn risk_serving.main:app --port 8006
+fastapi
+uvicorn
+lightgbm
+shap
+scikit-learn==1.9.0  # = version des .pkl (risk_encoders, risk_model) — sinon InconsistentVersionWarning
+joblib
+pandas
+numpy
+httpx

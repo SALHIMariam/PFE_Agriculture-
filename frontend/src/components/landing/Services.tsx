@@ -13,9 +13,9 @@ export default function Services() {
 
       <div className="services-inner">
         <div className="services-header">
-          <h2 className="section-title">Our Services</h2>
+          <h2 className="section-title">Nos services</h2>
           <p className="services-subtitle" data-aos="fade-up" data-aos-delay="100">
-            A complete suite of AI-powered tools to transform how you monitor and manage your crops.
+            Une suite complète d’outils basés sur l’IA pour transformer la façon dont vous suivez et gérez vos cultures.
           </p>
         </div>
 

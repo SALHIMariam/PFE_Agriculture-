@@ -1,0 +1,70 @@
+========================================================================
+ RAPPORT DE NETTOYAGE — Dataset PFE (maladies foliaires)
+========================================================================
+Total images AVANT  nettoyage : 166548
+Total images APRES  nettoyage : 149679
+Images supprimees             : 16869
+------------------------------------------------------------------------
+Raisons de suppression :
+  - duplicate             16786
+  - too_bright               53
+  - too_small                29
+  - corrupted                 1
+------------------------------------------------------------------------
+Classes finales : 42
+Classe                                          train     val    test   total
+Apple__black_rot                                 2349     503     505    3357
+Apple__cedar_apple_rust                          3356     719     720    4795
+Apple__healthy                                   3425     734     735    4894
+Apple__scab                                      5600    1200    1200    8000
+Bean__beans_angular_leaf_spot_disease            3085     661     662    4408
+Bean__beans_healthy_crop                         3357     719     721    4797
+Bean__beans_rust_disease                         3148     674     676    4498
+Corn__common_rust                                1269     271     273    1813
+Corn__gray_leaf_spot                             1248     267     268    1783
+Corn__healthy                                    3016     646     647    4309
+Corn__maize_streak_virus_disease                 3572     765     766    5103
+Corn__northern_leaf_blight                       2878     616     618    4112
+Cucumber__anthracnose                            3514     753     753    5020
+Cucumber__downy_mildew                           4052     868     870    5790
+Cucumber__gummy_stem_blight                      2207     472     474    3153
+Cucumber__healthy                                5623    1205    1206    8034
+Cucumber__powdery_mildew                         1397     299     301    1997
+Grape__black_measles                             3572     765     766    5103
+Grape__black_rot                                 3070     657     659    4386
+Grape__healthy                                   3035     650     652    4337
+Grape__leaf_blight                               2758     591     592    3941
+Groundnut__early_leaf_spot                       1216     260     262    1738
+Groundnut__healthy                               1448     310     311    2069
+Groundnut__late_leaf_spot                        1621     347     349    2317
+Groundnut__nutrition_deficiency                  1223     262     263    1748
+Groundnut__rust                                  2064     442     443    2949
+Potato__early_blight                             1838     394     395    2627
+Potato__healthy                                  1657     355     356    2368
+Potato__late_blight                              1492     319     321    2132
+Potato__pest                                      738     158     159    1055
+Potato__virus                                     733     157     158    1048
+Tomato__bacterial_spot                           2355     504     506    3365
+Tomato__early_blight                             1751     375     376    2502
+Tomato__healthy                                  2942     630     631    4203
+Tomato__late_blight                              3014     646     647    4307
+Tomato__septoria_leaf_spot                       2382     510     512    3404
+Tomato__spider_mites_two_spotted_spider_mite     1200     257     258    1715
+Tomato__target_spot                               982     210     212    1404
+Tomato__yellow_leaf_curl_virus                   3301     707     708    4716
+Wheat__healthy                                   2272     487     488    3247
+Wheat__septoria                                  2207     472     474    3153
+Wheat__stripe_rust                               2787     597     598    3982
+------------------------------------------------------------------------
+Classes faibles :
+  - Potato__pest
+  - Potato__virus
+Classes desequilibrees :
+  - Potato__pest
+  - Potato__virus
+------------------------------------------------------------------------
+Recommandations :
+  * Completer les classes faibles (collecte ou data augmentation).
+  * Verifier visuellement rejected/ (faux positifs eventuels).
+  * Si desequilibre fort : utiliser class_weight ou oversampling.
+========================================================================

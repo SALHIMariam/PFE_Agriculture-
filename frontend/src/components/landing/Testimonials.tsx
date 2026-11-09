@@ -10,7 +10,7 @@ export default function Testimonials() {
         <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg"><path d="M100 280 C20 220, 10 120, 60 60 C90 20, 140 10, 160 40 C180 70, 170 150, 140 200 C120 240, 100 280, 100 280Z" fill="#74c69d"/></svg>
       </div>
       <div className="fb-inner">
-        <h2 className="fb-title">What Farmers Say</h2>
+        <h2 className="fb-title">Ce qu’en disent les agriculteurs</h2>
         <div className="fb-progress"><div className="fb-progress-bar" id="fbProgress"></div></div>
         <div className="fb-slider">
           {TESTIMONIALS.map((t, i) => (

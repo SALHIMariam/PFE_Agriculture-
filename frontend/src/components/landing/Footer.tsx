@@ -7,10 +7,13 @@ export default function Footer() {
         <div className="footer-grid">
           <div>
             <div className="footer-logo">
-              <div className="footer-logo-icon">🌱</div>
-              <div className="footer-logo-text">AgriNova</div>
+              <img
+                src="/logo-elastic-solutions.png"
+                alt="Elastic Solutions"
+                style={{ height: 36, width: "auto", maxWidth: 160, objectFit: "contain", display: "block" }}
+              />
             </div>
-            <p className="footer-desc">Intelligent agricultural platform combining AI and computer vision to monitor crop health and detect anomalies in real time.</p>
+            <p className="footer-desc">Plateforme agricole intelligente qui associe IA et vision par ordinateur pour suivre la santé des cultures et détecter les anomalies en temps réel.</p>
             <div className="footer-socials">
               {FOOTER_SOCIALS.map(({ label, aria }) => (
                 <a key={aria} className="footer-social-btn" href="#" aria-label={aria}>{label}</a>
@@ -19,7 +22,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <div className="footer-col-title">Get In Touch</div>
+            <div className="footer-col-title">Nous contacter</div>
             <div className="footer-contact-list">
               {FOOTER_CONTACT.map(({ icon, text }) => (
                 <div key={text} className="footer-contact-item">
@@ -38,7 +41,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <div className="footer-col-title">Our Services</div>
+            <div className="footer-col-title">Nos services</div>
             {FOOTER_SERVICES.map(s => (
               <span key={s} className="footer-link">{s}</span>
             ))}
@@ -46,9 +49,9 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <span className="footer-copy">© 2025 AgriNova. All Rights Reserved. — Tunis, Tunisia</span>
+          <span className="footer-copy">© 2025 Elastic Solutions. Tous droits réservés. — Tunis, Tunisie</span>
           <div className="footer-bottom-links">
-            {['Home', 'Privacy', 'Help', 'FAQs'].map(l => (
+            {['Accueil', 'Confidentialité', 'Aide', 'FAQ'].map(l => (
               <a key={l} className="footer-copy footer-bottom-link" href="#">{l}</a>
             ))}
           </div>

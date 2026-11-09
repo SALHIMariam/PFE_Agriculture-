@@ -48,8 +48,8 @@ export default function LandingPage() {
   return (
     <>
       <PageMeta
-        title="AgriNova Landing Page | TailAdmin"
-        description="AgriNova marketing landing page integrated alongside the admin dashboard."
+        title="Elastic Solutions"
+        description="Elastic Solutions — plateforme agricole intelligente : diagnostic des maladies des cultures par IA, alertes et suivi en temps réel."
       />
       <div ref={setHost} className="min-h-screen" />
       {shadowRoot

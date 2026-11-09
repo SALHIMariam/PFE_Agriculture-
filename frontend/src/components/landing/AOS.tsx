@@ -52,35 +52,9 @@ export default function AOS({ root }: AOSProps) {
     scope.addEventListener('click', clickHandler);
     cleanups.push(() => scope.removeEventListener('click', clickHandler));
 
-    const navLinks = qsa<HTMLAnchorElement>('.nav-link[href^="#"]');
-    const sectionIds = Array.from(
-      new Set(
-        navLinks
-          .map((a) => (a.getAttribute('href') || '').replace(/^#/, '').trim())
-          .filter(Boolean)
-          .map((id) => (id === 'how' ? 'team' : id)),
-      ),
-    );
-    const onScroll = () => {
-      const scrollMarker = window.scrollY + 140;
-      let current = sectionIds[0] || '';
-
-      sectionIds.forEach((id) => {
-        const el = qs<HTMLElement>(`#${id}`);
-        if (!el) return;
-        const top = window.scrollY + el.getBoundingClientRect().top;
-        if (scrollMarker >= top) current = id;
-      });
-
-      navLinks.forEach((a) => {
-        const hrefId = (a.getAttribute('href') || '').replace(/^#/, '').trim();
-        const normalizedHref = hrefId === 'how' ? 'team' : hrefId;
-        a.classList.toggle('active', normalizedHref === current);
-      });
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    cleanups.push(() => window.removeEventListener('scroll', onScroll));
+    // Le scroll spy (lien de nav actif selon la section visible) est désormais
+    // géré en React dans NavBar.tsx via IntersectionObserver — on ne touche
+    // plus à la classe .active ici pour éviter que les deux systèmes se battent.
 
     const s1 = qs<HTMLElement>('#heroSlide1');
     const s2 = qs<HTMLElement>('#heroSlide2');

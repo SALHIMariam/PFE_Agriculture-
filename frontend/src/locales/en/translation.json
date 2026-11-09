@@ -1,0 +1,169 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "add": "Add",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "loading": "Loading…",
+    "notSet": "Not set",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "profile": {
+    "eyebrow": "Account",
+    "title": "Farmer",
+    "titleAccent": "profile",
+    "role": {
+      "farmer": "Farmer",
+      "expert": "Expert",
+      "admin": "Admin"
+    },
+    "header": {
+      "editProfile": "Edit profile",
+      "changePhoto": "Change photo",
+      "farmType": "Farm type",
+      "memberSince": "Member since {{date}}"
+    },
+    "completion": {
+      "title": "Farm profile completed",
+      "criteria": {
+        "governorate": "Governorate",
+        "crops": "Crops",
+        "farmType": "Farm type",
+        "surface": "Area",
+        "irrigation": "Irrigation system",
+        "season": "Main season"
+      }
+    },
+    "farm": {
+      "title": "My farm",
+      "farmType": "Farm type",
+      "surface": "Area",
+      "hectares": "{{value}} ha",
+      "governorate": "Governorate",
+      "climateZone": "Climate zone",
+      "irrigation": "Irrigation system"
+    },
+    "farmType": {
+      "Small": "Small farm",
+      "Medium": "Medium farm",
+      "Large": "Large farm"
+    },
+    "irrigation": {
+      "goutte_a_goutte": "Drip",
+      "aspersion": "Sprinkler",
+      "gravitaire": "Surface / gravity",
+      "pivot": "Center pivot",
+      "manuel": "Manual",
+      "aucun": "None"
+    },
+    "season": {
+      "printemps": "Spring",
+      "ete": "Summer",
+      "automne": "Autumn",
+      "hiver": "Winter",
+      "toute_annee": "Year-round"
+    },
+    "zone": {
+      "nord": "North",
+      "centre": "Center",
+      "sud": "South"
+    },
+    "crops": {
+      "title": "My crops",
+      "add": "Add a crop",
+      "lastAnalysis": "Last analysis",
+      "lastDisease": "Last detected disease",
+      "lastReco": "Last recommendation",
+      "none": "No crops recorded yet.",
+      "status": {
+        "good": "Healthy",
+        "watch": "Needs watching",
+        "alert": "Alert",
+        "unknown": "No analysis yet"
+      }
+    },
+    "ai": {
+      "title": "AgriDetect personalization",
+      "intro": "Here is how your profile helps the AI tailor its advice.",
+      "cropsTracked": "Crops tracked",
+      "region": "Region",
+      "climateZone": "Climate zone",
+      "benefits": {
+        "region": "Recommendations tailored to your region",
+        "crops": "Advice tailored to your crops",
+        "risks": "Alerts tailored to local risks"
+      },
+      "managePrefs": "Manage my AI preferences"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "channelsHint": "Choose the notifications you want to receive.",
+      "channels": {
+        "disease_alerts": "Disease alerts",
+        "high_risk": "High risk",
+        "expert_validation": "Expert validation",
+        "new_recommendations": "New recommendations",
+        "followup_reminder": "Follow-up reminder",
+        "agri_news": "Agricultural news"
+      },
+      "alertsTitle": "Farm alerts",
+      "alerts": {
+        "alert_high_risk": "A disease shows a high risk",
+        "alert_rising_region": "A disease is rising in my region",
+        "alert_new_analysis_recommended": "A new analysis is recommended",
+        "alert_expert_validates": "An expert validates my diagnosis",
+        "alert_weather_unfavorable": "A weather condition is unfavorable"
+      }
+    },
+    "security": {
+      "title": "Security",
+      "password": "Password",
+      "email": "Email",
+      "lastLogin": "Last login",
+      "never": "Never",
+      "activeSessions": "Active sessions",
+      "currentSessionOnly": "Current session only",
+      "twoFactor": "Two-factor authentication",
+      "changePassword": "Change password",
+      "changeEmail": "Change email",
+      "currentPassword": "Current password",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm password"
+    },
+    "preferences": {
+      "title": "Preferences",
+      "language": "Language",
+      "darkMode": "Dark mode",
+      "languages": {
+        "fr": "Français",
+        "en": "English",
+        "ar": "عربي"
+      }
+    },
+    "editModal": {
+      "title": "Edit profile",
+      "name": "Full name",
+      "farm": "Farm name",
+      "email": "Email",
+      "governorate": "Governorate",
+      "crops": "Crops",
+      "cropsHint": "Separate crops with a comma.",
+      "farmType": "Farm type",
+      "surface": "Area (ha)",
+      "irrigation": "Irrigation system",
+      "season": "Main season"
+    },
+    "toast": {
+      "profileSaved": "Profile updated",
+      "prefsSaved": "Preferences saved",
+      "notifSaved": "Notification preferences saved",
+      "passwordSaved": "Password changed",
+      "languageSaved": "Language updated",
+      "error": "Something went wrong",
+      "network": "Could not reach the server. Check your connection."
+    }
+  }
+}

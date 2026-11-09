@@ -61,5 +61,14 @@ class RolesAndPermissionsSeeder extends Seeder
             'view_analysis',
             'view_alerts',
         ]);
+
+        // Expert — accès dashboard, aucun droit de gestion des utilisateurs
+        $expert = Role::firstOrCreate(['name' => 'expert', 'guard_name' => 'web']);
+        $expert->syncPermissions([
+            'view_fields',
+            'view_analysis',
+            'view_alerts',
+            'validate_alert',
+        ]);
     }
 }

@@ -1,0 +1,51 @@
+﻿# Environnement
+.env
+.env.local
+.env.production
+
+# Dependencies
+node_modules/
+vendor/
+
+# AI - modeles et datasets (fichiers lourds)
+ai/models/*.h5
+ai/models/*.onnx
+ai/models/*.pkl
+ai/models/*.pt
+ai/models/*.pth
+*.h5
+*.onnx
+*.pkl
+*.pt
+*.pth
+ai/data/
+ai/dataset/
+ai/datasets/
+*.csv
+*.zip
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Laravel
+backend/storage/*.key
+backend/storage/logs/
+backend/bootstrap/cache/
+
+# Build
+frontend/dist/
+frontend/build/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Cache
+*.cache
+.phpunit.result.cache

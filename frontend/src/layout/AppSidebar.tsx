@@ -3,22 +3,20 @@ import { Link, useLocation } from "react-router";
 
 // Assume these icons are imported from an icon library
 import {
-  BoxCubeIcon,
+  BoltIcon,
   CalenderIcon,
   ChevronDownIcon,
+  DocsIcon,
   GridIcon,
   GroupIcon,
   HorizontaLDots,
   ListIcon,
-  PageIcon,
   PieChartIcon,
-  PlugInIcon,
   TableIcon,
   UserCircleIcon,
 } from "../icons";
 import { useSidebar } from "../context/SidebarContext";
 import { useAuth } from "../context/AuthContext";
-import SidebarWidget from "./SidebarWidget";
 
 type NavItem = {
   name: string;
@@ -31,74 +29,49 @@ type NavItem = {
 const navItems: NavItem[] = [
   {
     icon: <GridIcon />,
-    name: "Dashboard",
-    subItems: [{ name: "Ecommerce", path: "/dashboard", pro: false }],
+    name: "Tableau de bord",
+    path: "/dashboard",
   },
   {
     icon: <CalenderIcon />,
-    name: "Calendar",
+    name: "Calendrier",
     path: "/dashboard/calendar",
   },
   {
     icon: <GroupIcon />,
-    name: "Users",
+    name: "Utilisateurs",
     path: "/dashboard/users",
     adminOnly: true,
   },
   {
-    icon: <UserCircleIcon />,
-    name: "User Profile",
-    path: "/dashboard/profile",
-  },
-  {
-    name: "Forms",
     icon: <ListIcon />,
-    subItems: [{ name: "Form Elements", path: "/dashboard/form-elements", pro: false }],
+    name: "Analyses",
+    path: "/dashboard/analyses",
   },
-  {
-    name: "Tables",
-    icon: <TableIcon />,
-    subItems: [{ name: "Basic Tables", path: "/dashboard/basic-tables", pro: false }],
-  },
-  {
-    name: "Pages",
-    icon: <PageIcon />,
-    subItems: [
-      { name: "Landing Page", path: "/", pro: false },
-      { name: "Blank Page", path: "/dashboard/blank", pro: false },
-      { name: "404 Error", path: "/error-404", pro: false },
-    ],
-  },
-];
-
-const othersItems: NavItem[] = [
   {
     icon: <PieChartIcon />,
-    name: "Charts",
-    subItems: [
-      { name: "Line Chart", path: "/dashboard/line-chart", pro: false },
-      { name: "Bar Chart", path: "/dashboard/bar-chart", pro: false },
-    ],
+    name: "Heatmap maladies",
+    path: "/dashboard/heatmap",
   },
   {
-    icon: <BoxCubeIcon />,
-    name: "UI Elements",
-    subItems: [
-      { name: "Alerts", path: "/dashboard/alerts", pro: false },
-      { name: "Avatar", path: "/dashboard/avatars", pro: false },
-      { name: "Badge", path: "/dashboard/badge", pro: false },
-      { name: "Buttons", path: "/dashboard/buttons", pro: false },
-      { name: "Images", path: "/dashboard/images", pro: false },
-      { name: "Videos", path: "/dashboard/videos", pro: false },
-    ],
+    icon: <BoltIcon />,
+    name: "Assistant AI",
+    path: "/dashboard/copilot",
   },
   {
-    icon: <PlugInIcon />,
-    name: "Authentication",
-    subItems: [
-      { name: "Sign In", path: "/signin", pro: false },
-      { name: "Sign Up", path: "/signup", pro: false },
-    ],
+    icon: <TableIcon />,
+    name: "Statistiques Globales",
+    path: "/dashboard/expert-analytics",
+  },
+  {
+    icon: <DocsIcon />,
+    name: "Actualités",
+    path: "/dashboard/news",
+  },
+  {
+    icon: <UserCircleIcon />,
+    name: "Mon profil",
+    path: "/dashboard/profile",
   },
 ];
 
@@ -125,8 +98,8 @@ const AppSidebar: React.FC = () => {
 
   useEffect(() => {
     let submenuMatched = false;
-    ["main", "others"].forEach((menuType) => {
-      const items = menuType === "main" ? navItems : othersItems;
+    ["main"].forEach((menuType) => {
+      const items = navItems;
       items.forEach((nav, index) => {
         if (nav.subItems) {
           nav.subItems.forEach((subItem) => {
@@ -295,9 +268,12 @@ const AppSidebar: React.FC = () => {
     </ul>
   );
 
+  // lg:z-100000 : sur grand écran, le sidebar (déplié au survol par-dessus le
+  // contenu) doit passer au-dessus du header (z-99999), sinon celui-ci coupe le
+  // logo. Sur mobile il reste dessous : il s'ouvre sous le header (mt-16).
   return (
     <aside
-      className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-200 
+      className={`agrinova-sidebar fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 lg:z-100000 border-r border-gray-200
         ${
           isExpanded || isMobileOpen
             ? "w-[290px]"
@@ -311,34 +287,29 @@ const AppSidebar: React.FC = () => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
-        className={`py-8 flex ${
+        className={`agrinova-logo-zone -mx-5 mb-4 px-5 py-8 flex ${
           !isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
         }`}
       >
-        <Link to="/dashboard">
+        <Link to="/dashboard" className="agrinova-logo">
           {isExpanded || isHovered || isMobileOpen ? (
-            <>
-              <img
-                className="dark:hidden"
-                src="/images/logo/logo.svg"
-                alt="Logo"
-                width={150}
-                height={40}
-              />
-              <img
-                className="hidden dark:block"
-                src="/images/logo/logo-dark.svg"
-                alt="Logo"
-                width={150}
-                height={40}
-              />
-            </>
+            <img
+              src="/logo-elastic-solutions.png"
+              alt="Elastic Solutions"
+              style={{ height: 36, width: "auto", maxWidth: 160, objectFit: "contain", display: "block" }}
+            />
           ) : (
             <img
-              src="/images/logo/logo-icon.svg"
-              alt="Logo"
-              width={32}
-              height={32}
+              src="/logo-elastic-solutions.png"
+              alt="Elastic Solutions"
+              style={{
+                height: 36,
+                width: 36,
+                objectFit: "cover",
+                objectPosition: "left center",
+                borderRadius: 8,
+                display: "block",
+              }}
             />
           )}
         </Link>
@@ -362,25 +333,8 @@ const AppSidebar: React.FC = () => {
               </h2>
               {renderMenuItems(navItems, "main")}
             </div>
-            <div className="">
-              <h2
-                className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${
-                  !isExpanded && !isHovered
-                    ? "lg:justify-center"
-                    : "justify-start"
-                }`}
-              >
-                {isExpanded || isHovered || isMobileOpen ? (
-                  "Others"
-                ) : (
-                  <HorizontaLDots />
-                )}
-              </h2>
-              {renderMenuItems(othersItems, "others")}
-            </div>
           </div>
         </nav>
-        {isExpanded || isHovered || isMobileOpen ? <SidebarWidget /> : null}
       </div>
     </aside>
   );

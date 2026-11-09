@@ -70,6 +70,7 @@ class CreateAdminUser extends Command
 
         // Assigner le rôle admin
         $user->assignRole('admin');
+        $user->assignRole('farmer');
 
         $this->newLine();
         $this->info('✅ Administrateur créé avec succès !');

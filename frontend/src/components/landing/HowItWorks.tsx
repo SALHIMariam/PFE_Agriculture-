@@ -11,10 +11,10 @@ export default function HowItWorks() {
           <svg viewBox="0 0 180 280" xmlns="http://www.w3.org/2000/svg"><path d="M90 260 C130 165,155 100,135 50 C115 5,55 -5,30 30 C5 65,10 140,40 180 C55 205,80 220,80 220Z" fill="#c9a84c"/></svg>
         </div>
         <div className="mission-inner" data-aos="fade-up">
-          <h2 className="how-intro-title">From Photo to Diagnosis<br />in Seconds</h2>
+          <h2 className="how-intro-title">De la photo au diagnostic<br />en quelques secondes</h2>
           <p className="how-intro-text">
             <span className="mission-highlight">
-              AgriNova analyzes each field image using artificial intelligence to detect diseases, water stress and nutrient deficiencies — providing precise treatment recommendations instantly.
+              Elastic Solutions analyse chaque image de parcelle par intelligence artificielle pour détecter les maladies, le stress hydrique et les carences nutritives, et propose immédiatement des recommandations de traitement précises.
             </span>
           </p>
         </div>
@@ -30,21 +30,35 @@ export default function HowItWorks() {
 
         <div className="team-inner">
           <div className="team-header" data-aos="fade-up">
-            <h2 className="section-title">How It Works</h2>
-            <p className="team-header-sub">4 simple steps to transform your field images into intelligent recommendations.</p>
+            <h2 className="section-title">Comment ça marche</h2>
+            <p className="team-header-sub">4&nbsp;étapes simples pour transformer vos images de parcelles en recommandations intelligentes.</p>
           </div>
           <div className="team-grid">
             {HOW_STEPS.map(({ img, num, role, name, desc, tags }, i) => (
-              <div key={num} className="team-card how-card" data-aos="zoom-in" data-aos-delay={String(i * 100)}>
+              <div
+                key={num}
+                className="team-card how-card"
+                data-aos="zoom-in"
+                data-aos-delay={String(i * 100)}
+                style={{ borderRadius: "16px", overflow: "hidden", background: "#ffffff" }}
+              >
                 <div className="team-img how-img-wrap">
                   <img loading="lazy" decoding="async" className="how-step-img" src={img} alt={role} />
                   <div className="how-num-badge">{num}</div>
                 </div>
-                <div className="team-body">
-                  <h3 className="team-role">{role}</h3>
+                <div
+                  className="team-body"
+                  style={{
+                    padding: "20px 24px 24px 24px",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "8px",
+                  }}
+                >
+                  <h3 className="team-role" style={{ marginTop: "12px", marginBottom: "4px" }}>{role}</h3>
                   <div className="team-name">{name}</div>
                   <p className="team-desc">{desc}</p>
-                  <div className="how-tags">
+                  <div className="how-tags" style={{ marginTop: "12px", gap: "6px", flexWrap: "wrap" }}>
                     {tags.map(t => <span key={t}>{t}</span>)}
                   </div>
                 </div>

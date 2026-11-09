@@ -1,0 +1,782 @@
+{
+  "_meta": {
+    "description": "Base de connaissances agronomique du copilot. Une entrée par classe (39 au total). severity ∈ none|low|medium|high|critical. Les entrées __healthy sont gérées génériquement par le moteur ; inutile d'en créer une par plante.",
+    "schema": {
+      "disease_fr": "nom lisible en français",
+      "severity": "none|low|medium|high|critical",
+      "symptoms": ["liste des symptômes observables"],
+      "treatment": {"chemical": "", "biological": "", "organic": ""},
+      "prevention": ["liste de mesures préventives"],
+      "warnings": ["avertissements importants"],
+      "followup_days": 7
+    }
+  },
+
+  "Tomato__early_blight": {
+    "disease_fr": "Alternariose de la tomate (Early Blight)",
+    "severity": "high",
+    "symptoms": [
+      "Taches brunes concentriques en cible sur les feuilles basses",
+      "Jaunissement du limbe autour des taches",
+      "Progression du bas vers le haut de la plante"
+    ],
+    "treatment": {
+      "chemical": "Fongicide à base de chlorothalonil ou de mancozèbe, en respectant les doses homologuées.",
+      "biological": "Application de Bacillus subtilis en préventif et curatif léger.",
+      "organic": "Bouillie bordelaise et retrait des feuilles atteintes."
+    },
+    "prevention": [
+      "Rotation des cultures sur 2 à 3 ans",
+      "Éviter l'arrosage par aspersion sur le feuillage",
+      "Aérer les plants pour réduire l'humidité"
+    ],
+    "warnings": [
+      "Retirer et détruire les feuilles infectées, ne pas composter."
+    ],
+    "followup_days": 5
+  },
+
+  "Tomato__late_blight": {
+    "disease_fr": "Mildiou de la tomate (Late Blight)",
+    "severity": "critical",
+    "symptoms": [
+      "Taches huileuses vert-brun s'étendant rapidement",
+      "Feutrage blanc sous les feuilles par temps humide",
+      "Brunissement des tiges et pourriture des fruits"
+    ],
+    "treatment": {
+      "chemical": "Fongicide systémique (métalaxyl) en intervention rapide.",
+      "biological": "Efficacité limitée en curatif ; privilégier la prévention.",
+      "organic": "Cuivre en préventif ; arracher les plants gravement atteints."
+    },
+    "prevention": [
+      "Surveiller les périodes fraîches et humides",
+      "Espacer les plants pour la circulation d'air",
+      "Traiter préventivement avant les épisodes pluvieux"
+    ],
+    "warnings": [
+      "Maladie à progression très rapide : intervenir sous 24 à 48 heures.",
+      "Peut détruire une parcelle entière en quelques jours."
+    ],
+    "followup_days": 3
+  },
+
+  "Bean__beans_rust_disease": {
+    "disease_fr": "Rouille du haricot",
+    "severity": "medium",
+    "symptoms": [
+      "Pustules orangées à brun-rouille sur la face inférieure des feuilles",
+      "Halos jaunes autour des pustules",
+      "Dessèchement progressif du feuillage"
+    ],
+    "treatment": {
+      "chemical": "Fongicide à base de soufre ou de triazole.",
+      "biological": "Extraits de prêle en renfort préventif.",
+      "organic": "Poudrage au soufre et retrait des feuilles atteintes."
+    },
+    "prevention": [
+      "Choisir des variétés résistantes",
+      "Éviter les densités de semis trop fortes",
+      "Limiter l'humidité foliaire prolongée"
+    ],
+    "warnings": [
+      "Surveiller la propagation par temps chaud et humide."
+    ],
+    "followup_days": 7
+  },
+
+  "Potato__late_blight": {
+    "disease_fr": "Mildiou de la pomme de terre",
+    "severity": "critical",
+    "symptoms": [
+      "Taches brunes à contour clair sur les folioles",
+      "Feutrage blanc sous les feuilles par temps humide",
+      "Pourriture brune des tubercules"
+    ],
+    "treatment": {
+      "chemical": "Fongicide systémique préventif et curatif (métalaxyl + mancozèbe).",
+      "biological": "Prévention par renforcement de la vigueur du plant.",
+      "organic": "Traitements cupriques répétés en préventif."
+    },
+    "prevention": [
+      "Buttage pour protéger les tubercules",
+      "Éliminer les repousses et déchets de culture",
+      "Traiter avant les périodes humides annoncées"
+    ],
+    "warnings": [
+      "Même maladie que le mildiou de la tomate : ne pas cultiver les deux côte à côte.",
+      "Intervention urgente requise."
+    ],
+    "followup_days": 3
+  },
+
+  "Grape__black_rot": {
+    "disease_fr": "Black rot de la vigne",
+    "severity": "high",
+    "symptoms": [
+      "Taches brun-rouge circulaires sur les feuilles",
+      "Petits points noirs (pycnides) au centre des taches",
+      "Momification noire des grains de raisin"
+    ],
+    "treatment": {
+      "chemical": "Fongicide de la famille des triazoles au bon stade phénologique.",
+      "biological": "Peu d'options curatives ; agir en préventif.",
+      "organic": "Cuivre en préventif ; retirer les grappes momifiées."
+    },
+    "prevention": [
+      "Retirer les fruits momifiés à la taille",
+      "Aérer la ramure par une taille adaptée",
+      "Traiter dès le débourrement en zone à risque"
+    ],
+    "warnings": [
+      "Les grains momifiés hébergent l'inoculum d'une année à l'autre."
+    ],
+    "followup_days": 7
+  },
+
+  "Wheat__stripe_rust": {
+    "disease_fr": "Rouille jaune du blé",
+    "severity": "high",
+    "symptoms": [
+      "Stries jaunes de pustules alignées le long des nervures",
+      "Poudre jaune-orange au toucher",
+      "Réduction du remplissage des grains"
+    ],
+    "treatment": {
+      "chemical": "Fongicide à base de triazole ou de strobilurine.",
+      "biological": "Renforcer la nutrition pour la tolérance de la plante.",
+      "organic": "Options limitées ; privilégier variétés résistantes."
+    },
+    "prevention": [
+      "Semer des variétés résistantes",
+      "Surveiller dès la montaison au printemps frais",
+      "Éviter les excès d'azote"
+    ],
+    "warnings": [
+      "Se développe vite en climat frais et humide au printemps."
+    ],
+    "followup_days": 7
+  },
+
+  "Apple__black_rot": {
+    "disease_fr": "Pourriture noire du pommier (Black Rot)",
+    "severity": "high",
+    "symptoms": [
+      "Taches brun-pourpre en cercles concentriques sur les feuilles",
+      "Chancres brun-rougeâtre sur l'écorce des branches",
+      "Pourriture noire momifiant les fruits"
+    ],
+    "treatment": {
+      "chemical": "Fongicide à base de captane ou de myclobutanil selon le calendrier phénologique.",
+      "biological": "Application préventive de Bacillus subtilis en début de saison.",
+      "organic": "Bouillie bordelaise et suppression des chancres et bois morts."
+    },
+    "prevention": [
+      "Élaguer et détruire le bois mort et les chancres",
+      "Retirer les fruits momifiés à l'automne",
+      "Assurer une bonne aération de la ramure"
+    ],
+    "warnings": [
+      "Les fruits momifiés et chancres sont des sources d'inoculum persistantes."
+    ],
+    "followup_days": 5
+  },
+
+  "Apple__cedar_apple_rust": {
+    "disease_fr": "Rouille grillagée du pommier",
+    "severity": "medium",
+    "symptoms": [
+      "Taches jaune-orangé sur la face supérieure des feuilles",
+      "Pustules brunes avec structures en cornes sous la feuille",
+      "Chute prématurée du feuillage en cas de forte attaque"
+    ],
+    "treatment": {
+      "chemical": "Fongicide à base de myclobutanil ou de triazole dès l'apparition des taches.",
+      "biological": "Peu d'options biologiques efficaces en curatif.",
+      "organic": "Soufre mouillable en traitement préventif."
+    },
+    "prevention": [
+      "Éloigner les pommiers des genévriers (hôte alterne)",
+      "Choisir des variétés résistantes",
+      "Traiter préventivement au débourrement"
+    ],
+    "warnings": [
+      "Le cycle de la maladie nécessite la présence de genévriers à proximité."
+    ],
+    "followup_days": 7
+  },
+
+  "Apple__scab": {
+    "disease_fr": "Tavelure du pommier",
+    "severity": "medium",
+    "symptoms": [
+      "Taches brun-olivâtre veloutées sur les feuilles",
+      "Lésions liégeuses et crevassées sur les fruits",
+      "Déformation et chute des fruits atteints"
+    ],
+    "treatment": {
+      "chemical": "Fongicide à base de dithiocarbamate ou de triazole en traitements préventifs répétés.",
+      "biological": "Bacillus subtilis en complément préventif.",
+      "organic": "Soufre ou bouillie bordelaise dès le débourrement."
+    },
+    "prevention": [
+      "Ramasser et détruire les feuilles mortes à l'automne",
+      "Aérer la ramure par une taille adaptée",
+      "Choisir des variétés résistantes à la tavelure"
+    ],
+    "warnings": [
+      "Les spores hivernent dans les feuilles mortes au sol."
+    ],
+    "followup_days": 7
+  },
+
+  "Bean__beans_angular_leaf_spot_disease": {
+    "disease_fr": "Anthracnose angulaire du haricot",
+    "severity": "medium",
+    "symptoms": [
+      "Taches angulaires brun-gris délimitées par les nervures",
+      "Halo jaune autour des lésions",
+      "Perforations du limbe en cas de nécrose avancée"
+    ],
+    "treatment": {
+      "chemical": "Fongicide à base de cuivre ou de mancozèbe.",
+      "biological": "Extraits de plantes ou Bacillus subtilis en préventif.",
+      "organic": "Bouillie bordelaise et retrait des feuilles atteintes."
+    },
+    "prevention": [
+      "Utiliser des semences saines et certifiées",
+      "Pratiquer la rotation des cultures",
+      "Éviter l'irrigation par aspersion"
+    ],
+    "warnings": [
+      "Se transmet facilement par les résidus de culture et les semences infectées."
+    ],
+    "followup_days": 7
+  },
+
+  "Corn__common_rust": {
+    "disease_fr": "Rouille commune du maïs",
+    "severity": "medium",
+    "symptoms": [
+      "Pustules brun-rougeâtre allongées sur les deux faces des feuilles",
+      "Dessèchement des zones fortement pustulées",
+      "Réduction de la surface photosynthétique"
+    ],
+    "treatment": {
+      "chemical": "Fongicide à base de strobilurine ou de triazole si l'attaque est précoce.",
+      "biological": "Renforcement de la vigueur de la plante par une fertilisation équilibrée.",
+      "organic": "Options limitées ; privilégier les variétés tolérantes."
+    },
+    "prevention": [
+      "Semer des hybrides résistants",
+      "Éviter les semis trop tardifs",
+      "Surveiller par temps frais et humide"
+    ],
+    "warnings": [
+      "Peut évoluer rapidement en conditions humides et fraîches."
+    ],
+    "followup_days": 7
+  },
+
+  "Corn__gray_leaf_spot": {
+    "disease_fr": "Cercosporiose du maïs (Gray Leaf Spot)",
+    "severity": "high",
+    "symptoms": [
+      "Lésions rectangulaires gris-brun parallèles aux nervures",
+      "Coalescence des lésions provoquant un dessèchement du feuillage",
+      "Progression du bas vers le haut de la plante"
+    ],
+    "treatment": {
+      "chemical": "Fongicide à base de strobilurine ou de triazole au stade critique.",
+      "biological": "Peu d'options curatives efficaces ; agir en prévention.",
+      "organic": "Gestion des résidus de culture, options organiques limitées."
+    },
+    "prevention": [
+      "Rotation avec des cultures non-hôtes",
+      "Enfouissement des résidus de maïs",
+      "Choisir des hybrides résistants"
+    ],
+    "warnings": [
+      "Peut entraîner des pertes de rendement importantes en climat humide."
+    ],
+    "followup_days": 5
+  },
+
+  "Corn__maize_streak_virus_disease": {
+    "disease_fr": "Virus de la striure du maïs (Maize Streak Virus)",
+    "severity": "critical",
+    "symptoms": [
+      "Fines stries chlorotiques parallèles aux nervures",
+      "Nanisme et retard de croissance marqué",
+      "Épis mal formés ou absents"
+    ],
+    "treatment": {
+      "chemical": "Aucun traitement curatif ; lutte contre les cicadelles vectrices par insecticide.",
+      "biological": "Favoriser les auxiliaires prédateurs des cicadelles.",
+      "organic": "Arrachage et destruction des plants infectés."
+    },
+    "prevention": [
+      "Utiliser des variétés résistantes ou tolérantes",
+      "Semer tôt pour éviter les pics de population de cicadelles",
+      "Éliminer les graminées sauvages hôtes du virus"
+    ],
+    "warnings": [
+      "Maladie virale incurable transmise par cicadelles : arracher les plants atteints pour limiter la propagation.",
+      "Peut causer des pertes totales sur semis tardifs en zone à forte pression."
+    ],
+    "followup_days": 3
+  },
+
+  "Corn__northern_leaf_blight": {
+    "disease_fr": "Helminthosporiose du maïs (Northern Leaf Blight)",
+    "severity": "high",
+    "symptoms": [
+      "Grandes lésions elliptiques gris-vert à brunes en forme de cigare",
+      "Coalescence des lésions provoquant un grillage du feuillage",
+      "Réduction significative du remplissage des grains"
+    ],
+    "treatment": {
+      "chemical": "Fongicide à base de strobilurine ou de triazole dès les premiers symptômes.",
+      "biological": "Peu d'options curatives ; privilégier la prévention.",
+      "organic": "Gestion des résidus de culture et rotation."
+    },
+    "prevention": [
+      "Rotation des cultures sur au moins un an",
+      "Enfouir ou détruire les résidus de maïs infectés",
+      "Choisir des hybrides résistants"
+    ],
+    "warnings": [
+      "Se développe rapidement en conditions humides et modérément chaudes."
+    ],
+    "followup_days": 5
+  },
+
+  "Cucumber__anthracnose": {
+    "disease_fr": "Anthracnose du concombre",
+    "severity": "medium",
+    "symptoms": [
+      "Taches brun-jaunâtre circulaires sur les feuilles",
+      "Chancres déprimés et rosâtres sur les fruits",
+      "Dessèchement et perforation du limbe atteint"
+    ],
+    "treatment": {
+      "chemical": "Fongicide à base de chlorothalonil ou de mancozèbe.",
+      "biological": "Trichoderma spp. en traitement préventif du sol.",
+      "organic": "Bouillie bordelaise et élimination des parties atteintes."
+    },
+    "prevention": [
+      "Utiliser des semences saines",
+      "Éviter l'arrosage par aspersion",
+      "Pratiquer une rotation culturale de 2 ans minimum"
+    ],
+    "warnings": [
+      "Se conserve sur les débris végétaux et les semences infectées."
+    ],
+    "followup_days": 7
+  },
+
+  "Cucumber__downy_mildew": {
+    "disease_fr": "Mildiou du concombre",
+    "severity": "high",
+    "symptoms": [
+      "Taches jaunes anguleuses délimitées par les nervures",
+      "Duvet gris-violacé sous les feuilles par temps humide",
+      "Dessèchement rapide et généralisé du feuillage"
+    ],
+    "treatment": {
+      "chemical": "Fongicide systémique à base de métalaxyl ou de fosétyl-aluminium.",
+      "biological": "Efficacité limitée en curatif ; agir en préventif.",
+      "organic": "Cuivre en traitement préventif répété."
+    },
+    "prevention": [
+      "Espacer les plants pour favoriser l'aération",
+      "Éviter l'humidité stagnante sur le feuillage",
+      "Traiter préventivement en période à risque"
+    ],
+    "warnings": [
+      "Maladie à propagation très rapide par temps humide : intervenir sans délai."
+    ],
+    "followup_days": 5
+  },
+
+  "Cucumber__gummy_stem_blight": {
+    "disease_fr": "Gommose des tiges du concombre",
+    "severity": "high",
+    "symptoms": [
+      "Taches brunes sur les feuilles avec exsudat gommeux sur les tiges",
+      "Chancres bruns à noirs au collet et sur les tiges",
+      "Flétrissement et dessèchement de la plante entière"
+    ],
+    "treatment": {
+      "chemical": "Fongicide à base de chlorothalonil ou de strobilurine.",
+      "biological": "Bacillus subtilis en application préventive.",
+      "organic": "Bouillie bordelaise et retrait des tiges atteintes."
+    },
+    "prevention": [
+      "Éviter les blessures mécaniques sur les tiges",
+      "Assurer un bon drainage du sol",
+      "Pratiquer la rotation des cultures"
+    ],
+    "warnings": [
+      "Peut entraîner un dépérissement rapide de la plante en cas d'attaque sur le collet."
+    ],
+    "followup_days": 5
+  },
+
+  "Cucumber__powdery_mildew": {
+    "disease_fr": "Oïdium du concombre",
+    "severity": "medium",
+    "symptoms": [
+      "Feutrage blanc poudreux sur les deux faces des feuilles",
+      "Jaunissement puis dessèchement du feuillage atteint",
+      "Réduction de la vigueur et de la production des fruits"
+    ],
+    "treatment": {
+      "chemical": "Fongicide à base de soufre ou de triazole.",
+      "biological": "Bacillus subtilis ou huile de neem en préventif.",
+      "organic": "Pulvérisation de soufre mouillable ou de bicarbonate de potassium."
+    },
+    "prevention": [
+      "Espacer les plants pour améliorer la circulation d'air",
+      "Éviter l'excès d'azote",
+      "Choisir des variétés tolérantes"
+    ],
+    "warnings": [
+      "Se développe rapidement par temps sec et chaud avec forte humidité relative."
+    ],
+    "followup_days": 7
+  },
+
+  "Grape__black_measles": {
+    "disease_fr": "Esca de la vigne (Black Measles)",
+    "severity": "critical",
+    "symptoms": [
+      "Décolorations internervaires en bandes jaunes et rouges (tigrures)",
+      "Dessèchement brutal des feuilles et des grappes (apoplexie)",
+      "Nécroses internes du bois visibles en coupe de tronc"
+    ],
+    "treatment": {
+      "chemical": "Aucun fongicide curatif efficace homologué contre les champignons du bois.",
+      "biological": "Application de Trichoderma sur les plaies de taille.",
+      "organic": "Curetage du bois nécrosé et protection des plaies de taille."
+    },
+    "prevention": [
+      "Tailler en préservant le flux de sève et protéger les plaies",
+      "Éviter la taille par temps humide",
+      "Arracher et brûler les ceps sévèrement atteints"
+    ],
+    "warnings": [
+      "Maladie du bois incurable pouvant entraîner la mort du cep.",
+      "Risque de dépérissement brutal (apoplexie) en été."
+    ],
+    "followup_days": 3
+  },
+
+  "Grape__leaf_blight": {
+    "disease_fr": "Brûlure des feuilles de la vigne (Isariopsis Leaf Spot)",
+    "severity": "medium",
+    "symptoms": [
+      "Taches angulaires brun-rougeâtre entre les nervures",
+      "Feutrage sombre sous les feuilles par temps humide",
+      "Chute prématurée des feuilles atteintes"
+    ],
+    "treatment": {
+      "chemical": "Fongicide à base de mancozèbe ou de triazole.",
+      "biological": "Peu d'options curatives ; privilégier la prévention.",
+      "organic": "Bouillie bordelaise en traitement préventif."
+    },
+    "prevention": [
+      "Aérer la ramure par un effeuillage adapté",
+      "Éliminer les feuilles mortes au sol",
+      "Traiter préventivement en période humide"
+    ],
+    "warnings": [
+      "La défoliation précoce affaiblit la vigne pour la saison suivante."
+    ],
+    "followup_days": 7
+  },
+
+  "Groundnut__early_leaf_spot": {
+    "disease_fr": "Cercosporiose précoce de l'arachide",
+    "severity": "medium",
+    "symptoms": [
+      "Taches circulaires brun foncé avec halo jaune sur les feuilles",
+      "Défoliation progressive commençant par les feuilles basses",
+      "Réduction de la surface foliaire photosynthétique"
+    ],
+    "treatment": {
+      "chemical": "Fongicide à base de chlorothalonil ou de triazole.",
+      "biological": "Bacillus subtilis en application préventive.",
+      "organic": "Bouillie bordelaise et gestion des résidus de culture."
+    },
+    "prevention": [
+      "Rotation des cultures sur 2 à 3 ans",
+      "Utiliser des semences saines",
+      "Détruire les résidus de récolte infectés"
+    ],
+    "warnings": [
+      "Peut favoriser une attaque combinée avec la cercosporiose tardive."
+    ],
+    "followup_days": 7
+  },
+
+  "Groundnut__late_leaf_spot": {
+    "disease_fr": "Cercosporiose tardive de l'arachide",
+    "severity": "high",
+    "symptoms": [
+      "Taches rondes brun-noir sans halo jaune net",
+      "Pustules sombres visibles sous la feuille",
+      "Défoliation sévère et chute prématurée des feuilles"
+    ],
+    "treatment": {
+      "chemical": "Fongicide à base de chlorothalonil ou de strobilurine en programme répété.",
+      "biological": "Peu d'options curatives efficaces en forte pression.",
+      "organic": "Bouillie bordelaise en traitement préventif rapproché."
+    },
+    "prevention": [
+      "Rotation des cultures avec des espèces non-hôtes",
+      "Choisir des variétés tolérantes",
+      "Éliminer les débris végétaux après récolte"
+    ],
+    "warnings": [
+      "Plus agressive que la forme précoce, peut causer une défoliation totale."
+    ],
+    "followup_days": 5
+  },
+
+  "Groundnut__nutrition_deficiency": {
+    "disease_fr": "Carence nutritionnelle de l'arachide",
+    "severity": "low",
+    "symptoms": [
+      "Jaunissement internervaire ou généralisé des feuilles",
+      "Croissance ralentie et plants chétifs",
+      "Faible nouaison des gousses"
+    ],
+    "treatment": {
+      "chemical": "Apport correctif d'engrais selon l'élément déficient (calcium, azote ou oligo-éléments).",
+      "biological": "Inoculation de Rhizobium pour améliorer la fixation d'azote.",
+      "organic": "Amendement en compost mûr ou fumier bien décomposé."
+    },
+    "prevention": [
+      "Analyser le sol avant plantation",
+      "Apporter du gypse pour combler les carences en calcium",
+      "Respecter la rotation avec des légumineuses"
+    ],
+    "warnings": [
+      "Ne pas confondre avec une maladie fongique avant analyse du sol."
+    ],
+    "followup_days": 14
+  },
+
+  "Groundnut__rust": {
+    "disease_fr": "Rouille de l'arachide",
+    "severity": "medium",
+    "symptoms": [
+      "Pustules orangées poudreuses sous les feuilles",
+      "Jaunissement et dessèchement du feuillage atteint",
+      "Chute prématurée des feuilles en cas de forte attaque"
+    ],
+    "treatment": {
+      "chemical": "Fongicide à base de triazole ou de chlorothalonil.",
+      "biological": "Peu d'options biologiques efficaces en curatif.",
+      "organic": "Soufre mouillable en traitement préventif."
+    },
+    "prevention": [
+      "Choisir des variétés résistantes",
+      "Rotation des cultures",
+      "Surveiller en fin de cycle par temps chaud et humide"
+    ],
+    "warnings": [
+      "Souvent associée à la cercosporiose, aggravant la défoliation."
+    ],
+    "followup_days": 7
+  },
+
+  "Potato__early_blight": {
+    "disease_fr": "Alternariose de la pomme de terre (Early Blight)",
+    "severity": "medium",
+    "symptoms": [
+      "Taches brunes concentriques en cible sur les feuilles âgées",
+      "Jaunissement du feuillage autour des lésions",
+      "Progression du bas vers le haut de la plante"
+    ],
+    "treatment": {
+      "chemical": "Fongicide à base de chlorothalonil ou de mancozèbe.",
+      "biological": "Bacillus subtilis en préventif.",
+      "organic": "Bouillie bordelaise et retrait des feuilles atteintes."
+    },
+    "prevention": [
+      "Rotation des cultures sur 2 à 3 ans",
+      "Fertilisation équilibrée pour éviter le stress de la plante",
+      "Éviter l'arrosage par aspersion sur le feuillage"
+    ],
+    "warnings": [
+      "Favorisée par le stress hydrique et une fertilisation azotée insuffisante."
+    ],
+    "followup_days": 7
+  },
+
+  "Tomato__bacterial_spot": {
+    "disease_fr": "Tache bactérienne de la tomate",
+    "severity": "high",
+    "symptoms": [
+      "Petites taches huileuses brun-noir sur les feuilles et fruits",
+      "Halo jaune autour des lésions foliaires",
+      "Lésions liégeuses en relief sur les fruits"
+    ],
+    "treatment": {
+      "chemical": "Produits cupriques associés à un mancozèbe pour limiter la résistance bactérienne.",
+      "biological": "Peu d'options curatives efficaces contre les bactéries.",
+      "organic": "Bouillie bordelaise en traitement préventif répété."
+    },
+    "prevention": [
+      "Utiliser des semences et plants certifiés sains",
+      "Éviter de travailler sur les plants mouillés",
+      "Pratiquer la rotation des cultures"
+    ],
+    "warnings": [
+      "Aucun traitement curatif efficace contre les bactéries : agir en prévention.",
+      "Se propage facilement par éclaboussures d'eau et outils contaminés."
+    ],
+    "followup_days": 5
+  },
+
+  "Tomato__septoria_leaf_spot": {
+    "disease_fr": "Septoriose de la tomate",
+    "severity": "medium",
+    "symptoms": [
+      "Petites taches circulaires à centre gris et bordure sombre",
+      "Points noirs (pycnides) visibles au centre des taches",
+      "Défoliation progressive commençant par les feuilles basses"
+    ],
+    "treatment": {
+      "chemical": "Fongicide à base de chlorothalonil ou de mancozèbe.",
+      "biological": "Bacillus subtilis en application préventive.",
+      "organic": "Bouillie bordelaise et retrait des feuilles atteintes."
+    },
+    "prevention": [
+      "Éviter l'arrosage par aspersion sur le feuillage",
+      "Pailler pour limiter les éclaboussures de terre",
+      "Rotation des cultures sur 2 à 3 ans"
+    ],
+    "warnings": [
+      "Se conserve sur les débris végétaux d'une saison à l'autre."
+    ],
+    "followup_days": 7
+  },
+
+  "Tomato__spider_mites_two_spotted_spider_mite": {
+    "disease_fr": "Acariose (tétranyque tisserand) de la tomate",
+    "severity": "medium",
+    "symptoms": [
+      "Ponctuations jaunâtres (piqûres) sur la face supérieure des feuilles",
+      "Fine toile visible sous les feuilles en cas de forte infestation",
+      "Dessèchement et bronzage du feuillage atteint"
+    ],
+    "treatment": {
+      "chemical": "Acaricide spécifique en alternance pour éviter les résistances.",
+      "biological": "Lâcher d'acariens prédateurs (Phytoseiulus persimilis).",
+      "organic": "Pulvérisation de savon noir ou d'huile de neem."
+    },
+    "prevention": [
+      "Maintenir une hygrométrie suffisante autour des plants",
+      "Éviter le stress hydrique des cultures",
+      "Surveiller régulièrement la face inférieure des feuilles"
+    ],
+    "warnings": [
+      "Prolifère très rapidement par temps chaud et sec."
+    ],
+    "followup_days": 7
+  },
+
+  "Tomato__yellow_leaf_curl_virus": {
+    "disease_fr": "Virus des feuilles jaunes en cuillère de la tomate (TYLCV)",
+    "severity": "critical",
+    "symptoms": [
+      "Enroulement et recroquevillement des folioles vers le haut",
+      "Jaunissement marqué du limbe et des nervures",
+      "Nanisme sévère et avortement des fleurs"
+    ],
+    "treatment": {
+      "chemical": "Aucun traitement curatif ; lutte insecticide contre les aleurodes (Bemisia tabaci) vecteurs.",
+      "biological": "Introduction d'auxiliaires prédateurs des aleurodes.",
+      "organic": "Arrachage et destruction immédiate des plants infectés."
+    },
+    "prevention": [
+      "Utiliser des variétés résistantes au TYLCV",
+      "Poser des filets anti-insectes sous abri",
+      "Éliminer les adventices hôtes des aleurodes"
+    ],
+    "warnings": [
+      "Maladie virale incurable : arracher et détruire les plants atteints sans délai.",
+      "Transmission rapide par aleurodes pouvant compromettre toute la parcelle."
+    ],
+    "followup_days": 3
+  },
+
+  "Wheat__septoria": {
+    "disease_fr": "Septoriose du blé",
+    "severity": "medium",
+    "symptoms": [
+      "Taches allongées brun clair avec pycnides noires visibles",
+      "Nécroses foliaires progressant vers le haut de la plante",
+      "Réduction de la surface foliaire utile au remplissage du grain"
+    ],
+    "treatment": {
+      "chemical": "Fongicide à base de triazole ou de SDHI au stade dernière feuille.",
+      "biological": "Peu d'options curatives efficaces en forte pression.",
+      "organic": "Options limitées ; privilégier les variétés tolérantes."
+    },
+    "prevention": [
+      "Choisir des variétés moins sensibles",
+      "Enfouir les résidus de paille contaminés",
+      "Éviter les densités de semis trop élevées"
+    ],
+    "warnings": [
+      "Favorisée par des printemps pluvieux et une forte densité de couvert."
+    ],
+    "followup_days": 7
+  },
+
+  "_healthy_template": {
+    "disease_fr": "Plante saine",
+    "severity": "none",
+    "symptoms": [
+      "Aucun symptôme de maladie détecté sur l'image analysée"
+    ],
+    "treatment": {
+      "chemical": "Aucun traitement nécessaire.",
+      "biological": "Aucun traitement nécessaire.",
+      "organic": "Aucun traitement nécessaire."
+    },
+    "prevention": [
+      "Poursuivre les bonnes pratiques culturales",
+      "Maintenir une irrigation régulière et adaptée",
+      "Continuer la surveillance périodique du feuillage"
+    ],
+    "warnings": [],
+    "followup_days": 14
+  },
+
+  "_fallback": {
+    "disease_fr": "Maladie foliaire détectée",
+    "severity": "medium",
+    "symptoms": [
+      "Symptômes visibles sur le feuillage nécessitant une évaluation experte"
+    ],
+    "treatment": {
+      "chemical": "À préciser par l'expert selon la maladie confirmée.",
+      "biological": "À préciser par l'expert.",
+      "organic": "À préciser par l'expert."
+    },
+    "prevention": [
+      "Isoler les plants atteints",
+      "Éviter l'humidité foliaire prolongée",
+      "Surveiller l'évolution de près"
+    ],
+    "warnings": [
+      "Fiche détaillée non disponible : validation experte recommandée."
+    ],
+    "followup_days": 7
+  }
+}

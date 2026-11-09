@@ -1,0 +1,5 @@
+# News enrichment endpoint dependencies. Shares the fastapi/pydantic
+# already required by ai/serving — nothing new to install if serving's
+# requirements are already in place.
+fastapi
+pydantic

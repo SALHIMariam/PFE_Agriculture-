@@ -1,0 +1,21 @@
+# Inference service dependencies only — do not merge with the training
+# pipeline's ai/requirements.txt.
+#
+# CPU-only PyTorch install:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+#   pip install -r ai/serving/requirements.txt
+torch
+torchvision
+onnxruntime
+fastapi
+uvicorn[standard]
+python-multipart
+pillow
+
+# Disease Risk Model (spread-risk endpoint)
+pandas
+numpy
+scikit-learn
+lightgbm
+shap
+joblib

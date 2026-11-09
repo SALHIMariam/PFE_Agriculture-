@@ -1,0 +1,256 @@
+{
+  "version": "v2_no_artifacts",
+  "config": {
+    "target_critical": 2500,
+    "target_weak": 2500,
+    "target_medium": 3000,
+    "threshold_critical": 900,
+    "threshold_weak": 1500,
+    "threshold_medium": 3000,
+    "max_multiplier": 5,
+    "min_leaf_ratio": 0.4,
+    "fill_mode": "constant (fond noir)"
+  },
+  "per_class": {
+    "Apple__black_rot": {
+      "n_before": 2267,
+      "n_generated": 733,
+      "n_after": 3000,
+      "level": "medium"
+    },
+    "Apple__cedar_apple_rust": {
+      "n_before": 2824,
+      "n_generated": 176,
+      "n_after": 3000,
+      "level": "medium"
+    },
+    "Apple__healthy": {
+      "n_before": 2913,
+      "n_generated": 87,
+      "n_after": 3000,
+      "level": "medium"
+    },
+    "Apple__scab": {
+      "n_before": 5319,
+      "n_generated": 0,
+      "n_after": 5319,
+      "level": "ok"
+    },
+    "Bean__beans_angular_leaf_spot_disease": {
+      "n_before": 3086,
+      "n_generated": 0,
+      "n_after": 3086,
+      "level": "ok"
+    },
+    "Bean__beans_healthy_crop": {
+      "n_before": 3327,
+      "n_generated": 0,
+      "n_after": 3327,
+      "level": "ok"
+    },
+    "Bean__beans_rust_disease": {
+      "n_before": 3118,
+      "n_generated": 0,
+      "n_after": 3118,
+      "level": "ok"
+    },
+    "Corn__common_rust": {
+      "n_before": 1234,
+      "n_generated": 1265,
+      "n_after": 2499,
+      "level": "weak"
+    },
+    "Corn__gray_leaf_spot": {
+      "n_before": 1184,
+      "n_generated": 1316,
+      "n_after": 2500,
+      "level": "weak"
+    },
+    "Corn__healthy": {
+      "n_before": 2703,
+      "n_generated": 297,
+      "n_after": 3000,
+      "level": "medium"
+    },
+    "Corn__maize_streak_virus_disease": {
+      "n_before": 3572,
+      "n_generated": 0,
+      "n_after": 3572,
+      "level": "ok"
+    },
+    "Corn__northern_leaf_blight": {
+      "n_before": 2725,
+      "n_generated": 275,
+      "n_after": 3000,
+      "level": "medium"
+    },
+    "Cucumber__anthracnose": {
+      "n_before": 3068,
+      "n_generated": 0,
+      "n_after": 3068,
+      "level": "ok"
+    },
+    "Cucumber__downy_mildew": {
+      "n_before": 3356,
+      "n_generated": 0,
+      "n_after": 3356,
+      "level": "ok"
+    },
+    "Cucumber__gummy_stem_blight": {
+      "n_before": 2180,
+      "n_generated": 820,
+      "n_after": 3000,
+      "level": "medium"
+    },
+    "Cucumber__healthy": {
+      "n_before": 4396,
+      "n_generated": 0,
+      "n_after": 4396,
+      "level": "ok"
+    },
+    "Cucumber__powdery_mildew": {
+      "n_before": 1380,
+      "n_generated": 1120,
+      "n_after": 2500,
+      "level": "weak"
+    },
+    "Grape__black_measles": {
+      "n_before": 2852,
+      "n_generated": 148,
+      "n_after": 3000,
+      "level": "medium"
+    },
+    "Grape__black_rot": {
+      "n_before": 2306,
+      "n_generated": 694,
+      "n_after": 3000,
+      "level": "medium"
+    },
+    "Grape__healthy": {
+      "n_before": 2894,
+      "n_generated": 106,
+      "n_after": 3000,
+      "level": "medium"
+    },
+    "Grape__leaf_blight": {
+      "n_before": 1952,
+      "n_generated": 1048,
+      "n_after": 3000,
+      "level": "medium"
+    },
+    "Groundnut__early_leaf_spot": {
+      "n_before": 1185,
+      "n_generated": 1315,
+      "n_after": 2500,
+      "level": "weak"
+    },
+    "Groundnut__healthy": {
+      "n_before": 1387,
+      "n_generated": 1113,
+      "n_after": 2500,
+      "level": "weak"
+    },
+    "Groundnut__late_leaf_spot": {
+      "n_before": 1544,
+      "n_generated": 1456,
+      "n_after": 3000,
+      "level": "medium"
+    },
+    "Groundnut__nutrition_deficiency": {
+      "n_before": 1141,
+      "n_generated": 1359,
+      "n_after": 2500,
+      "level": "weak"
+    },
+    "Groundnut__rust": {
+      "n_before": 1952,
+      "n_generated": 1048,
+      "n_after": 3000,
+      "level": "medium"
+    },
+    "Potato__early_blight": {
+      "n_before": 1821,
+      "n_generated": 1179,
+      "n_after": 3000,
+      "level": "medium"
+    },
+    "Potato__healthy": {
+      "n_before": 1488,
+      "n_generated": 1012,
+      "n_after": 2500,
+      "level": "weak"
+    },
+    "Potato__late_blight": {
+      "n_before": 1485,
+      "n_generated": 1015,
+      "n_after": 2500,
+      "level": "weak"
+    },
+    "Tomato__bacterial_spot": {
+      "n_before": 2194,
+      "n_generated": 805,
+      "n_after": 2999,
+      "level": "medium"
+    },
+    "Tomato__early_blight": {
+      "n_before": 1594,
+      "n_generated": 1406,
+      "n_after": 3000,
+      "level": "medium"
+    },
+    "Tomato__healthy": {
+      "n_before": 2497,
+      "n_generated": 503,
+      "n_after": 3000,
+      "level": "medium"
+    },
+    "Tomato__late_blight": {
+      "n_before": 2689,
+      "n_generated": 303,
+      "n_after": 2992,
+      "level": "medium"
+    },
+    "Tomato__septoria_leaf_spot": {
+      "n_before": 2192,
+      "n_generated": 807,
+      "n_after": 2999,
+      "level": "medium"
+    },
+    "Tomato__spider_mites_two_spotted_spider_mite": {
+      "n_before": 1199,
+      "n_generated": 1301,
+      "n_after": 2500,
+      "level": "weak"
+    },
+    "Tomato__yellow_leaf_curl_virus": {
+      "n_before": 3098,
+      "n_generated": 0,
+      "n_after": 3098,
+      "level": "ok"
+    },
+    "Wheat__healthy": {
+      "n_before": 2253,
+      "n_generated": 747,
+      "n_after": 3000,
+      "level": "medium"
+    },
+    "Wheat__septoria": {
+      "n_before": 2189,
+      "n_generated": 811,
+      "n_after": 3000,
+      "level": "medium"
+    },
+    "Wheat__stripe_rust": {
+      "n_before": 2760,
+      "n_generated": 240,
+      "n_after": 3000,
+      "level": "medium"
+    }
+  },
+  "totals": {
+    "n_before": 93324,
+    "n_generated": 24505,
+    "n_rejected_qual": 147,
+    "n_after": 117829
+  }
+}

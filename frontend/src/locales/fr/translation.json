@@ -1,0 +1,169 @@
+{
+  "common": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "edit": "Modifier",
+    "add": "Ajouter",
+    "enabled": "Activé",
+    "disabled": "Désactivé",
+    "loading": "Chargement…",
+    "notSet": "Non renseigné",
+    "yes": "Oui",
+    "no": "Non"
+  },
+  "profile": {
+    "eyebrow": "Compte",
+    "title": "Profil de",
+    "titleAccent": "fermier",
+    "role": {
+      "farmer": "Agriculteur",
+      "expert": "Expert",
+      "admin": "Admin"
+    },
+    "header": {
+      "editProfile": "Modifier le profil",
+      "changePhoto": "Changer la photo",
+      "farmType": "Type d'exploitation",
+      "memberSince": "Membre depuis {{date}}"
+    },
+    "completion": {
+      "title": "Profil agricole complété",
+      "criteria": {
+        "governorate": "Gouvernorat",
+        "crops": "Cultures",
+        "farmType": "Type d'exploitation",
+        "surface": "Surface",
+        "irrigation": "Système d'irrigation",
+        "season": "Saison principale"
+      }
+    },
+    "farm": {
+      "title": "Mon exploitation",
+      "farmType": "Type d'exploitation",
+      "surface": "Surface",
+      "hectares": "{{value}} ha",
+      "governorate": "Gouvernorat",
+      "climateZone": "Zone climatique",
+      "irrigation": "Système d'irrigation"
+    },
+    "farmType": {
+      "Small": "Petite exploitation",
+      "Medium": "Exploitation moyenne",
+      "Large": "Grande exploitation"
+    },
+    "irrigation": {
+      "goutte_a_goutte": "Goutte-à-goutte",
+      "aspersion": "Aspersion",
+      "gravitaire": "Gravitaire",
+      "pivot": "Pivot",
+      "manuel": "Manuel",
+      "aucun": "Aucun"
+    },
+    "season": {
+      "printemps": "Printemps",
+      "ete": "Été",
+      "automne": "Automne",
+      "hiver": "Hiver",
+      "toute_annee": "Toute l'année"
+    },
+    "zone": {
+      "nord": "Nord",
+      "centre": "Centre",
+      "sud": "Sud"
+    },
+    "crops": {
+      "title": "Mes cultures",
+      "add": "Ajouter une culture",
+      "lastAnalysis": "Dernière analyse",
+      "lastDisease": "Dernière maladie détectée",
+      "lastReco": "Dernière recommandation",
+      "none": "Aucune culture enregistrée pour le moment.",
+      "status": {
+        "good": "Bon état",
+        "watch": "À surveiller",
+        "alert": "Alerte",
+        "unknown": "Pas encore d'analyse"
+      }
+    },
+    "ai": {
+      "title": "Personnalisation AgriDetect",
+      "intro": "Voici comment votre profil aide l'IA à personnaliser vos conseils.",
+      "cropsTracked": "Cultures suivies",
+      "region": "Région",
+      "climateZone": "Zone climatique",
+      "benefits": {
+        "region": "Recommandations adaptées à votre région",
+        "crops": "Conseils adaptés à vos cultures",
+        "risks": "Alertes adaptées aux risques locaux"
+      },
+      "managePrefs": "Gérer mes préférences IA"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "channelsHint": "Choisissez les notifications que vous souhaitez recevoir.",
+      "channels": {
+        "disease_alerts": "Alertes maladies",
+        "high_risk": "Risque élevé",
+        "expert_validation": "Validation Expert",
+        "new_recommendations": "Nouvelles recommandations",
+        "followup_reminder": "Rappel de suivi",
+        "agri_news": "Nouvelles agricoles"
+      },
+      "alertsTitle": "Alertes agricoles",
+      "alerts": {
+        "alert_high_risk": "Une maladie présente un risque élevé",
+        "alert_rising_region": "Une maladie augmente dans ma région",
+        "alert_new_analysis_recommended": "Une nouvelle analyse est recommandée",
+        "alert_expert_validates": "Un expert valide mon diagnostic",
+        "alert_weather_unfavorable": "Une condition météo est défavorable"
+      }
+    },
+    "security": {
+      "title": "Sécurité",
+      "password": "Mot de passe",
+      "email": "Email",
+      "lastLogin": "Dernière connexion",
+      "never": "Jamais",
+      "activeSessions": "Sessions actives",
+      "currentSessionOnly": "Session actuelle uniquement",
+      "twoFactor": "Authentification à deux facteurs",
+      "changePassword": "Modifier le mot de passe",
+      "changeEmail": "Modifier l'email",
+      "currentPassword": "Mot de passe actuel",
+      "newPassword": "Nouveau mot de passe",
+      "confirmPassword": "Confirmer le mot de passe"
+    },
+    "preferences": {
+      "title": "Préférences",
+      "language": "Langue",
+      "darkMode": "Mode sombre",
+      "languages": {
+        "fr": "Français",
+        "en": "English",
+        "ar": "عربي"
+      }
+    },
+    "editModal": {
+      "title": "Modifier le profil",
+      "name": "Nom complet",
+      "farm": "Nom de l'exploitation",
+      "email": "Email",
+      "governorate": "Gouvernorat",
+      "crops": "Cultures",
+      "cropsHint": "Séparez les cultures par une virgule.",
+      "farmType": "Type d'exploitation",
+      "surface": "Surface (ha)",
+      "irrigation": "Système d'irrigation",
+      "season": "Saison principale"
+    },
+    "toast": {
+      "profileSaved": "Profil mis à jour",
+      "prefsSaved": "Préférences enregistrées",
+      "notifSaved": "Préférences de notification enregistrées",
+      "passwordSaved": "Mot de passe modifié",
+      "languageSaved": "Langue mise à jour",
+      "error": "Une erreur est survenue",
+      "network": "Impossible de contacter le serveur. Vérifiez votre connexion."
+    }
+  }
+}

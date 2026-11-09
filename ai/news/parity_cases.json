@@ -1,0 +1,122 @@
+[
+    {
+        "title": "Alerte : mildiou sur la tomate à Nabeul",
+        "description": "",
+        "expect": {
+            "crop": "Tomato",
+            "disease_class": "Tomato__late_blight",
+            "category": "alert",
+            "relevance_score": 1.0
+        }
+    },
+    {
+        "title": "Le mildiou menace les pommes de terre",
+        "description": "",
+        "expect": {
+            "crop": "Potato",
+            "disease_class": "Potato__late_blight",
+            "category": "alert",
+            "relevance_score": 1.0
+        }
+    },
+    {
+        "title": "MICI : et si cette plante pouvait prévenir les troubles digestifs ?",
+        "description": "Une piste redoutable.",
+        "expect": {
+            "crop": null,
+            "disease_class": null,
+            "category": "info",
+            "relevance_score": 0.5
+        }
+    },
+    {
+        "title": "Pluies tardives, mais récolte sauvée",
+        "description": "",
+        "expect": {
+            "crop": null,
+            "disease_class": null,
+            "category": "info",
+            "relevance_score": 0.5
+        }
+    },
+    {
+        "title": "Hausse des prix de l'immobilier",
+        "description": "Un rapport annuel.",
+        "expect": {
+            "crop": null,
+            "disease_class": null,
+            "category": "trend",
+            "relevance_score": 0.4
+        }
+    },
+    {
+        "title": "Un virus touche la vigne",
+        "description": "",
+        "expect": {
+            "crop": "Grape",
+            "disease_class": null,
+            "category": "info",
+            "relevance_score": 0.7
+        }
+    },
+    {
+        "title": "Rouille jaune du blé : premiers foyers à Siliana",
+        "description": "",
+        "expect": {
+            "crop": "Wheat",
+            "disease_class": "Wheat__stripe_rust",
+            "category": "alert",
+            "relevance_score": 1.0
+        }
+    },
+    {
+        "title": "Tavelure du pommier : traitement préventif",
+        "description": "",
+        "expect": {
+            "crop": "Apple",
+            "disease_class": "Apple__scab",
+            "category": "new_treatment",
+            "relevance_score": 1.0
+        }
+    },
+    {
+        "title": "Récolte de maïs en hausse",
+        "description": "&lt;a href=\"x\"&gt;Récolte de maïs&lt;/a&gt;&nbsp;&nbsp;Le Monde",
+        "expect": {
+            "crop": "Corn",
+            "disease_class": null,
+            "category": "trend",
+            "relevance_score": 0.8
+        }
+    },
+    {
+        "title": "Atelier de la FAO à Tunis sur la protection des végétaux",
+        "description": "",
+        "expect": {
+            "crop": null,
+            "disease_class": null,
+            "category": "info",
+            "relevance_score": 0.5
+        }
+    },
+    {
+        "title": "Les moyens de protection contre le mildiou de l'épinard",
+        "description": "",
+        "expect": {
+            "crop": null,
+            "disease_class": null,
+            "category": "info",
+            "relevance_score": 0.5
+        }
+    },
+    {
+        "title": "Journée de solidarité 2026 : est-elle obligatoire ?",
+        "description": "",
+        "expect": {
+            "crop": null,
+            "disease_class": null,
+            "category": "info",
+            "relevance_score": 0.4
+        }
+    }
+]

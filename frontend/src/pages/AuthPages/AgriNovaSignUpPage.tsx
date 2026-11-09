@@ -2,35 +2,42 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import styles from "./AgriNovaSignUpPage.module.css";
 import { useAuth } from "../../context/AuthContext";
+import { cropLabel } from "../../data/crops";
 
 /* ── Data ─────────────────────────────────────────────── */
 
 const CROPS = [
   { key: "Apple", emoji: "🍎", latin: "Malus domestica" },
-  { key: "Chili", emoji: "🌶️", latin: "Capsicum annuum" },
+  { key: "Bean", emoji: "🫘", latin: "Phaseolus vulgaris" },
   { key: "Corn", emoji: "🌽", latin: "Zea mays" },
   { key: "Cucumber", emoji: "🥒", latin: "Cucumis sativus" },
   { key: "Grape", emoji: "🍇", latin: "Vitis vinifera" },
-  { key: "Lemon", emoji: "🍋", latin: "Citrus limon" },
-  { key: "Mango", emoji: "🥭", latin: "Mangifera indica" },
+  { key: "Groundnut", emoji: "🥜", latin: "Arachis hypogaea" },
   { key: "Potato", emoji: "🥔", latin: "Solanum tuberosum" },
   { key: "Tomato", emoji: "🍅", latin: "Solanum lycopersicum" },
   { key: "Wheat", emoji: "🌾", latin: "Triticum aestivum" },
 ];
 
 const FARM_TYPES = [
-  { key: "Small", icon: "🌱", desc: "Family farm, up to 10 ha. Focused on quality and local markets." },
-  { key: "Medium", icon: "🚜", desc: "Commercial operation, 10–100 ha. Scaling with smart monitoring." },
-  { key: "Large", icon: "🏭", desc: "Industrial scale, 100+ ha. Full automation and data pipelines." },
+  { key: "Small", label: "Petite", icon: "🌱", desc: "Exploitation familiale, jusqu’à 10 ha. Axée sur la qualité et les marchés locaux." },
+  { key: "Medium", label: "Moyenne", icon: "🚜", desc: "Exploitation commerciale, 10 à 100 ha. En croissance grâce au suivi intelligent." },
+  { key: "Large", label: "Grande", icon: "🏭", desc: "Échelle industrielle, plus de 100 ha. Automatisation complète et flux de données." },
+];
+
+const TUNISIA_GOVERNORATES = [
+  "Tunis", "Ariana", "Ben Arous", "Manouba", "Nabeul", "Zaghouan", "Bizerte",
+  "Béja", "Jendouba", "Le Kef", "Siliana", "Kairouan", "Kasserine", "Sidi Bouzid",
+  "Sousse", "Monastir", "Mahdia", "Sfax", "Gafsa", "Tozeur", "Kebili", "Gabès",
+  "Médenine", "Tataouine",
 ];
 
 const RIGHT_TITLES: Record<number, { title: string; sub: string }> = {
-  1: { title: "Intelligent agriculture<br/>starts <em>here.</em>", sub: "AI · Crop Monitoring · Real-Time Intelligence" },
-  2: { title: "Choose your <em>crops</em>", sub: "Personalized AI diagnostics" },
-  3: { title: "Almost <em>there!</em>", sub: "One last step to get started" },
+  1: { title: "L’agriculture intelligente<br/>commence <em>ici.</em>", sub: "IA · Suivi des cultures · Analyse en temps réel" },
+  2: { title: "Choisissez vos <em>cultures</em>", sub: "Diagnostics IA personnalisés" },
+  3: { title: "Vous y êtes <em>presque !</em>", sub: "Une dernière étape avant de commencer" },
 };
 
-const STEP_LABELS = ["Account Setup", "Crop Selection", "Farm Profile"];
+const STEP_LABELS = ["Création du compte", "Choix des cultures", "Profil de l’exploitation"];
 
 /* ── Particles hook (reused from login) ───────────────── */
 
@@ -81,7 +88,8 @@ export default function AgriNovaSignUpPage() {
   const [currentStep, setCurrentStep] = useState(1);
 
   /* Step 1 fields */
-  const [fullName, setFullName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [firstName, setFirstName] = useState("");
   const [farm, setFarm] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -93,6 +101,7 @@ export default function AgriNovaSignUpPage() {
 
   /* Step 3 */
   const [selectedFarm, setSelectedFarm] = useState<string | null>(null);
+  const [governorate, setGovernorate] = useState("");
   const [termsChecked, setTermsChecked] = useState(false);
 
   /* Shared */
@@ -129,29 +138,29 @@ export default function AgriNovaSignUpPage() {
   /* ── Step validations ── */
 
   const validateStep1 = () => {
-    if (!fullName || !farm || !email || !password || !password2) {
-      setError("Please fill in all fields.");
+    if (!firstName || !lastName || !farm || !email || !password || !password2) {
+      setError("Veuillez remplir tous les champs.");
       shake();
       return false;
     }
     if (!email.includes("@")) {
-      setError("Enter a valid email address.");
+      setError("Veuillez saisir une adresse e-mail valide.");
       return false;
     }
     if (password.length < 8) {
-      setError("Password must be at least 8 characters.");
+      setError("Le mot de passe doit contenir au moins 8 caractères.");
       return false;
     }
     if (!hasUpper) {
-      setError("Password must contain at least one uppercase letter.");
+      setError("Le mot de passe doit contenir au moins une majuscule.");
       return false;
     }
     if (!hasNum) {
-      setError("Password must contain at least one number.");
+      setError("Le mot de passe doit contenir au moins un chiffre.");
       return false;
     }
     if (password !== password2) {
-      setError("Passwords do not match.");
+      setError("Les mots de passe ne correspondent pas.");
       shake();
       return false;
     }
@@ -166,7 +175,7 @@ export default function AgriNovaSignUpPage() {
   const handleGoStep3 = () => {
     setError("");
     if (selectedCrops.size === 0) {
-      setError("Please select at least one crop.");
+      setError("Veuillez sélectionner au moins une culture.");
       shake();
       return;
     }
@@ -181,25 +190,36 @@ export default function AgriNovaSignUpPage() {
       if (buttonState === "loading" || buttonState === "success") return;
       setError("");
       if (!selectedFarm) {
-        setError("Please select your farm type.");
+        setError("Veuillez sélectionner le type d’exploitation.");
+        shake();
+        return;
+      }
+      if (!governorate) {
+        setError("Veuillez sélectionner votre gouvernorat.");
         shake();
         return;
       }
       if (!termsChecked) {
-        setError("Please agree to the Terms & Privacy Policy.");
+        setError("Veuillez accepter les conditions d’utilisation et la politique de confidentialité.");
         return;
       }
 
       setButtonState("loading");
 
-      const newUser = await register(fullName, email, password, password2, farm, [...selectedCrops], selectedFarm ?? undefined);
+      const newUser = await register(firstName, lastName, email, password, password2, farm, [...selectedCrops], selectedFarm ?? undefined, governorate);
       setButtonState("success");
       const roles = Array.isArray(newUser?.roles) ? newUser.roles : [];
-      navigate(roles.includes("admin") ? "/dashboard" : "/landing", { replace: true });
+      if (roles.includes("admin") || roles.includes("expert")) {
+        navigate("/dashboard", { replace: true });
+      } else if (roles.includes("farmer")) {
+        navigate("/farmer/dashboard", { replace: true });
+      } else {
+        navigate("/landing", { replace: true });
+      }
     } catch (err: unknown) {
       const message =
         (err as { response?: { data?: { message?: string } } })?.response?.data
-          ?.message || "A network error occurred. Please try again.";
+          ?.message || "Erreur réseau. Veuillez réessayer.";
       setError(message);
       setButtonState("idle");
       shake();
@@ -240,17 +260,17 @@ export default function AgriNovaSignUpPage() {
     <div className={styles.progInline}>
       <div className={piClass(1)}>
         <span className={styles.piDot}>{currentStep > 1 ? "✓" : "1"}</span>
-        <span className={styles.piLbl}>Account</span>
+        <span className={styles.piLbl}>Compte</span>
       </div>
       <div className={lineClass(1)} />
       <div className={piClass(2)}>
         <span className={styles.piDot}>{currentStep > 2 ? "✓" : "2"}</span>
-        <span className={styles.piLbl}>Crops</span>
+        <span className={styles.piLbl}>Cultures</span>
       </div>
       <div className={lineClass(2)} />
       <div className={piClass(3)}>
         <span className={styles.piDot}>3</span>
-        <span className={styles.piLbl}>Farm Profile</span>
+        <span className={styles.piLbl}>Exploitation</span>
       </div>
     </div>
   );
@@ -299,78 +319,86 @@ export default function AgriNovaSignUpPage() {
         </svg>
 
         <div className={styles.logo}>
-          <div className={styles.logoMark}>🌱</div>
-          <div>
-            <div className={styles.logoName}>AgriNova</div>
-            <span className={styles.logoSub}>Smart Agriculture</span>
-          </div>
+          <img
+            src="/logo-elastic-solutions.png"
+            alt="Elastic Solutions"
+            style={{ height: 56, width: "auto", maxWidth: 240, objectFit: "contain", display: "block" }}
+          />
         </div>
 
         <div className={styles.panelLeftInner} ref={innerRef}>
           {/* Error banner */}
           <div className={`${styles.errBox} ${error ? styles.errBoxOn : ""}`} role="alert" aria-live="polite">
             <span>⚠</span>
-            <span>{error || "Error"}</span>
+            <span>{error || "Erreur"}</span>
           </div>
 
           {/* ── STEP 1 — Account ── */}
           <div className={`${styles.step} ${currentStep === 1 ? styles.stepActive : ""}`}>
-            <div className={styles.sEye}>Step 1 of 3</div>
-            <h2 className={styles.sH1}><em>Create</em><br />your account</h2>
-            <p className={styles.sSub}>Your crops are waiting. Start with your basic info.</p>
+            <div className={styles.sEye}>Étape 1 sur 3</div>
+            <h2 className={styles.sH1}><em>Créez</em><br />votre compte</h2>
+            <p className={styles.sSub}>Vos cultures vous attendent. Commencez par vos informations de base.</p>
 
             {progressBar}
 
-            <div className={styles.twoCol}>
+            <div className="grid grid-cols-2 gap-3">
               <div className={styles.field}>
-                <label className={styles.lbl} htmlFor="su-fname">Full name</label>
+                <label className={styles.lbl} htmlFor="su-lastname">Nom</label>
                 <div className={styles.fw}>
-                  <input className={styles.inp} id="su-fname" type="text" placeholder="John Doe" autoComplete="name" value={fullName} onChange={(e) => setFullName(e.target.value)} />
+                  <input className={styles.inp} id="su-lastname" type="text" placeholder="Ben Salah" autoComplete="family-name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
                   <div className={styles.fline} />
                 </div>
               </div>
               <div className={styles.field}>
-                <label className={styles.lbl} htmlFor="su-farm">Farm / Organization</label>
+                <label className={styles.lbl} htmlFor="su-firstname">Prénom</label>
                 <div className={styles.fw}>
-                  <input className={styles.inp} id="su-farm" type="text" placeholder="Green Fields Co." value={farm} onChange={(e) => setFarm(e.target.value)} />
+                  <input className={styles.inp} id="su-firstname" type="text" placeholder="Ahmed" autoComplete="given-name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
                   <div className={styles.fline} />
                 </div>
               </div>
             </div>
 
             <div className={styles.field}>
-              <label className={styles.lbl} htmlFor="su-email">Email address</label>
+              <label className={styles.lbl} htmlFor="su-farm">Exploitation / Organisation</label>
               <div className={styles.fw}>
-                <input className={styles.inp} id="su-email" type="email" placeholder="you@agrinova.ai" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input className={styles.inp} id="su-farm" type="text" placeholder="Domaine des Oliviers" value={farm} onChange={(e) => setFarm(e.target.value)} />
+                <div className={styles.fline} />
+              </div>
+            </div>
+
+            <div className={styles.field}>
+              <label className={styles.lbl} htmlFor="su-email">Adresse e-mail</label>
+              <div className={styles.fw}>
+                <input className={styles.inp} id="su-email" type="email" placeholder="vous@exemple.com" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 <div className={styles.fline} />
               </div>
             </div>
 
             <div className={styles.twoCol}>
               <div className={styles.field}>
-                <label className={styles.lbl} htmlFor="su-pw">Password</label>
+                <label className={styles.lbl} htmlFor="su-pw">Mot de passe</label>
                 <div className={styles.fw}>
-                  <input className={styles.inp} id="su-pw" type={showPassword ? "text" : "password"} placeholder="Min. 8 characters" value={password} onChange={(e) => setPassword(e.target.value)} />
+                  <input className={styles.inp} id="su-pw" type={showPassword ? "text" : "password"} placeholder="8 caractères minimum" value={password} onChange={(e) => setPassword(e.target.value)} />
                   <div className={styles.fline} />
                   <button className={styles.eye} type="button" onClick={() => setShowPassword((p) => !p)}>
-                    {showPassword ? "Hide" : "Show"}
+                    {showPassword ? "Masquer" : "Afficher"}
                   </button>
                 </div>
                 {password.length > 0 && (
                   <div className={styles.pwHints}>
                     <div className={`${styles.pwHint} ${hasUpper ? styles.pwHintOk : styles.pwHintBad}`}>
-                      <span>{hasUpper ? "✓" : "○"}</span> At least one uppercase letter
+                      <span>{hasUpper ? "✓" : "○"}</span> Au moins une majuscule
                     </div>
                     <div className={`${styles.pwHint} ${hasNum ? styles.pwHintOk : styles.pwHintBad}`}>
-                      <span>{hasNum ? "✓" : "○"}</span> At least one number
+                      <span>{hasNum ? "✓" : "○"}</span> Au moins un chiffre
                     </div>
                   </div>
                 )}
               </div>
               <div className={styles.field}>
-                <label className={styles.lbl} htmlFor="su-pw2">Confirm password</label>
+                <label className={styles.lbl} htmlFor="su-pw2">Confirmer le mot de passe</label>
                 <div className={styles.fw}>
-                  <input className={styles.inp} id="su-pw2" type="password" placeholder="Repeat password" value={password2} onChange={(e) => setPassword2(e.target.value)} />
+                  <input className={styles.inp} id="su-pw2" type="password" placeholder="Ressaisissez le mot de passe" value={password2} onChange={(e) => setPassword2(e.target.value)} />
                   <div className={styles.fline} />
                 </div>
               </div>
@@ -378,23 +406,23 @@ export default function AgriNovaSignUpPage() {
 
             <div className={styles.btnRow}>
               <button className={styles.btn} type="button" ref={currentStep === 1 ? activeBtnRef : undefined} onClick={handleGoStep2}>
-                <span>Continue &nbsp;→</span>
+                <span>Continuer &nbsp;→</span>
               </button>
             </div>
             <div className={styles.signIn}>
-              Already have an account? <Link to="/agrinova-login">Sign in →</Link>
+              Vous avez déjà un compte&nbsp;? <Link to="/agrinova-login">Se connecter →</Link>
             </div>
           </div>
 
           {/* ── STEP 2 — Crops ── */}
           <div className={`${styles.step} ${currentStep === 2 ? styles.stepActive : ""}`}>
-            <div className={styles.sEye}>Step 2 of 3</div>
-            <h2 className={styles.sH1}>Your <em>crops</em></h2>
-            <p className={styles.sSub}>Select the crops you grow. We'll personalize your AI diagnostics.</p>
+            <div className={styles.sEye}>Étape 2 sur 3</div>
+            <h2 className={styles.sH1}>Vos <em>cultures</em></h2>
+            <p className={styles.sSub}>Sélectionnez les cultures que vous exploitez. Nous personnaliserons vos diagnostics IA.</p>
 
             {progressBar}
 
-            <p className={styles.cropsHint}>Choose one or more:</p>
+            <p className={styles.cropsHint}>Choisissez-en une ou plusieurs&nbsp;:</p>
 
             <div className={styles.cropsGrid}>
               {CROPS.map((crop) => (
@@ -405,7 +433,7 @@ export default function AgriNovaSignUpPage() {
                 >
                   <span className={styles.cropEmoji}>{crop.emoji}</span>
                   <div className={styles.cropInfo}>
-                    <div className={styles.cropName}>{crop.key}</div>
+                    <div className={styles.cropName}>{cropLabel(crop.key)}</div>
                     <div className={styles.cropLatin}>{crop.latin}</div>
                   </div>
                 </div>
@@ -413,18 +441,18 @@ export default function AgriNovaSignUpPage() {
             </div>
 
             <div className={styles.btnRow}>
-              <button className={styles.btnBack} type="button" onClick={() => goToStep(1)}>← Back</button>
+              <button className={styles.btnBack} type="button" onClick={() => goToStep(1)}>← Retour</button>
               <button className={styles.btn} type="button" ref={currentStep === 2 ? activeBtnRef : undefined} onClick={handleGoStep3}>
-                <span>Continue &nbsp;→</span>
+                <span>Continuer &nbsp;→</span>
               </button>
             </div>
           </div>
 
           {/* ── STEP 3 — Farm Profile ── */}
           <div className={`${styles.step} ${currentStep === 3 ? styles.stepActive : ""}`}>
-            <div className={styles.sEye}>Step 3 of 3</div>
-            <h2 className={styles.sH1}>Farm <em>Profile</em></h2>
-            <p className={styles.sSub}>Tell us about your operation so we can tailor your experience.</p>
+            <div className={styles.sEye}>Étape 3 sur 3</div>
+            <h2 className={styles.sH1}>Votre <em>exploitation</em></h2>
+            <p className={styles.sSub}>Parlez-nous de votre exploitation pour que nous adaptions votre expérience.</p>
 
             {progressBar}
 
@@ -436,13 +464,31 @@ export default function AgriNovaSignUpPage() {
                   onClick={() => setSelectedFarm(ft.key)}
                 >
                   <div className={styles.ftIcon}>{ft.icon}</div>
-                  <div className={styles.ftName}>{ft.key}</div>
+                  <div className={styles.ftName}>{ft.label}</div>
                   <div className={styles.ftDesc}>{ft.desc}</div>
                   <div className={`${styles.ftCheck} ${selectedFarm === ft.key ? styles.ftSelectedCheck : ""}`}>
-                    {selectedFarm === ft.key ? "✓" : "○"} Select
+                    {selectedFarm === ft.key ? "✓" : "○"} Choisir
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div className={styles.field}>
+              <label className={styles.lbl} htmlFor="su-governorate">Gouvernorat</label>
+              <div className={styles.fw}>
+                <select
+                  className={styles.inp}
+                  id="su-governorate"
+                  value={governorate}
+                  onChange={(e) => setGovernorate(e.target.value)}
+                >
+                  <option value="" disabled>Sélectionnez votre gouvernorat…</option>
+                  {TUNISIA_GOVERNORATES.map((g) => (
+                    <option key={g} value={g}>{g}</option>
+                  ))}
+                </select>
+                <div className={styles.fline} />
+              </div>
             </div>
 
             <div className={styles.termsBox} onClick={() => setTermsChecked((p) => !p)}>
@@ -450,14 +496,14 @@ export default function AgriNovaSignUpPage() {
                 {termsChecked ? "✓" : ""}
               </div>
               <div className={styles.termsTxt}>
-                I agree to AgriNova's <a href="#" onClick={(e) => e.stopPropagation()}>Terms of Service</a> and{" "}
-                <a href="#" onClick={(e) => e.stopPropagation()}>Privacy Policy</a>.
-                I understand my farm data will be used to improve AI diagnostics.
+                J’accepte les <a href="#" onClick={(e) => e.stopPropagation()}>conditions d’utilisation</a> et la{" "}
+                <a href="#" onClick={(e) => e.stopPropagation()}>politique de confidentialité</a> d’Elastic Solutions.
+                Je comprends que les données de mon exploitation serviront à améliorer les diagnostics IA.
               </div>
             </div>
 
             <div className={styles.btnRow}>
-              <button className={styles.btnBack} type="button" onClick={() => goToStep(2)}>← Back</button>
+              <button className={styles.btnBack} type="button" onClick={() => goToStep(2)}>← Retour</button>
               <button
                 className={`${styles.btn} ${buttonState === "loading" ? styles.btnLoading : ""} ${buttonState === "success" ? styles.btnSuccess : ""}`}
                 type="button"
@@ -467,10 +513,10 @@ export default function AgriNovaSignUpPage() {
               >
                 <span>
                   {buttonState === "loading"
-                    ? "Creating account…"
+                    ? "Création du compte…"
                     : buttonState === "success"
-                      ? "✓ Account created!"
-                      : "Create Account  →"}
+                      ? "✓ Compte créé !"
+                      : "Créer mon compte  →"}
                 </span>
               </button>
             </div>

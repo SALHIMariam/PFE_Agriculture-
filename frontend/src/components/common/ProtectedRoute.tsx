@@ -1,8 +1,9 @@
-import { Navigate } from "react-router";
+import { Navigate, useLocation } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 
 export default function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const { user, loading } = useAuth();
+  const { user, loading, mustChangePassword } = useAuth();
+  const location = useLocation();
 
   if (loading) {
     return (
@@ -13,7 +14,13 @@ export default function ProtectedRoute({ children }: { children: React.ReactNode
   }
 
   if (!user) {
-    return <Navigate to="/agrinova-login" replace />;
+    return <Navigate to="/login" replace />;
+  }
+
+  // Comptes Expert avec mot de passe temporaire : aucune autre route protégée
+  // n'est accessible tant que le mot de passe n'a pas été changé.
+  if (mustChangePassword && location.pathname !== "/force-password-change") {
+    return <Navigate to="/force-password-change" replace />;
   }
 
   return <>{children}</>;

@@ -30,17 +30,37 @@ export default function UserDropdown() {
   function closeDropdown() {
     setIsOpen(false);
   }
+
+  const displayName = user?.full_name ?? user?.name ?? "Utilisateur";
+  const initial = displayName.trim()[0]?.toUpperCase() ?? "U";
+
   return (
     <div className="relative">
       <button
         onClick={toggleDropdown}
         className="flex items-center text-gray-700 dropdown-toggle dark:text-gray-400"
       >
-        <span className="mr-3 overflow-hidden rounded-full h-11 w-11">
-          <img src="/images/user/owner.jpg" alt="User" />
+        <span className="relative mr-3 inline-block h-11 w-11 shrink-0">
+          <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-full bg-brand-50 dark:bg-brand-500/10">
+            {user?.avatar_url ? (
+              <img
+                src={user.avatar_url}
+                alt={displayName}
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <span className="text-base font-semibold text-brand-500">{initial}</span>
+            )}
+          </span>
+          {/* Indicateur « en ligne » */}
+          <span
+            className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full border-2 border-white bg-green-500 dark:border-gray-900"
+            aria-hidden="true"
+            title="En ligne"
+          />
         </span>
 
-        <span className="block mr-1 font-medium text-theme-sm">{user?.name ?? "User"}</span>
+        <span className="block mr-1 font-medium text-theme-sm">{displayName}</span>
         <svg
           className={`stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
@@ -68,7 +88,7 @@ export default function UserDropdown() {
       >
         <div>
           <span className="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">
-            {user?.name ?? "User"}
+            {user?.name ?? "Utilisateur"}
           </span>
           <span className="mt-0.5 block text-theme-xs text-gray-500 dark:text-gray-400">
             {user?.email ?? ""}
@@ -98,7 +118,7 @@ export default function UserDropdown() {
                   fill=""
                 />
               </svg>
-              Edit profile
+              Modifier le profil
             </DropdownItem>
           </li>
           <li>
@@ -123,7 +143,7 @@ export default function UserDropdown() {
                   fill=""
                 />
               </svg>
-              Account settings
+              Paramètres du compte
             </DropdownItem>
           </li>
           <li>
@@ -148,7 +168,7 @@ export default function UserDropdown() {
                   fill=""
                 />
               </svg>
-              Support
+              Assistance
             </DropdownItem>
           </li>
         </ul>
@@ -171,7 +191,7 @@ export default function UserDropdown() {
               fill=""
             />
           </svg>
-          Sign out
+          Se déconnecter
         </button>
       </Dropdown>
     </div>

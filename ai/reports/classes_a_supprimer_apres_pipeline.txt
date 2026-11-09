@@ -1,0 +1,73 @@
+CLASSES SUPPRIMÉES DU PIPELINE (validé le 2026-07-01, révisé le 2026-07-03)
+================================================================================
+Comparaison initiale : reports/dataset_audit_final.json (mai 2026, 39 classes)
+           vs dataset_final/train/ actuel (42 classes, après prepare_dataset.py
+           + cleanup_dataset.py + fix_splits.py de cette session)
+
+Renommages identifiés (mêmes maladies, PAS des classes en trop) :
+  Apple__apple_scab          -> Apple__scab
+  Bean__angular_leaf_spot    -> Bean__beans_angular_leaf_spot_disease
+  Bean__healthy              -> Bean__beans_healthy_crop
+  Bean__rust                 -> Bean__beans_rust_disease
+  (dû à DISEASE_NAME_FIXES incomplet dans prepare_dataset.py par rapport à mai)
+
+--------------------------------------------------------------------------------
+HISTORIQUE — Décision initiale (2026-07-01, critère : correspondance taxonomie mai)
+--------------------------------------------------------------------------------
+Diff programmatique après application des renommages ci-dessus :
+  Classes manquantes (dans mai, absentes maintenant) : aucune
+  Classes en trop (nouvelles, absentes de la version mai) : 3
+
+Classe                              Train    Val    Test    Total
+--------------------------------------------------------------------------------
+Corn__maize_streak_virus_disease     3572    765     766    5103
+Potato__virus                         575    123     124     822
+Tomato__target_spot                   983    211     210    1404
+--------------------------------------------------------------------------------
+TOTAL                                5130   1099    1100    7329
+--------------------------------------------------------------------------------
+
+Vérifications complémentaires (2026-07-01) :
+- Potato__pest : présent dans les 39 classes de mai -> initialement marqué CONSERVER
+- Corn__maize_streak_virus_disease : traitement qualité+dédup confirmé normal
+  (0 rejet, 0 doublon détecté sur les 2 batches — reports/prepare_dataset.log
+  lignes 567-574, absent de quarantine/reports/cleanup.log) — pas un bug de
+  pipeline, juste une source d'images naturellement unique.
+
+--------------------------------------------------------------------------------
+DÉCISION FINALE (2026-07-03, révision du critère)
+--------------------------------------------------------------------------------
+CHANGEMENT DE CRITÈRE ASSUMÉ : correspondance avec la taxonomie de mai 2026
+abandonnée au profit du volume disponible pour un entraînement robuste.
+
+Justification : Corn__maize_streak_virus_disease (5103 images, volume sain,
+qualité confirmée) est conservée malgré son absence de la taxonomie mai 2026,
+car sa suppression aurait retiré une classe entière sans bénéfice pour
+l'équilibrage. À l'inverse, Potato__pest (845 images, sous le seuil critique
+de robustesse pour l'entraînement) est supprimée malgré sa présence dans la
+taxonomie mai 2026 — son faible volume la rend prioritaire pour suppression
+plutôt que pour augmentation lourde.
+
+Classes finalement supprimées de dataset_final/ (train + val + test) :
+Classe                              Train    Val    Test    Total
+--------------------------------------------------------------------------------
+Potato__virus                         575    123     124     822
+Potato__pest                          592    127     126     845
+Tomato__target_spot                   983    211     210    1404
+--------------------------------------------------------------------------------
+TOTAL                                2150    461     460    3071
+--------------------------------------------------------------------------------
+
+Corn__maize_streak_virus_disease : CONSERVÉE (n'est plus dans la liste de
+suppression) — 42 classes initiales - 3 supprimées = 39 classes finales,
+dont Corn__maize_streak_virus_disease.
+
+Statut : suppression effectuée le 2026-07-03 après confirmation explicite de
+l'utilisateur (double confirmation : comparaison ancienne/nouvelle liste
+présentée, puis validation finale du changement de critère).
+
+Note pour rapport PFE : ce changement de critère (taxonomie -> volume) doit
+être documenté comme un choix méthodologique assumé, pas comme une correction
+d'erreur — les deux critères sont défendables, celui-ci a été retenu pour
+prioriser la robustesse de l'entraînement sur la fidélité à la nomenclature
+de référence.

@@ -1,0 +1,146 @@
+================================================================================
+ RAPPORT D'AUDIT — DATASET FINAL APRÈS AUGMENTATION SÉLECTIVE
+================================================================================
+ Date         : 2026-07-04 00:34:58
+ Dataset      : C:\Users\user\Desktop\PFE\ai\dataset_final
+ Projet       : PFE Détection maladies foliaires - Mariem Salhi
+================================================================================
+
+┌─ SECTION 1 : VUE D'ENSEMBLE ──────────────────────────────────────────────────
+│
+│  Nombre total d'images      :  157,826
+│  Nombre de classes          :       39
+│  Nombre de plantes          :        9
+│  Plantes couvertes          : Apple, Bean, Corn, Cucumber, Grape, Groundnut, Potato, Tomato, Wheat
+│
+│  Train                      :  117,829  (74.7%)
+│  Val                        :   19,995  (12.7%)
+│  Test                       :   20,002  (12.7%)
+│
+│  Images originales (train)  :   93,324
+│  Images augmentées (AUG_)   :   24,505
+│  % augmentation             :     26.3%
+└──────────────────────────────────────────────────────────────────────────────
+
+┌─ SECTION 2 : COMPARAISON AVANT / APRÈS AUGMENTATION ─────────────────────────
+│
+│  Total AVANT augmentation   :  166,548
+│  Total APRÈS augmentation   :  157,826
+│  Images ajoutées            :   -8,722
+│  Augmentation globale       :     -5.2%
+└──────────────────────────────────────────────────────────────────────────────
+
+┌─ SECTION 3 : DISTRIBUTION PAR CLASSE ─────────────────────────────────────────
+│
+│  Classe                                            Train    Orig     AUG    Val   Test
+│  ──────────────────────────────────────────────────────────────────────────────
+│  Corn__common_rust                                 2,499   1,234   1,265    264    265 🟡
+│  Corn__gray_leaf_spot                              2,500   1,184   1,316    254    254 🟡
+│  Cucumber__powdery_mildew                          2,500   1,380   1,120    296    295 🟡
+│  Groundnut__early_leaf_spot                        2,500   1,185   1,315    254    254 🟡
+│  Groundnut__healthy                                2,500   1,387   1,113    297    298 🟡
+│  Groundnut__nutrition_deficiency                   2,500   1,141   1,359    244    245 🟡
+│  Potato__healthy                                   2,500   1,488   1,012    319    318 🟡
+│  Potato__late_blight                               2,500   1,485   1,015    318    319 🟡
+│  Tomato__spider_mites_two_spotted_spider_mite      2,500   1,199   1,301    257    257 🟡
+│  Tomato__late_blight                               2,992   2,689     303    576    576 🟡
+│  Tomato__bacterial_spot                            2,999   2,194     805    470    470 🟡
+│  Tomato__septoria_leaf_spot                        2,999   2,192     807    470    469 🟡
+│  Apple__black_rot                                  3,000   2,267     733    486    485 🟢
+│  Apple__cedar_apple_rust                           3,000   2,824     176    605    605 🟢
+│  Apple__healthy                                    3,000   2,913      87    624    625 🟢
+│  Corn__healthy                                     3,000   2,703     297    579    580 🟢
+│  Corn__northern_leaf_blight                        3,000   2,725     275    584    584 🟢
+│  Cucumber__gummy_stem_blight                       3,000   2,180     820    467    468 🟢
+│  Grape__black_measles                              3,000   2,852     148    611    612 🟢
+│  Grape__black_rot                                  3,000   2,306     694    494    494 🟢
+│  Grape__healthy                                    3,000   2,894     106    620    620 🟢
+│  Grape__leaf_blight                                3,000   1,952   1,048    418    419 🟢
+│  Groundnut__late_leaf_spot                         3,000   1,544   1,456    331    330 🟢
+│  Groundnut__rust                                   3,000   1,952   1,048    418    419 🟢
+│  Potato__early_blight                              3,000   1,821   1,179    390    391 🟢
+│  Tomato__early_blight                              3,000   1,594   1,406    342    341 🟢
+│  Tomato__healthy                                   3,000   2,497     503    535    535 🟢
+│  Wheat__healthy                                    3,000   2,253     747    483    482 🟢
+│  Wheat__septoria                                   3,000   2,189     811    469    469 🟢
+│  Wheat__stripe_rust                                3,000   2,760     240    591    592 🟢
+│  Cucumber__anthracnose                             3,068   3,068       0    657    658 🟢
+│  Bean__beans_angular_leaf_spot_disease             3,086   3,086       0    661    661 🟢
+│  Tomato__yellow_leaf_curl_virus                    3,098   3,098       0    664    663 🟢
+│  Bean__beans_rust_disease                          3,118   3,118       0    668    669 🟢
+│  Bean__beans_healthy_crop                          3,327   3,327       0    713    713 🟢
+│  Cucumber__downy_mildew                            3,356   3,356       0    719    720 🟢
+│  Corn__maize_streak_virus_disease                  3,572   3,572       0    765    766 🟢
+│  Cucumber__healthy                                 4,396   4,396       0    942    942 🟢
+│  Apple__scab                                       5,319   5,319       0  1,140  1,139 🟢
+│  ──────────────────────────────────────────────────────────────────────────────
+│  TOTAL                                           117,829  93,324  24,505 19,995 20,002
+└──────────────────────────────────────────────────────────────────────────────
+
+┌─ SECTION 4 : ANALYSE DU DÉSÉQUILIBRE ────────────────────────────────────────
+│
+│  AVANT augmentation (originales seules) :
+│    Min : 1,141  Max : 5,319  Ratio :  4.7×
+│
+│  APRÈS augmentation (total) :
+│    Min : 2,499  Max : 5,319  Ratio :  2.1×
+│
+│  3 classes les plus petites (train total) :
+│    - Corn__common_rust                                :  2,499 (1,234 orig + 1,265 aug)
+│    - Corn__gray_leaf_spot                             :  2,500 (1,184 orig + 1,316 aug)
+│    - Cucumber__powdery_mildew                         :  2,500 (1,380 orig + 1,120 aug)
+│
+│  3 classes les plus grandes (train total) :
+│    - Apple__scab                                      :  5,319 (5,319 orig +     0 aug)
+│    - Cucumber__healthy                                :  4,396 (4,396 orig +     0 aug)
+│    - Corn__maize_streak_virus_disease                 :  3,572 (3,572 orig +     0 aug)
+│
+│  Qualité de l'équilibrage   : ✅ EXCELLENT (ratio < 2.5×)
+└──────────────────────────────────────────────────────────────────────────────
+
+┌─ SECTION 5 : DISTRIBUTION PAR PLANTE ────────────────────────────────────────
+│
+│  Plante                Classes    Train      Val     Test    Total
+│  ──────────────────────────────────────────────────────────────────────
+│  Apple                       4   14,319    2,855    2,854   20,028
+│  Bean                        3    9,531    2,042    2,043   13,616
+│  Corn                        5   14,571    2,446    2,449   19,466
+│  Cucumber                    5   16,320    3,081    3,083   22,484
+│  Grape                       4   12,000    2,143    2,145   16,288
+│  Groundnut                   5   13,500    1,544    1,546   16,590
+│  Potato                      3    8,000    1,027    1,028   10,055
+│  Tomato                      7   20,588    3,314    3,311   27,213
+│  Wheat                       3    9,000    1,543    1,543   12,086
+└──────────────────────────────────────────────────────────────────────────────
+
+┌─ SECTION 6 : VÉRIFICATION D'INTÉGRITÉ ───────────────────────────────────────
+│
+│  Échantillon vérifié        :   200 images
+│  Images corrompues          :     0
+│  Status                     : ✅ AUCUNE corruption détectée
+└──────────────────────────────────────────────────────────────────────────────
+
+┌─ SECTION 7 : RECOMMANDATIONS POUR LE TRAINING ──────────────────────────────
+│
+│  ✅ Équilibrage excellent. Tu peux utiliser un class_weight léger
+│     ou même t'en passer.
+│
+│  📊 Configuration training recommandée :
+│     - Modèle      : EfficientNetB0 (ou V2-S si plus de GPU)
+│     - Batch size  : 32 (CPU) ou 64 (GPU T4)
+│     - Epochs      : 10 (phase 1) + 20 (fine-tuning)
+│     - Class weight: balanced (à activer)
+│     - Image size  : 224×224
+│     - Augment train: léger (flip, rot 5%, zoom 10%)
+│
+│  📈 Métriques cibles :
+│     - Accuracy globale    : 90-93%
+│     - F1-macro            : 88-91%
+│     - Top-3 accuracy      : ≥98%
+│     - Recall classes rares: ≥85%
+│
+└──────────────────────────────────────────────────────────────────────────────
+
+================================================================================
+ ✅ AUDIT TERMINÉ
+================================================================================

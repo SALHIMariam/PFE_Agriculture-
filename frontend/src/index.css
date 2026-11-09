@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap")
 layer(base);
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&display=swap")
+layer(base);
 
 @import "tailwindcss";
 
@@ -8,6 +10,8 @@ layer(base);
 @theme {
   --font-*: initial;
   --font-outfit: Outfit, sans-serif;
+  --font-lato: "Lato", "Outfit", sans-serif;
+  --font-playfair: "Playfair Display", serif;
 
   --breakpoint-*: initial;
   --breakpoint-2xsm: 375px;
@@ -41,18 +45,20 @@ layer(base);
   --color-white: #ffffff;
   --color-black: #101828;
 
-  --color-brand-25: #f2f7ff;
-  --color-brand-50: #ecf3ff;
-  --color-brand-100: #dde9ff;
-  --color-brand-200: #c2d6ff;
-  --color-brand-300: #9cb9ff;
-  --color-brand-400: #7592ff;
-  --color-brand-500: #465fff;
-  --color-brand-600: #3641f5;
-  --color-brand-700: #2a31d8;
-  --color-brand-800: #252dae;
-  --color-brand-900: #262e89;
-  --color-brand-950: #161950;
+  /* Brand — palette verte agricole AgriNova (aligne le dashboard Admin/Expert
+     sur le thème Farmer). Ne pas rétablir les bleus TailAdmin d'origine. */
+  --color-brand-25: #f0faf2;
+  --color-brand-50: #d8f3dc;
+  --color-brand-100: #b7e4c7;
+  --color-brand-200: #95d5b2;
+  --color-brand-300: #74c69d;
+  --color-brand-400: #52b788;
+  --color-brand-500: #40916c;
+  --color-brand-600: #2d6a4f;
+  --color-brand-700: #1b4332;
+  --color-brand-800: #163a2b;
+  --color-brand-900: #10281e;
+  --color-brand-950: #0a1a13;
 
   --color-blue-light-25: #f5fbff;
   --color-blue-light-50: #f0f9ff;
@@ -67,9 +73,9 @@ layer(base);
   --color-blue-light-900: #0b4a6f;
   --color-blue-light-950: #062c41;
 
-  --color-gray-25: #fcfcfd;
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f2f4f7;
+  --color-gray-25: #fcfdfc;
+  --color-gray-50: #f4f7f4;
+  --color-gray-100: #eef3ef;
   --color-gray-200: #e4e7ec;
   --color-gray-300: #d0d5dd;
   --color-gray-400: #98a2b3;
@@ -147,7 +153,7 @@ layer(base);
   --shadow-theme-xl: 0px 20px 24px -4px rgba(16, 24, 40, 0.08),
     0px 8px 8px -4px rgba(16, 24, 40, 0.03);
   --shadow-datepicker: -5px 0 0 #262d3c, 5px 0 0 #262d3c;
-  --shadow-focus-ring: 0px 0px 0px 4px rgba(70, 95, 255, 0.12);
+  --shadow-focus-ring: 0px 0px 0px 4px rgba(64, 145, 108, 0.12);
   --shadow-slider-navigation: 0px 1px 2px 0px rgba(16, 24, 40, 0.1),
     0px 1px 3px 0px rgba(16, 24, 40, 0.1);
   --shadow-tooltip: 0px 4px 6px -2px rgba(16, 24, 40, 0.05),
@@ -187,6 +193,11 @@ layer(base);
   }
   body {
     @apply relative font-normal font-outfit z-1 bg-gray-50;
+  }
+  /* Défilement fluide au niveau du document (le scroll-behavior de la
+     landing vit dans son shadow root et ne pilote pas le scroll de la page). */
+  html {
+    scroll-behavior: smooth;
   }
 }
 
@@ -278,6 +289,41 @@ layer(base);
 }
 .dark .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: #344054;
+}
+
+/* Liste du panneau de notifications : scrollbar plus large et visible. */
+@utility notif-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #c5d5c0 transparent;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #c5d5c0;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #a3b89e;
+  }
+}
+.dark .notif-scrollbar {
+  scrollbar-color: #3f5446 transparent;
+}
+.dark .notif-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #3f5446;
+}
+.dark .notif-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #557060;
 }
 
 @layer utilities {
@@ -523,13 +569,13 @@ span.flatpickr-weekday,
 .flatpickr-day.selected.nextMonthDay,
 .flatpickr-day.startRange.nextMonthDay,
 .flatpickr-day.endRange.nextMonthDay {
-  background: #465fff;
+  background: #40916c;
   @apply !border-brand-500 !bg-brand-500 hover:!border-brand-500 hover:!bg-brand-500;
 }
 .flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n + 1)),
 .flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n + 1)),
 .flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n + 1)) {
-  box-shadow: -10px 0 0 #465fff;
+  box-shadow: -10px 0 0 #40916c;
 }
 
 .flatpickr-months .flatpickr-prev-month svg,
@@ -789,4 +835,159 @@ span.flatpickr-weekday,
 
 .simplebar-scrollbar.simplebar-visible:before {
   @apply opacity-100;
+}
+
+/* =====================================================================
+   Thème AgriNova — dashboard Admin/Expert (/dashboard/*)
+   Harmonise TailAdmin avec la palette verte du dashboard Farmer.
+   Portée limitée à .theme-agrinova (racine de AppLayout) — n'affecte
+   ni le dashboard Farmer, ni la landing, ni les pages d'auth.
+   ===================================================================== */
+.theme-agrinova {
+  font-family: "Lato", "Outfit", sans-serif;
+  background-color: #f4f7f4;
+}
+.dark .theme-agrinova {
+  background-color: #0e1f10;
+}
+.theme-agrinova h1,
+.theme-agrinova h2,
+.theme-agrinova h3,
+.theme-agrinova .page-title {
+  font-family: "Playfair Display", serif;
+}
+
+/* --- Sidebar : dégradé vert, textes en blanc --- */
+.agrinova-sidebar {
+  background: linear-gradient(
+    to bottom,
+    #74c69d 0%,
+    #52b788 20%,
+    #40916c 50%,
+    #2d6a4f 80%,
+    #1b4332 100%
+  ) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff;
+}
+.dark .agrinova-sidebar {
+  background-color: #1b4332 !important;
+}
+.agrinova-sidebar h2 {
+  color: #ffffff !important;
+}
+.agrinova-sidebar .menu-item-inactive {
+  color: #ffffff;
+}
+.agrinova-sidebar .menu-item-inactive:hover,
+.agrinova-sidebar .menu-dropdown-item-inactive:hover {
+  background-color: rgba(64, 145, 108, 0.25);
+  color: #ffffff;
+}
+.agrinova-sidebar .menu-item-active {
+  background-color: #40916c;
+  color: #ffffff;
+}
+.agrinova-sidebar .menu-item-icon-inactive {
+  color: #ffffff;
+}
+.agrinova-sidebar .menu-item-icon-active {
+  color: #ffffff;
+}
+.agrinova-sidebar .menu-dropdown-item-inactive {
+  color: rgba(255, 255, 255, 0.85);
+}
+/* Zone logo : transparente pour laisser filer le dégradé de la sidebar sans rupture */
+.agrinova-logo-zone {
+  background: transparent;
+  border-bottom: none;
+}
+.dark .agrinova-logo-zone {
+  background: transparent;
+}
+/* Pastille du logo : dégradé accordé au vert de la sidebar */
+.agrinova-logo-mark {
+  background: linear-gradient(135deg, #2d6a4f, #52b788) !important;
+}
+.agrinova-sidebar .menu-dropdown-item-active {
+  background-color: rgba(64, 145, 108, 0.35);
+  color: #ffffff;
+}
+.agrinova-sidebar .menu-dropdown-badge {
+  color: #ffffff;
+}
+.agrinova-sidebar .menu-dropdown-badge-active,
+.agrinova-sidebar .menu-dropdown-badge-inactive {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+/* Widget promo en bas de sidebar : s'accorde au fond vert foncé */
+.agrinova-sidebar .bg-gray-50 {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+}
+.agrinova-sidebar .bg-gray-50 h3 {
+  color: #ffffff !important;
+}
+.agrinova-sidebar .bg-gray-50 p {
+  color: rgba(216, 243, 220, 0.7) !important;
+}
+
+/* --- Logo AgriNova dans la sidebar --- */
+.agrinova-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.agrinova-logo-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1b4332, #40916c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+  box-shadow: 0 6px 18px rgba(27, 67, 50, 0.28);
+}
+.agrinova-logo-name {
+  font-family: "Playfair Display", serif;
+  font-weight: 800;
+  font-size: 20px;
+  color: #ffffff;
+  line-height: 1;
+}
+.agrinova-logo-sub {
+  font-size: 8px;
+  letter-spacing: 3px;
+  color: #74c69d;
+  text-transform: uppercase;
+  margin-top: 3px;
+  font-weight: 700;
+}
+
+/* --- Header / TopBar : verre dépoli, on voit le contenu défiler derrière --- */
+.agrinova-header {
+  position: sticky;
+  top: 0;
+  /* Doit rester au-dessus de tout contenu de page (ex: panneaux du Heatmap
+     en z-[1000]) sinon le dropdown de notifications, bien qu'au-dessus du
+     header lui-même, reste plafonné par le z-index de son propre contexte
+     d'empilement et se fait recouvrir par ce contenu. */
+  z-index: 2000;
+  background-color: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(27, 67, 50, 0.08);
+}
+.dark .agrinova-header {
+  background-color: rgba(17, 24, 39, 0.72) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+.agrinova-header .fill-gray-500 {
+  fill: #40916c;
+}
+
+/* --- Tableaux : survol de ligne teinté vert --- */
+.theme-agrinova .hover\:bg-gray-50:hover {
+  background-color: #f0faf2;
 }

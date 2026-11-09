@@ -11,7 +11,13 @@ const api = axios.create({
 
 api.interceptors.response.use(
   (response) => response,
-  (error) => {
+  async (error) => {
+    const config = error.config;
+    if (error.response?.status === 419 && config && !config._retriedAfterCsrf) {
+      config._retriedAfterCsrf = true;
+      await api.get("/sanctum/csrf-cookie");
+      return api(config);
+    }
     if (error.response?.status !== 401) {
       console.error("API error:", error.response?.status, error.message);
     }

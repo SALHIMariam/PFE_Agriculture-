@@ -1,0 +1,169 @@
+{
+  "common": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "edit": "تعديل",
+    "add": "إضافة",
+    "enabled": "مفعّل",
+    "disabled": "معطّل",
+    "loading": "جارٍ التحميل…",
+    "notSet": "غير محدّد",
+    "yes": "نعم",
+    "no": "لا"
+  },
+  "profile": {
+    "eyebrow": "الحساب",
+    "title": "الملف الفلاحي",
+    "titleAccent": "للمزارع",
+    "role": {
+      "farmer": "مزارع",
+      "expert": "خبير",
+      "admin": "مسؤول"
+    },
+    "header": {
+      "editProfile": "تعديل الملف",
+      "changePhoto": "تغيير الصورة",
+      "farmType": "نوع الاستغلالية",
+      "memberSince": "عضو منذ {{date}}"
+    },
+    "completion": {
+      "title": "اكتمال الملف الفلاحي",
+      "criteria": {
+        "governorate": "الولاية",
+        "crops": "الزراعات",
+        "farmType": "نوع الاستغلالية",
+        "surface": "المساحة",
+        "irrigation": "نظام الري",
+        "season": "الموسم الرئيسي"
+      }
+    },
+    "farm": {
+      "title": "استغلاليتي",
+      "farmType": "نوع الاستغلالية",
+      "surface": "المساحة",
+      "hectares": "{{value}} هكتار",
+      "governorate": "الولاية",
+      "climateZone": "المنطقة المناخية",
+      "irrigation": "نظام الري"
+    },
+    "farmType": {
+      "Small": "استغلالية صغيرة",
+      "Medium": "استغلالية متوسطة",
+      "Large": "استغلالية كبيرة"
+    },
+    "irrigation": {
+      "goutte_a_goutte": "التنقيط",
+      "aspersion": "الرش",
+      "gravitaire": "بالجاذبية",
+      "pivot": "محوري",
+      "manuel": "يدوي",
+      "aucun": "بدون"
+    },
+    "season": {
+      "printemps": "الربيع",
+      "ete": "الصيف",
+      "automne": "الخريف",
+      "hiver": "الشتاء",
+      "toute_annee": "طوال السنة"
+    },
+    "zone": {
+      "nord": "الشمال",
+      "centre": "الوسط",
+      "sud": "الجنوب"
+    },
+    "crops": {
+      "title": "زراعاتي",
+      "add": "إضافة زراعة",
+      "lastAnalysis": "آخر تحليل",
+      "lastDisease": "آخر مرض تم كشفه",
+      "lastReco": "آخر توصية",
+      "none": "لا توجد زراعات مسجّلة بعد.",
+      "status": {
+        "good": "حالة جيدة",
+        "watch": "تحت المراقبة",
+        "alert": "إنذار",
+        "unknown": "لا يوجد تحليل بعد"
+      }
+    },
+    "ai": {
+      "title": "تخصيص AgriDetect",
+      "intro": "إليك كيف يساعد ملفك الذكاء الاصطناعي على تخصيص نصائحه.",
+      "cropsTracked": "الزراعات المتابَعة",
+      "region": "المنطقة",
+      "climateZone": "المنطقة المناخية",
+      "benefits": {
+        "region": "توصيات ملائمة لمنطقتك",
+        "crops": "نصائح ملائمة لزراعاتك",
+        "risks": "إنذارات ملائمة للمخاطر المحلية"
+      },
+      "managePrefs": "إدارة تفضيلات الذكاء الاصطناعي"
+    },
+    "notifications": {
+      "title": "الإشعارات",
+      "channelsHint": "اختر الإشعارات التي تريد استقبالها.",
+      "channels": {
+        "disease_alerts": "إشعارات الأمراض",
+        "high_risk": "خطر مرتفع",
+        "expert_validation": "مصادقة الخبير",
+        "new_recommendations": "توصيات جديدة",
+        "followup_reminder": "تذكير بالمتابعة",
+        "agri_news": "أخبار فلاحية"
+      },
+      "alertsTitle": "الإنذارات الفلاحية",
+      "alerts": {
+        "alert_high_risk": "مرض يمثّل خطرًا مرتفعًا",
+        "alert_rising_region": "مرض في تزايد في منطقتي",
+        "alert_new_analysis_recommended": "يُنصح بإجراء تحليل جديد",
+        "alert_expert_validates": "خبير يصادق على تشخيصي",
+        "alert_weather_unfavorable": "ظروف مناخية غير مواتية"
+      }
+    },
+    "security": {
+      "title": "الأمان",
+      "password": "كلمة المرور",
+      "email": "البريد الإلكتروني",
+      "lastLogin": "آخر اتصال",
+      "never": "أبدًا",
+      "activeSessions": "الجلسات النشطة",
+      "currentSessionOnly": "الجلسة الحالية فقط",
+      "twoFactor": "المصادقة الثنائية",
+      "changePassword": "تغيير كلمة المرور",
+      "changeEmail": "تغيير البريد الإلكتروني",
+      "currentPassword": "كلمة المرور الحالية",
+      "newPassword": "كلمة المرور الجديدة",
+      "confirmPassword": "تأكيد كلمة المرور"
+    },
+    "preferences": {
+      "title": "التفضيلات",
+      "language": "اللغة",
+      "darkMode": "الوضع الداكن",
+      "languages": {
+        "fr": "Français",
+        "en": "English",
+        "ar": "عربي"
+      }
+    },
+    "editModal": {
+      "title": "تعديل الملف",
+      "name": "الاسم الكامل",
+      "farm": "اسم الاستغلالية",
+      "email": "البريد الإلكتروني",
+      "governorate": "الولاية",
+      "crops": "الزراعات",
+      "cropsHint": "افصل بين الزراعات بفاصلة.",
+      "farmType": "نوع الاستغلالية",
+      "surface": "المساحة (هكتار)",
+      "irrigation": "نظام الري",
+      "season": "الموسم الرئيسي"
+    },
+    "toast": {
+      "profileSaved": "تم تحديث الملف",
+      "prefsSaved": "تم حفظ التفضيلات",
+      "notifSaved": "تم حفظ تفضيلات الإشعارات",
+      "passwordSaved": "تم تغيير كلمة المرور",
+      "languageSaved": "تم تحديث اللغة",
+      "error": "حدث خطأ ما",
+      "network": "تعذّر الاتصال بالخادم. تحقّق من اتصالك."
+    }
+  }
+}

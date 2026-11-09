@@ -1,0 +1,375 @@
+{
+    "_doc": "Source de vérité unique de la classification des actualités. Lu par ai/news/enrich.py (service IA) ET par backend/app/Services/News/NewsAiClient.php (fallback). Correspondance par MOTS ENTIERS, sensible aux accents (« maïs » ≠ « mais », « blé » ≠ « possible »). Un « s » ou « x » final est toléré (pluriel). Les expressions les plus longues sont testées en premier (« pomme de terre » avant « pomme »).",
+    "crops": {
+        "Potato": [
+            "pomme de terre",
+            "pommes de terre",
+            "patate",
+            "potato"
+        ],
+        "Apple": [
+            "pommier",
+            "pomme",
+            "apple"
+        ],
+        "Bean": [
+            "haricot",
+            "bean"
+        ],
+        "Corn": [
+            "maïs",
+            "corn",
+            "maize"
+        ],
+        "Cucumber": [
+            "concombre",
+            "cucumber"
+        ],
+        "Grape": [
+            "vigne",
+            "vignoble",
+            "raisin",
+            "viticulture",
+            "viticole",
+            "grape"
+        ],
+        "Groundnut": [
+            "arachide",
+            "cacahuète",
+            "groundnut",
+            "peanut"
+        ],
+        "Tomato": [
+            "tomate",
+            "tomato"
+        ],
+        "Wheat": [
+            "blé",
+            "wheat"
+        ]
+    },
+    "diseases": [
+        {
+            "keywords": [
+                "mildiou",
+                "late blight",
+                "downy mildew"
+            ],
+            "classes": {
+                "Tomato": "Tomato__late_blight",
+                "Potato": "Potato__late_blight",
+                "Cucumber": "Cucumber__downy_mildew"
+            }
+        },
+        {
+            "keywords": [
+                "alternariose",
+                "early blight"
+            ],
+            "classes": {
+                "Tomato": "Tomato__early_blight",
+                "Potato": "Potato__early_blight"
+            }
+        },
+        {
+            "keywords": [
+                "oïdium",
+                "oidium",
+                "powdery mildew"
+            ],
+            "classes": {
+                "Cucumber": "Cucumber__powdery_mildew"
+            }
+        },
+        {
+            "keywords": [
+                "rouille jaune",
+                "stripe rust",
+                "yellow rust"
+            ],
+            "classes": {
+                "Wheat": "Wheat__stripe_rust"
+            }
+        },
+        {
+            "keywords": [
+                "rouille grillagée"
+            ],
+            "classes": {
+                "Apple": "Apple__cedar_apple_rust"
+            }
+        },
+        {
+            "keywords": [
+                "rouille",
+                "rust"
+            ],
+            "classes": {
+                "Corn": "Corn__common_rust",
+                "Bean": "Bean__beans_rust_disease",
+                "Groundnut": "Groundnut__rust",
+                "Apple": "Apple__cedar_apple_rust"
+            }
+        },
+        {
+            "keywords": [
+                "tavelure",
+                "scab"
+            ],
+            "classes": {
+                "Apple": "Apple__scab"
+            }
+        },
+        {
+            "keywords": [
+                "pourriture noire",
+                "black rot",
+                "black-rot"
+            ],
+            "classes": {
+                "Apple": "Apple__black_rot",
+                "Grape": "Grape__black_rot"
+            }
+        },
+        {
+            "keywords": [
+                "esca",
+                "black measles"
+            ],
+            "classes": {
+                "Grape": "Grape__black_measles"
+            }
+        },
+        {
+            "keywords": [
+                "brûlure des feuilles",
+                "leaf blight"
+            ],
+            "classes": {
+                "Grape": "Grape__leaf_blight"
+            }
+        },
+        {
+            "keywords": [
+                "septoriose",
+                "septoria"
+            ],
+            "classes": {
+                "Tomato": "Tomato__septoria_leaf_spot",
+                "Wheat": "Wheat__septoria"
+            }
+        },
+        {
+            "keywords": [
+                "helminthosporiose",
+                "northern leaf blight"
+            ],
+            "classes": {
+                "Corn": "Corn__northern_leaf_blight"
+            }
+        },
+        {
+            "keywords": [
+                "cercosporiose précoce",
+                "early leaf spot"
+            ],
+            "classes": {
+                "Groundnut": "Groundnut__early_leaf_spot"
+            }
+        },
+        {
+            "keywords": [
+                "cercosporiose tardive",
+                "late leaf spot"
+            ],
+            "classes": {
+                "Groundnut": "Groundnut__late_leaf_spot"
+            }
+        },
+        {
+            "keywords": [
+                "cercosporiose",
+                "gray leaf spot"
+            ],
+            "classes": {
+                "Corn": "Corn__gray_leaf_spot",
+                "Groundnut": "Groundnut__early_leaf_spot"
+            }
+        },
+        {
+            "keywords": [
+                "striure",
+                "maize streak"
+            ],
+            "classes": {
+                "Corn": "Corn__maize_streak_virus_disease"
+            }
+        },
+        {
+            "keywords": [
+                "anthracnose"
+            ],
+            "classes": {
+                "Cucumber": "Cucumber__anthracnose"
+            }
+        },
+        {
+            "keywords": [
+                "pourriture gommeuse",
+                "gummy stem blight"
+            ],
+            "classes": {
+                "Cucumber": "Cucumber__gummy_stem_blight"
+            }
+        },
+        {
+            "keywords": [
+                "tache anguleuse",
+                "angular leaf spot"
+            ],
+            "classes": {
+                "Bean": "Bean__beans_angular_leaf_spot_disease"
+            }
+        },
+        {
+            "keywords": [
+                "tache bactérienne",
+                "bactériose",
+                "bacterial spot"
+            ],
+            "classes": {
+                "Tomato": "Tomato__bacterial_spot"
+            }
+        },
+        {
+            "keywords": [
+                "tétranyque",
+                "acarien",
+                "spider mite"
+            ],
+            "classes": {
+                "Tomato": "Tomato__spider_mites_two_spotted_spider_mite"
+            }
+        },
+        {
+            "keywords": [
+                "tylcv",
+                "feuilles jaunes en cuillère",
+                "yellow leaf curl"
+            ],
+            "classes": {
+                "Tomato": "Tomato__yellow_leaf_curl_virus"
+            }
+        },
+        {
+            "keywords": [
+                "carence",
+                "carence nutritionnelle"
+            ],
+            "classes": {
+                "Groundnut": "Groundnut__nutrition_deficiency"
+            }
+        }
+    ],
+    "categories": {
+        "alert": [
+            "alerte",
+            "urgence",
+            "invasion",
+            "épidémie",
+            "propagation",
+            "foyer",
+            "menace"
+        ],
+        "new_treatment": [
+            "traitement",
+            "fongicide",
+            "pesticide",
+            "insecticide",
+            "biocontrôle",
+            "lutte biologique",
+            "remède"
+        ],
+        "new_disease": [
+            "nouvelle maladie",
+            "nouveau ravageur",
+            "découverte",
+            "identifié",
+            "identifiée"
+        ],
+        "trend": [
+            "tendance",
+            "hausse",
+            "baisse",
+            "augmentation",
+            "progression",
+            "étude",
+            "rapport",
+            "bilan"
+        ]
+    },
+    "agri_context": [
+        "agriculture",
+        "agricole",
+        "agriculteur",
+        "agricultrice",
+        "agronome",
+        "agronomique",
+        "exploitation agricole",
+        "récolte",
+        "ravageur",
+        "phytosanitaire",
+        "semence",
+        "verger",
+        "serre",
+        "irrigation",
+        "maraîchage",
+        "maraîcher",
+        "oléiculture",
+        "céréale",
+        "céréaliculture",
+        "plante",
+        "végétal",
+        "culture agricole",
+        "parcelle",
+        "agrumes",
+        "olivier",
+        "palmier dattier",
+        "végétaux",
+        "cultures",
+        "plantation",
+        "palmier",
+        "phoeniciculture",
+        "permaculture",
+        "agroécologie",
+        "légume",
+        "maraîchère",
+        "cochenille",
+        "insecte ravageur",
+        "pesticide",
+        "fongicide",
+        "insecticide",
+        "herbicide",
+        "mildiou",
+        "oïdium",
+        "rouille",
+        "producteur agricole",
+        "filière agricole",
+        "manioc",
+        "courgette",
+        "banane",
+        "épinard",
+        "tabac",
+        "cactus",
+        "FAO"
+    ],
+    "scoring": {
+        "_doc": "Sans signal agricole (contexte, culture ou maladie), un article reste à la base (0.4) et n'est pas affiché (seuil config/news.php = 0.5). Le bonus de catégorie ne compte que pour un article agricole, pour qu'un « hausse » d'actualité générale ne suffise pas.",
+        "base": 0.4,
+        "agri_signal": 0.1,
+        "crop": 0.2,
+        "disease": 0.2,
+        "category": 0.1,
+        "max": 1.0
+    }
+}

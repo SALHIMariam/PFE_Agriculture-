@@ -1,0 +1,59 @@
+========================================================================
+ RAPPORT D'AUGMENTATION SÉLECTIVE v2 — PFE
+ (Version corrigée : pas d'artefacts mosaïque/kaléidoscope)
+========================================================================
+
+Configuration v2 :
+  - fill_mode      : constant (fond noir, comme PlantVillage)
+  - Pas de translation (cause des mosaïques)
+  - Pas de flip vertical (pas botanique pour feuilles)
+  - Rotation max   : ±30° (vs ±72° en v1)
+  - Validation     : minimum 40% de contenu non-noir
+
+Classe                                           Avant   Généré    Après     Niveau
+-------------------------------------------------------------------------------------
+Apple__black_rot                                  2267      733     3000     medium
+Apple__cedar_apple_rust                           2824      176     3000     medium
+Apple__healthy                                    2913       87     3000     medium
+Apple__scab                                       5319        0     5319         ok
+Bean__beans_angular_leaf_spot_disease             3086        0     3086         ok
+Bean__beans_healthy_crop                          3327        0     3327         ok
+Bean__beans_rust_disease                          3118        0     3118         ok
+Corn__common_rust                                 1234     1265     2499       weak
+Corn__gray_leaf_spot                              1184     1316     2500       weak
+Corn__healthy                                     2703      297     3000     medium
+Corn__maize_streak_virus_disease                  3572        0     3572         ok
+Corn__northern_leaf_blight                        2725      275     3000     medium
+Cucumber__anthracnose                             3068        0     3068         ok
+Cucumber__downy_mildew                            3356        0     3356         ok
+Cucumber__gummy_stem_blight                       2180      820     3000     medium
+Cucumber__healthy                                 4396        0     4396         ok
+Cucumber__powdery_mildew                          1380     1120     2500       weak
+Grape__black_measles                              2852      148     3000     medium
+Grape__black_rot                                  2306      694     3000     medium
+Grape__healthy                                    2894      106     3000     medium
+Grape__leaf_blight                                1952     1048     3000     medium
+Groundnut__early_leaf_spot                        1185     1315     2500       weak
+Groundnut__healthy                                1387     1113     2500       weak
+Groundnut__late_leaf_spot                         1544     1456     3000     medium
+Groundnut__nutrition_deficiency                   1141     1359     2500       weak
+Groundnut__rust                                   1952     1048     3000     medium
+Potato__early_blight                              1821     1179     3000     medium
+Potato__healthy                                   1488     1012     2500       weak
+Potato__late_blight                               1485     1015     2500       weak
+Tomato__bacterial_spot                            2194      805     2999     medium
+Tomato__early_blight                              1594     1406     3000     medium
+Tomato__healthy                                   2497      503     3000     medium
+Tomato__late_blight                               2689      303     2992     medium
+Tomato__septoria_leaf_spot                        2192      807     2999     medium
+Tomato__spider_mites_two_spotted_spider_mite      1199     1301     2500       weak
+Tomato__yellow_leaf_curl_virus                    3098        0     3098         ok
+Wheat__healthy                                    2253      747     3000     medium
+Wheat__septoria                                   2189      811     3000     medium
+Wheat__stripe_rust                                2760      240     3000     medium
+-------------------------------------------------------------------------------------
+TOTAL                                            93324    24505   117829
+Rejetées (qualité insuffisante) : 147
+
+Déséquilibre AVANT : 4.7×
+Déséquilibre APRÈS : 2.1×

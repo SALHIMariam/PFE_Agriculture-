@@ -17,10 +17,10 @@ export default function Mission() {
         <div className="mission-icon-wrap">
           <img loading="lazy" decoding="async" src={images.missionTarget} alt="Mission" />
         </div>
-        <h3 className="mission-title">Our Mission</h3>
+        <h3 className="mission-title">Notre mission</h3>
         <p className="mission-text">
           <span className="mission-highlight">
-            To promote precision agriculture by combining artificial intelligence and modern web technologies to improve crop productivity and reduce agricultural losses.
+            Promouvoir l’agriculture de précision en associant l’intelligence artificielle et les technologies web modernes, pour améliorer la productivité des cultures et réduire les pertes agricoles.
           </span>
         </p>
       </div>

@@ -23,7 +23,7 @@ export default function About() {
       </div>
 
       <div className="about-title-wrap">
-        <h2 className="section-title about-main-title">About</h2>
+        <h2 className="section-title about-main-title">À propos</h2>
       </div>
 
       <div className="about-grid">
@@ -34,7 +34,7 @@ export default function About() {
               fetchPriority="high"
               decoding="sync"
               src={images.aboutVineyard}
-              alt="Vineyard"
+              alt="Vignoble"
               onLoad={() => setIsVineyardLoaded(true)}
             />
           </div>
@@ -44,7 +44,7 @@ export default function About() {
               fetchPriority="high"
               decoding="sync"
               src={images.aboutFarmer}
-              alt="Farmer"
+              alt="Agricultrice"
               onLoad={() => setIsFarmerLoaded(true)}
             />
           </div>
@@ -52,20 +52,20 @@ export default function About() {
 
         <div>
           <h3 className="about-subtitle" data-aos="fade-up" data-aos-delay="100">
-            Transforming Agriculture<br />Through AI Innovation
+            Transformer l’agriculture<br />grâce à l’innovation en IA
           </h3>
           <p className="about-text-primary" data-aos="fade-up" data-aos-delay="100">
-            AgriNova is an innovative platform developed to support modern agriculture through artificial intelligence and computer vision technologies. The system analyzes plant images to detect anomalies and provide farmers with useful insights about crop health.
+            Elastic Solutions est une plateforme innovante qui accompagne l’agriculture moderne grâce à l’intelligence artificielle et à la vision par ordinateur. Elle analyse les images de plantes pour détecter les anomalies et fournir aux agriculteurs des informations utiles sur la santé de leurs cultures.
           </p>
           <p className="about-text-secondary" data-aos="fade-up" data-aos-delay="200">
-            The platform was created to assist farmers, agronomists, and agricultural organizations in making informed decisions based on real data collected directly from the field.
+            Elle a été conçue pour aider les agriculteurs, les agronomes et les organisations agricoles à prendre des décisions éclairées à partir de données réelles collectées directement sur le terrain.
           </p>
 
           <div className="vision-card" data-aos="fade-left" data-aos-delay="200">
-            <div className="vision-title">🌱 Our Vision</div>
-            <div className="vision-subtitle">AI Powered Smart Agriculture</div>
+            <div className="vision-title">🌱 Notre vision</div>
+            <div className="vision-subtitle">Une agriculture intelligente portée par l’IA</div>
             <p className="vision-text">
-              Transform traditional farming into smart and sustainable agriculture through AI-powered monitoring, plant image analysis, and intelligent recommendations.
+              Faire de l’agriculture traditionnelle une agriculture intelligente et durable, grâce au suivi par IA, à l’analyse d’images de plantes et à des recommandations intelligentes.
             </p>
             <div className="vision-features">
               {VISION_FEATURES.map(({ icon, name, desc }) => (

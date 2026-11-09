@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\ChangeUserRoleRequest;
 use App\Http\Requests\Admin\StoreUserRequest;
 use App\Http\Requests\Admin\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Services\EmailService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -20,6 +21,10 @@ class UserController extends Controller
     {
         $query = User::query();
 
+        // Opérateur insensible à la casse : `ilike` sur PostgreSQL (prod),
+        // `like` ailleurs (sqlite en test — déjà insensible à la casse ASCII).
+        $likeOperator = $query->getConnection()->getDriverName() === 'pgsql' ? 'ilike' : 'like';
+
         // Filtres optionnels
         if ($request->filled('role')) {
             $query->role($request->role);
@@ -27,12 +32,17 @@ class UserController extends Controller
         if ($request->filled('is_active')) {
             $query->where('is_active', filter_var($request->is_active, FILTER_VALIDATE_BOOLEAN));
         }
+        if ($request->filled('governorate')) {
+            $query->where('governorate', $request->input('governorate'));
+        }
         if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function ($q) use ($search) {
-                $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('email', 'like', "%{$search}%")
-                  ->orWhere('farm', 'like', "%{$search}%");
+            $search = $request->input('search');
+            $query->where(function ($q) use ($search, $likeOperator) {
+                $q->where('name', $likeOperator, "%{$search}%")
+                  ->orWhere('first_name', $likeOperator, "%{$search}%")
+                  ->orWhere('last_name', $likeOperator, "%{$search}%")
+                  ->orWhere('email', $likeOperator, "%{$search}%")
+                  ->orWhere('farm', $likeOperator, "%{$search}%");
             });
         }
 
@@ -61,20 +71,34 @@ class UserController extends Controller
     }
 
     /**
-     * Création d'un utilisateur par l'admin.
+     * Création d'un compte Expert par l'admin.
+     *
+     * Le rôle est toujours `expert`, codé en dur ici — jamais déterminé par
+     * une valeur envoyée par le client — afin qu'une requête forgée ne
+     * puisse pas obtenir un rôle plus privilégié.
      */
-    public function store(StoreUserRequest $request): JsonResponse
+    public function store(StoreUserRequest $request, EmailService $emailService): JsonResponse
     {
         $data = $request->validated();
-        $role = $data['role'] ?? 'farmer';
-        unset($data['role']);
 
-        $user = User::create($data);
-        $user->assignRole($role);
+        $tempPassword = Str::password(12);
+
+        $user = User::create([
+            ...$data,
+            'password'              => $tempPassword,
+            'is_active'              => true,
+            'must_change_password'   => true,
+        ]);
+
+        $user->assignRole('expert');
+        $user->assignRole('farmer');
+
+        $emailSent = $emailService->sendCredentials($user, $tempPassword);
 
         return response()->json([
-            'message' => 'Utilisateur créé avec succès.',
-            'user'    => new UserResource($user),
+            'message'    => 'Compte Expert créé avec succès.',
+            'user'       => new UserResource($user),
+            'email_sent' => $emailSent,
         ], 201);
     }
 
@@ -123,54 +147,36 @@ class UserController extends Controller
     }
 
     /**
-     * Activer / Désactiver un utilisateur.
+     * Activer / Désactiver un compte Farmer ou Expert.
+     *
+     * Body : { "is_active": true|false }. Sans body, bascule l'état courant
+     * (comportement historique). L'état explicite est préféré côté front :
+     * il rend la requête idempotente (double clic, retry réseau).
      */
-    public function toggleStatus(User $user): JsonResponse
+    public function toggleStatus(Request $request, User $user): JsonResponse
     {
+        $validated = $request->validate([
+            'is_active' => ['sometimes', 'boolean'],
+        ]);
+
         if ($user->id === auth()->id()) {
             return response()->json([
                 'message' => 'Vous ne pouvez pas modifier votre propre statut.',
             ], 422);
         }
 
-        $user->update(['is_active' => ! $user->is_active]);
-
-        return response()->json([
-            'message' => $user->is_active ? 'Utilisateur activé.' : 'Utilisateur désactivé.',
-            'user'    => new UserResource($user),
-        ]);
-    }
-
-    /**
-     * Changer le rôle d'un utilisateur.
-     */
-    public function changeRole(ChangeUserRoleRequest $request, User $user): JsonResponse
-    {
-        $authUser = $request->user();
-        $newRole = $request->validated('role');
-
-        // Protection 1 : Empêcher qu'un admin retire son propre rôle admin
-        if ($authUser->id === $user->id && $newRole !== 'admin') {
+        if ($user->hasRole('admin')) {
             return response()->json([
-                'message' => 'Vous ne pouvez pas retirer votre propre rôle admin.',
+                'message' => "Le statut d'un compte administrateur ne peut pas être modifié.",
             ], 422);
         }
 
-        // Protection 2 : Empêcher la suppression du dernier admin
-        if ($user->hasRole('admin') && $newRole !== 'admin') {
-            $adminsCount = User::role('admin')->count();
-
-            if ($adminsCount <= 1) {
-                return response()->json([
-                    'message' => 'Impossible de rétrograder le dernier administrateur.',
-                ], 422);
-            }
-        }
-
-        $user->syncRoles([$newRole]);
+        $user->update([
+            'is_active' => $validated['is_active'] ?? ! $user->is_active,
+        ]);
 
         return response()->json([
-            'message' => 'Rôle mis à jour avec succès.',
+            'message' => $user->is_active ? 'Compte activé avec succès.' : 'Compte désactivé avec succès.',
             'user'    => new UserResource($user),
         ]);
     }

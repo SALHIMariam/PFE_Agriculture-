@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate, useSearchParams } from "react-router";
 import styles from "./AgriNovaLoginPage.module.css";
 import { useAuth } from "../../context/AuthContext";
 
@@ -49,6 +49,8 @@ function useParticles(containerRef: React.RefObject<HTMLDivElement | null>) {
 export default function AgriNovaLoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const resetSuccess = searchParams.get("reset") === "success";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -74,13 +76,13 @@ export default function AgriNovaLoginPage() {
 
   const validate = () => {
     if (!email || !password) {
-      setError("Please fill in all fields.");
+      setError("Veuillez remplir tous les champs.");
       shakeElement(loginButtonRef.current);
       return false;
     }
 
     if (!email.includes("@")) {
-      setError("Enter a valid email address.");
+      setError("Veuillez saisir une adresse e-mail valide.");
       shakeElement(loginButtonRef.current);
       return false;
     }
@@ -103,14 +105,28 @@ export default function AgriNovaLoginPage() {
 
       setButtonState("loading");
 
-      const loggedUser = await login(email, password);
+      const { user: loggedUser, mustChangePassword } = await login(email, password);
       setButtonState("success");
+
+      if (mustChangePassword) {
+        navigate("/force-password-change", { replace: true });
+        return;
+      }
+
       const roles = Array.isArray(loggedUser?.roles) ? loggedUser.roles : [];
-      navigate(roles.includes("admin") ? "/dashboard" : "/landing", { replace: true });
+      if (roles.includes("admin") || roles.includes("expert")) {
+        navigate("/dashboard", { replace: true });
+      } else if (roles.includes("farmer")) {
+        navigate("/farmer/dashboard", { replace: true });
+      } else {
+        // Compte sans rôle reconnu : jamais de redirection vers une page
+        // publique (PublicOnlyRoute le déconnecterait aussitôt).
+        navigate("/login", { replace: true });
+      }
     } catch (err: unknown) {
       const message =
         (err as { response?: { data?: { message?: string } } })?.response?.data
-          ?.message || "A network error occurred. Please try again.";
+          ?.message || "Erreur réseau. Veuillez réessayer.";
       setError(message);
       setButtonState("idle");
       shakeElement(loginButtonRef.current);
@@ -123,10 +139,10 @@ export default function AgriNovaLoginPage() {
 
   const buttonLabel =
     buttonState === "loading"
-      ? "Signing in…"
+      ? "Connexion…"
       : buttonState === "success"
-        ? "✓  Welcome back!"
-        : "Sign In  →";
+        ? "✓  Bon retour !"
+        : "Se connecter  →";
 
   return (
     <div className={styles.page}>
@@ -179,47 +195,53 @@ export default function AgriNovaLoginPage() {
         </svg>
 
         <div className={styles.logo}>
-          <div className={styles.logoMark}>🌱</div>
-          <div>
-            <div className={styles.logoName}>AgriNova</div>
-            <span className={styles.logoSub}>Smart Agriculture</span>
-          </div>
+          <img
+            src="/logo-elastic-solutions.png"
+            alt="Elastic Solutions"
+            style={{ height: 56, width: "auto", maxWidth: 240, objectFit: "contain", display: "block" }}
+          />
         </div>
 
         <form className={styles.panelLeftInner} onSubmit={handleLogin}>
           <div className={styles.headline}>
-            <div className={styles.headlineEyebrow}>Secure access</div>
+            <div className={styles.headlineEyebrow}>Accès sécurisé</div>
             <h1 className={styles.headlineH1}>
-              <em>Welcome</em>
+              <em>Bienvenue</em>
               <br />
-              back to your
+              sur votre espace
               <br />
-              <span className={styles.brandOutline}>AgriNova.</span>
+              <span className={styles.brandOutline}>Elastic Solutions.</span>
             </h1>
             <p className={styles.headlineSub}>
-              Your crops are waiting. Sign in to access
+              Vos cultures vous attendent. Connectez-vous pour accéder
               <br />
-              AI diagnostics, real-time health reports,
+              aux diagnostics IA, aux bilans de santé en temps réel
               <br />
-              and smart field monitoring — all in one place.
+              et au suivi intelligent de vos parcelles, en un seul endroit.
             </p>
           </div>
 
+          {resetSuccess && (
+            <div className={styles.successBanner} role="status">
+              ✓ Mot de passe modifié avec succès. Connectez-vous.
+            </div>
+          )}
+
           <div className={`${styles.formError} ${error ? styles.isVisible : ""}`} role="alert" aria-live="polite">
             <span aria-hidden="true">⚠</span>
-            <span>{error || "Error"}</span>
+            <span>{error || "Erreur"}</span>
           </div>
 
           <div className={styles.formField}>
             <label className={styles.formLabel} htmlFor="agri-email">
-              Email address
+              Adresse e-mail
             </label>
             <div className={styles.formFieldWrap}>
               <input
                 className={styles.formInput}
                 id="agri-email"
                 type="email"
-                placeholder="you@agrinova.ai"
+                placeholder="vous@exemple.com"
                 autoComplete="email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
@@ -230,7 +252,7 @@ export default function AgriNovaLoginPage() {
 
           <div className={styles.formField}>
             <label className={styles.formLabel} htmlFor="agri-password">
-              Password
+              Mot de passe
             </label>
             <div className={styles.formFieldWrap}>
               <input
@@ -246,10 +268,10 @@ export default function AgriNovaLoginPage() {
               <button
                 className={styles.formEyeToggle}
                 type="button"
-                aria-label={showPassword ? "Hide password" : "Show password"}
+                aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
                 onClick={() => setShowPassword((previous) => !previous)}
               >
-                {showPassword ? "Hide" : "Show"}
+                {showPassword ? "Masquer" : "Afficher"}
               </button>
             </div>
           </div>
@@ -260,11 +282,11 @@ export default function AgriNovaLoginPage() {
               <div className={styles.formCheckboxUi} aria-hidden="true">
                 {remember ? "✓" : ""}
               </div>
-              Keep me signed in
+              Rester connecté
             </label>
-            <a href="#" className={styles.formForgot}>
-              Forgot password?
-            </a>
+            <Link to="/forgot-password" className={styles.formForgot}>
+              Mot de passe oublié&nbsp;?
+            </Link>
           </div>
 
           <button
@@ -277,7 +299,7 @@ export default function AgriNovaLoginPage() {
           </button>
 
           <p className={styles.formRegister}>
-            No account? <Link to="/agrinova-signup">Create one →</Link>
+            Pas encore de compte&nbsp;? <Link to="/agrinova-signup">Créer un compte →</Link>
           </p>
         </form>
       </div>
@@ -328,18 +350,18 @@ export default function AgriNovaLoginPage() {
 
         <div className={styles.panelRightTitleWrap}>
           <div className={styles.panelRightTitle}>
-            Intelligent agriculture
+            L’agriculture intelligente
             <br />
-            starts <em>here.</em>
+            commence <em>ici.</em>
           </div>
-          <div className={styles.panelRightSubtitle}>AI · Crop Monitoring · Real-Time Intelligence</div>
+          <div className={styles.panelRightSubtitle}>IA · Suivi des cultures · Analyse en temps réel</div>
         </div>
 
         <div className={styles.panelRightStats}>
           {[
-            { number: "90", sup: "%+", label: "Accuracy" },
+            { number: "90", sup: " %+", label: "Précision" },
             { number: "10", sup: "+", label: "Cultures" },
-            { number: "24/7", sup: "", label: "Monitoring" },
+            { number: "24/7", sup: "", label: "Surveillance" },
           ].map(({ number, sup, label }) => (
             <div key={label} className={styles.stat}>
               <div className={styles.statNumber}>

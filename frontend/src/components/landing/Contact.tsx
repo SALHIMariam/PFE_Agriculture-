@@ -13,14 +13,14 @@ export default function Contact() {
 
       <div className="contact-inner">
         <div className="contact-header" data-aos="fade-up">
-          <h2 className="section-title">Contact Us</h2>
-          <p className="contact-header-sub">Get in touch with our team for demos, partnerships, or any questions about AgriNova.</p>
+          <h2 className="section-title">Contactez-nous</h2>
+          <p className="contact-header-sub">Contactez notre équipe pour une démonstration, un partenariat ou toute question sur Elastic Solutions.</p>
         </div>
 
         <div className="contact-grid">
           <div className="contact-info-panel" data-aos="fade-right">
-            <h3 className="contact-info-title">Let's grow<br />something together</h3>
-            <p className="contact-info-sub">Our team of agricultural AI experts is ready to help you transform your farming operations with intelligent technology.</p>
+            <h3 className="contact-info-title">Faisons pousser<br />quelque chose ensemble</h3>
+            <p className="contact-info-sub">Notre équipe d’experts en IA agricole est prête à vous aider à transformer votre exploitation grâce à des technologies intelligentes.</p>
             <div className="contact-items">
               {CONTACT_ITEMS.map(({ icon, label, value, href }) => (
                 <div key={label} className="contact-item">
@@ -38,32 +38,32 @@ export default function Contact() {
           </div>
 
           <div className="contact-form-box" data-aos="fade-left">
-            <h3 className="form-title">Send us a message</h3>
-            <p className="form-title-sub">We typically respond within 24 hours</p>
+            <h3 className="form-title">Envoyez-nous un message</h3>
+            <p className="form-title-sub">Nous répondons généralement sous 24&nbsp;heures</p>
             <div className="form-row">
               <div className="form-group">
-                <label className="form-label" htmlFor="contact-name">Name</label>
-                <input id="contact-name" className="form-input" type="text" placeholder="Your full name" />
+                <label className="form-label" htmlFor="contact-name">Nom</label>
+                <input id="contact-name" className="form-input" type="text" placeholder="Votre nom complet" />
               </div>
               <div className="form-group">
-                <label className="form-label" htmlFor="contact-email">Email</label>
-                <input id="contact-email" className="form-input" type="email" placeholder="your@email.com" />
+                <label className="form-label" htmlFor="contact-email">E-mail</label>
+                <input id="contact-email" className="form-input" type="email" placeholder="vous@exemple.com" />
               </div>
             </div>
             <div className="form-group">
-              <label className="form-label" htmlFor="contact-subject">Subject</label>
-              <input id="contact-subject" className="form-input" type="text" placeholder="Demo request, partnership..." />
+              <label className="form-label" htmlFor="contact-subject">Objet</label>
+              <input id="contact-subject" className="form-input" type="text" placeholder="Demande de démonstration, partenariat…" />
             </div>
             <div className="form-group">
               <label className="form-label" htmlFor="contact-message">Message</label>
-              <textarea id="contact-message" className="form-input" placeholder="Tell us about your project or question..."></textarea>
+              <textarea id="contact-message" className="form-input" placeholder="Parlez-nous de votre projet ou de votre question…"></textarea>
             </div>
-            <button className="form-btn">SEND MESSAGE →</button>
+            <button className="form-btn">ENVOYER LE MESSAGE →</button>
           </div>
         </div>
       </div>
 
-      <img loading="lazy" decoding="async" data-aos="fade-up" className="contact-subscribe-img" src={images.contactFarmer} alt="AgriNova farmer" />
+      <img loading="lazy" decoding="async" data-aos="fade-up" className="contact-subscribe-img" src={images.contactFarmer} alt="Agriculteur utilisant Elastic Solutions" />
     </section>
   );
 }

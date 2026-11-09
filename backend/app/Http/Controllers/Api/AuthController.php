@@ -21,6 +21,7 @@ class AuthController extends Controller
     {
         $data = $request->validated();
         $data['is_active'] = true;
+        $data['name'] = $data['first_name'].' '.$data['last_name'];
 
         $user = User::create($data);
 
@@ -76,6 +77,14 @@ class AuthController extends Controller
             'user_agent'  => $request->userAgent(),
             'logged_in_at' => now(),
         ]);
+
+        // Comptes Expert créés par l'admin : changement de mot de passe temporaire obligatoire.
+        if ($user->must_change_password) {
+            return response()->json([
+                'must_change_password' => true,
+                'user'                 => new UserResource($user),
+            ]);
+        }
 
         return response()->json([
             'message'     => 'Connexion réussie.',

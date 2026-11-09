@@ -35,4 +35,27 @@ return [
         ],
     ],
 
+    'ai' => [
+        'url' => env('AI_SERVICE_URL', 'http://127.0.0.1:8001'),
+    ],
+
+    'ai_risk' => [
+        'url' => env('AI_RISK_SERVICE_URL', 'http://127.0.0.1:8006'),
+    ],
+
+    'recommendation' => [
+        'url' => env('RECO_SERVICE_URL', 'http://localhost:8103'),
+    ],
+
+    'ai_copilot' => [
+        'url' => env('AI_COPILOT_SERVICE_URL', 'http://127.0.0.1:8007'),
+    ],
+
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect_uri' => env('GOOGLE_REDIRECT_URI'),
+        'calendar_id' => env('GOOGLE_CALENDAR_ID', 'primary'),
+    ],
+
 ];

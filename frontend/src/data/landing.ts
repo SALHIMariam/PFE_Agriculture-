@@ -28,118 +28,118 @@ export const images = {
 };
 
 export const NAV_LINKS = [
-  { label: 'Home',         href: '#home' },
-  { label: 'About',        href: '#about' },
+  { label: 'Accueil',      href: '#home' },
+  { label: 'À propos',     href: '#about' },
   { label: 'Services',     href: '#services' },
-  { label: 'How It Works', href: '#team' },
+  { label: 'Comment ça marche', href: '#team' },
   { label: 'Contact',      href: '#contact' },
 ];
 
 export const HERO_SLIDES = [images.heroSlide1, images.heroSlide2];
 
 export const HERO_STATS = [
-  { value: '90%+', label: 'Accuracy' },
-  { value: '10+',  label: 'Crop Types' },
-  { value: '24/7', label: 'Monitoring' },
+  { value: '90 %+', label: 'Précision' },
+  { value: '10+',  label: 'Types de cultures' },
+  { value: '24/7', label: 'Surveillance' },
 ];
 
 export const STATS = [
-  { target: 90,  suffix: '%+', label: 'Detection Accuracy' },
-  { target: 10,  suffix: '+',  label: 'Crop Types' },
-  { target: 500, suffix: '+',  label: 'Fields Monitored' },
-  { target: 247, suffix: '',   label: 'Real-Time Analysis', special: '24/7' },
+  { target: 90,  suffix: '%+', label: 'Précision de détection' },
+  { target: 10,  suffix: '+',  label: 'Types de cultures' },
+  { target: 500, suffix: '+',  label: 'Parcelles suivies' },
+  { target: 247, suffix: '',   label: 'Analyse en temps réel', special: '24/7' },
 ];
 
 export const VISION_FEATURES = [
-  { icon: '🧠', name: 'Deep Learning',   desc: 'AI models detect plant diseases with 90%+ accuracy.' },
-  { icon: '👁',  name: 'Computer Vision', desc: 'Analyzing leaf images for anomaly patterns.' },
-  { icon: '📷', name: 'RGB Analysis',    desc: 'Color pattern detection in crop health data.' },
-  { icon: '⚡', name: 'Real-Time AI',    desc: 'Instant anomaly alerts for faster decisions.' },
+  { icon: '🧠', name: 'Apprentissage profond', desc: 'Des modèles d’IA détectent les maladies des plantes avec plus de 90 % de précision.' },
+  { icon: '👁',  name: 'Vision par ordinateur', desc: 'Analyse des images de feuilles pour repérer les anomalies.' },
+  { icon: '📷', name: 'Analyse RVB',     desc: 'Détection des motifs de couleur liés à la santé des cultures.' },
+  { icon: '⚡', name: 'IA en temps réel', desc: 'Alertes immédiates pour décider plus vite.' },
 ];
 
 export const SERVICES = [
-  { img: images.serviceHealth,   title: 'Crop Health Monitoring',  desc: 'Continuous monitoring of crop conditions using image analysis and AI-based detection.' },
-  { img: images.serviceDisease,  title: 'Plant Disease Detection', desc: 'Automatic detection and classification of plant diseases using deep learning models.' },
-  { img: images.serviceMapping,  title: 'Field Mapping',           desc: 'Interactive maps allow users to visualize agricultural fields and monitor crop health geographically.' },
-  { img: images.serviceAnalytics,title: 'Agricultural Analytics',  desc: 'Access detailed statistics and reports about anomalies, crop conditions, and historical trends.' },
-  { img: images.servicePdf,      title: 'PDF Reports',             desc: 'Generate and export detailed diagnostic reports including anomaly summaries and recommendations.' },
-  { img: images.serviceAlerts,   title: 'Real-Time Alerts',        desc: 'Instant notifications when anomalies are detected with confidence scores and severity levels.' },
+  { img: images.serviceHealth,   title: 'Suivi de la santé des cultures', desc: 'Surveillance continue de l’état des cultures par analyse d’images et détection par IA.' },
+  { img: images.serviceDisease,  title: 'Détection des maladies', desc: 'Détection et classification automatiques des maladies des plantes grâce à l’apprentissage profond.' },
+  { img: images.serviceMapping,  title: 'Cartographie des parcelles', desc: 'Des cartes interactives pour visualiser vos parcelles et suivre la santé des cultures sur le terrain.' },
+  { img: images.serviceAnalytics,title: 'Statistiques agricoles', desc: 'Statistiques et rapports détaillés sur les anomalies, l’état des cultures et leur évolution.' },
+  { img: images.servicePdf,      title: 'Rapports PDF', desc: 'Générez et exportez des rapports de diagnostic détaillés, avec synthèse des anomalies et recommandations.' },
+  { img: images.serviceAlerts,   title: 'Alertes en temps réel', desc: 'Notifications immédiates dès qu’une anomalie est détectée, avec score de confiance et niveau de gravité.' },
 ];
 
 export const SERVICE_TILES = [
-  { img: images.bgServiceDesc, label: 'Smart Monitoring' },
-  { img: images.bgTile1,       label: 'Harvest Intelligence' },
-  { img: images.bgTile2,       label: 'Field Analysis' },
+  { img: images.bgServiceDesc, label: 'Surveillance intelligente' },
+  { img: images.bgTile1,       label: 'Récoltes maîtrisées' },
+  { img: images.bgTile2,       label: 'Analyse des parcelles' },
 ];
 
 export const HOW_STEPS = [
   {
     img: images.howCapture, num: '01', role: 'Capture',
-    name: '📸 Field Image Capture',
-    desc: 'Photograph your crops to launch the automatic AI analysis.',
-    tags: ['Smartphone', 'Drone', 'Camera'],
+    name: '📸 Prise de vue',
+    desc: 'Photographiez vos cultures pour lancer l’analyse automatique par IA.',
+    tags: ['Smartphone', 'Drone', 'Appareil photo'],
   },
   {
-    img: images.serviceDisease, num: '02', role: 'Analyze',
-    name: '🔬 AI Image Analysis',
-    desc: 'Deep learning & computer vision process RGB images in real time.',
-    tags: ['Deep Learning', 'RGB Vision', 'Real-Time'],
+    img: images.serviceDisease, num: '02', role: 'Analyse',
+    name: '🔬 Analyse d’image par IA',
+    desc: 'L’apprentissage profond et la vision par ordinateur traitent les images RVB en temps réel.',
+    tags: ['Apprentissage profond', 'Vision RVB', 'Temps réel'],
   },
   {
-    img: images.missionTarget, num: '03', role: 'Detect',
-    name: '🎯 Automatic Detection',
-    desc: 'Diseases, water stress and deficiencies detected with 90%+ accuracy.',
-    tags: ['Disease', 'Water Stress', 'Deficiency'],
+    img: images.missionTarget, num: '03', role: 'Détection',
+    name: '🎯 Détection automatique',
+    desc: 'Maladies, stress hydrique et carences détectés avec plus de 90 % de précision.',
+    tags: ['Maladie', 'Stress hydrique', 'Carence'],
   },
   {
-    img: images.servicePdf, num: '04', role: 'Result',
-    name: '📋 Report',
-    desc: 'PDF report with detected anomalies, treatments and health mapping.',
-    tags: ['PDF Report', 'Mapping', 'Treatment'],
+    img: images.servicePdf, num: '04', role: 'Résultat',
+    name: '📋 Rapport',
+    desc: 'Rapport PDF avec les anomalies détectées, les traitements et la carte de santé.',
+    tags: ['Rapport PDF', 'Cartographie', 'Traitement'],
   },
 ];
 
 export const TESTIMONIALS = [
   {
     img: images.testimonialSara, name: 'Sara M.',
-    role: '🍅 Tomato Grower · Morocco', stars: 5,
-    quote: 'AgriNova completely transformed how I monitor my crops. The AI detection is incredibly accurate and the real-time alerts saved my harvest twice this season.',
+    role: '🍅 Productrice de tomates · Maroc', stars: 5,
+    quote: 'Elastic Solutions a complètement changé ma façon de suivre mes cultures. La détection par IA est d’une précision remarquable, et les alertes en temps réel ont sauvé ma récolte deux fois cette saison.',
   },
   {
     img: images.testimonialLena, name: 'Lena K.',
-    role: '🌿 Greenhouse Manager · Portugal', stars: 5,
-    quote: 'Using my smartphone to scan plants and get instant disease diagnosis is like magic. The PDF reports are detailed and very useful for my agronomist team.',
+    role: '🌿 Responsable de serres · Portugal', stars: 5,
+    quote: 'Photographier mes plantes avec mon smartphone et obtenir un diagnostic immédiat, c’est magique. Les rapports PDF sont détaillés et très utiles à mon équipe d’agronomes.',
   },
   {
     img: images.testimonialAmira, name: 'Amira T.',
-    role: '🌸 Florist Farmer · Tunisia', stars: 4,
-    quote: 'The field mapping feature is outstanding. I can now visualize my entire greenhouse health at a glance. Highly recommend for any serious grower.',
+    role: '🌸 Horticultrice · Tunisie', stars: 4,
+    quote: 'La cartographie des parcelles est remarquable. Je vois maintenant l’état de toute ma serre d’un seul coup d’œil. Je la recommande à tout producteur sérieux.',
   },
   {
     img: images.testimonialCarlos, name: 'Carlos M.',
-    role: '🌾 Wheat Farmer · Brazil', stars: 5,
-    quote: "Incredible platform. The 90% detection accuracy speaks for itself. We reduced crop losses by 40% in just one season thanks to AgriNova's early warning system.",
+    role: '🌾 Céréalier · Brésil', stars: 5,
+    quote: "Une plateforme incroyable. Les 90 % de précision parlent d’eux-mêmes. Nous avons réduit nos pertes de 40 % en une seule saison grâce au système d’alerte précoce d’Elastic Solutions.",
   },
 ];
 
 export const CONTACT_ITEMS = [
-  { icon: '📍', label: 'Address', value: 'AgriNova Agricultural Innovation Lab\nTunis, Tunisia' },
-  { icon: '📧', label: 'Email',   value: 'contact@agrinova-platform.com', href: 'mailto:contact@agrinova-platform.com' },
-  { icon: '📞', label: 'Phone',   value: '+216 25 000 000' },
-  { icon: '🌐', label: 'Website', value: 'www.agrinova-platform.com' },
+  { icon: '📍', label: 'Adresse', value: 'Elastic Solutions — Laboratoire d’innovation agricole\nTunis, Tunisie' },
+  { icon: '📧', label: 'E-mail',   value: 'contact@elasticsolutions-platform.com', href: 'mailto:contact@elasticsolutions-platform.com' },
+  { icon: '📞', label: 'Téléphone',   value: '+216 25 000 000' },
+  { icon: '🌐', label: 'Site web', value: 'www.elasticsolutions-platform.com' },
 ];
 
 export const FOOTER_NAV = [
-  { label: '› Home',     href: '#home' },
-  { label: '› About',    href: '#about' },
+  { label: '› Accueil',  href: '#home' },
+  { label: '› À propos', href: '#about' },
   { label: '› Services', href: '#services' },
-  { label: '› Team',     href: '#team' },
+  { label: '› Comment ça marche', href: '#team' },
   { label: '› Contact',  href: '#contact' },
 ];
 
 export const FOOTER_SERVICES = [
-  '› Crop Monitoring', '› Disease Detection', '› Field Mapping',
-  '› AI Analytics',    '› Smart Alerts',
+  '› Suivi des cultures', '› Détection des maladies', '› Cartographie des parcelles',
+  '› Statistiques IA',   '› Alertes intelligentes',
 ];
 
 export const FOOTER_SOCIALS = [
@@ -150,7 +150,7 @@ export const FOOTER_SOCIALS = [
 ];
 
 export const FOOTER_CONTACT = [
-  { icon: '📍', text: 'Tunis, Tunisia — Smart Agriculture Hub' },
+  { icon: '📍', text: 'Tunis, Tunisie — Pôle d’agriculture intelligente' },
   { icon: '📞', text: '+216 71 000 000' },
-  { icon: '✉️', text: 'contact@agrinova-platform.com' },
+  { icon: '✉️', text: 'contact@elasticsolutions-platform.com' },
 ];

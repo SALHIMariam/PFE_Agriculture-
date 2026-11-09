@@ -1,0 +1,6 @@
+import os
+
+MODEL_PATH = os.getenv("AGRINOVA_MODEL_PATH", "ai/models/best.pt")
+CONFIDENCE_THRESHOLD = 0.60
+MAX_UPLOAD_BYTES = 8 * 1024 * 1024
+TOP_K = 3
